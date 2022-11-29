@@ -5,10 +5,6 @@ using UnityEngine;
 
 public class ObjectManager : MonoBehaviour
 {
-    [SerializeField] Transform[] spawnPositions;
-    [SerializeField] float spawnWaitTime;
-    [SerializeField] GameObject eggPrefab;
-    private GameObject[] eggs = new GameObject[3];
 
     public static ObjectManager Instance { get; private set; }
     private void Awake()
@@ -24,11 +20,6 @@ public class ObjectManager : MonoBehaviour
             Instance = this;
         }
     }
-    private void Start()
-    {
-        StartCoroutine(spawning());
-    }
-
     private List<GameObject> interactables = new List<GameObject>();
 
     public List<GameObject> Interactables { get => interactables; }
@@ -42,32 +33,6 @@ public class ObjectManager : MonoBehaviour
     {
         obj.SetActive(false);
         interactables.Remove(obj);
-    }
-
-    public void pickupEgg(GameObject egg)
-    {
-        for (int i = 0; i < eggs.Length; i++)
-        {
-            if (eggs[i] != null && eggs[i].Equals(egg))
-            {
-                eggs[i] = null;
-            }
-        }
-    }
-    private IEnumerator spawning()
-    {
-        while(true)
-        {
-            for(int i = 0; i < eggs.Length; i++)
-            {
-                if (eggs[i] == null)
-                {
-                    eggs[i] = Instantiate(eggPrefab, spawnPositions[i].position, Quaternion.identity);
-                }
-            }
-
-            yield return new WaitForSeconds(spawnWaitTime);
-        }
     }
 
 }

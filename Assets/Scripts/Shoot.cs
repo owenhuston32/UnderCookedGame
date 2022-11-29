@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Shoot : MonoBehaviour
 {
-    Player player;
+    private Player player;
+    private InteractableTagManager tagManager;
+    private GameObject playerObj;
     [SerializeField] float speed = 4f;
     [SerializeField] float despawnWaitTime = 1f;
     private GameObject objInHand;
@@ -12,6 +14,7 @@ public class Shoot : MonoBehaviour
     private void Start()
     {
         player = GetComponent<Player>();
+        tagManager = GetComponent<InteractableTagManager>();
     }
 
     public void shootPress()
@@ -50,7 +53,7 @@ public class Shoot : MonoBehaviour
 
         objInHand.tag = "Projectile";
 
-        player.updateInteractableTags();
+        tagManager.updateInteractableTags();
 
         StartCoroutine(waitThenDespawn(despawnWaitTime));
     }

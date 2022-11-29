@@ -18,7 +18,7 @@ public class Egg : MonoBehaviour, IPickup, Iinteractable
     {
         if (playerHoldingObj == null)
         {
-            ObjectManager.Instance.pickupEgg(gameObject);
+            Spawner.Instance.removeObj(gameObject);
             pickup(player);
         }
         // if we are holding the pan and something else is highlighted
