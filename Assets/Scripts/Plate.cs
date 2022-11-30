@@ -5,14 +5,20 @@ using UnityEngine;
 
 public class Plate : MonoBehaviour, IPickup, IHold, Iinteractable
 {
+    Spawner plateSpawner;
     private GameObject holder = null;
     private GameObject currentHoldingObj = null;
-    public IHighlight highlight { get => gameObject.GetComponent<IHighlight>(); }
 
     public GameObject CurrentlyHoldingObj { get => currentHoldingObj; set => currentHoldingObj = value; }
     public GameObject Holder { get => holder; set => holder = value; }
     [SerializeField] private Transform holdPosition;
     public Transform HoldPosition { get => holdPosition; set => holdPosition = value; }
+
+    private void Start()
+    {
+        ObjectManager.Instance.addInteractable(gameObject);
+        plateSpawner = GameObject.Find("Plate Spawner").GetComponent<Spawner>();
+    }
 
     public void interact(GameObject player, GameObject highlightedObj, GameObject playerHoldingObj)
     {
@@ -20,7 +26,7 @@ public class Plate : MonoBehaviour, IPickup, IHold, Iinteractable
         {
             pickup(player);
         }
-        // if we are holding the pan and something else is highlighted
+        // if we are holding the plate and something else is highlighted
         else if (playerHoldingObj.Equals(gameObject) && highlightedObj != null)
         {
             setDown(player, highlightedObj, playerHoldingObj);
@@ -64,11 +70,24 @@ public class Plate : MonoBehaviour, IPickup, IHold, Iinteractable
             interactable.interact(player, highlightedObj, playerHoldingObj);
             currentHoldingObj = null;
         }
-        // set the pan down
-        else
+        else if(highlightedObj.CompareTag("Table"))
         {
-            moveObj(player, highlightedObj, playerHoldingObj);
-            this.holder = highlightedObj;
+            // if this is a submission table
+            if(highlightedObj.GetComponent<Table>().IsSubmissionTable && currentHoldingObj != null )
+            {
+                plateSpawner.removeObj(gameObject);
+                currentHoldingObj.SetActive(false);
+                this.holder = null;
+                this.currentHoldingObj = null;
+
+                player.GetComponent<Player>().CurrentlyHoldingObj = null;
+                gameObject.SetActive(false);
+            }
+            else
+            {
+                moveObj(player, highlightedObj, playerHoldingObj);
+                this.holder = highlightedObj;
+            }
         }
     }
     private void moveObj(GameObject player, GameObject highlightedObj, GameObject playerHoldingObj)
@@ -104,12 +123,6 @@ public class Plate : MonoBehaviour, IPickup, IHold, Iinteractable
         holder.CurrentlyHoldingObj = null;
 
         this.holder = null;
-    }
-
-
-    private void Start()
-    {
-        ObjectManager.Instance.addInteractable(gameObject);
     }
 
 }

@@ -8,23 +8,8 @@ public class Spawner : MonoBehaviour
     [SerializeField] Transform[] spawnPositions;
     [SerializeField] float spawnWaitTime;
     [SerializeField] GameObject objPrefab;
-    private GameObject[] spawnedObjects = new GameObject[3];
-
-    public static Spawner Instance { get; private set; }
-    private void Awake()
-    {
-        // If there is an instance, and it's not me, delete myself.
-
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            Instance = this;
-        }
-    }
-
+    [SerializeField] private GameObject[] spawnedObjects;
+    [SerializeField] Transform parent;
     private void Start()
     {
         StartCoroutine(spawning());
@@ -47,7 +32,7 @@ public class Spawner : MonoBehaviour
             {
                 if (spawnedObjects[i] == null)
                 {
-                    spawnedObjects[i] = Instantiate(objPrefab, spawnPositions[i].position, Quaternion.identity);
+                    spawnedObjects[i] = Instantiate(objPrefab, spawnPositions[i].position, Quaternion.identity, parent);
                 }
             }
 

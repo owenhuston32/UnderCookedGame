@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class Table : MonoBehaviour, IHold, Iinteractable
 {
+    [SerializeField] private bool isSubmissionTable = false;
     private GameObject currentHoldingObj = null;
     public IHighlight highlight { get => gameObject.GetComponent<IHighlight>(); }
+    public bool IsSubmissionTable { get => isSubmissionTable; }
 
     public GameObject CurrentlyHoldingObj { get => currentHoldingObj; set => currentHoldingObj = value; }
     [SerializeField] private Transform holdPosition;

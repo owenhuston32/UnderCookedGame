@@ -7,10 +7,9 @@ public class Player : MonoBehaviour, IHold
 {
     InteractableTagManager tagManager;
     [SerializeField] GameObject player1;
-    [SerializeField] GameObject player2;
+    [SerializeField] GameObject player2; 
     [SerializeField] float reach = 2;
     private GameObject currentObjectInHand = null;
-    private List<string> canInteractWithTags = new List<string>();
     private GameObject highlightedObj = null;
     private GameObject prevHighlightedObj = null;
     public GameObject CurrentlyHoldingObj { get => currentObjectInHand; set => currentObjectInHand = value; }
@@ -26,14 +25,19 @@ public class Player : MonoBehaviour, IHold
     {
         if(other.CompareTag("Pan"))
         {
-            gameObject.GetComponent<Move>().stunMovement(5);
+            // if we arent currently holding this obj
+            // other.transform.parent.parent.gameObject is the obj that the player holds
+            if(currentObjectInHand == null || !currentObjectInHand.Equals(other.transform.parent.parent.gameObject))
+            {
+                gameObject.GetComponent<Move>().stunMovement(2);
+            }
         }
     }
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.CompareTag("Projectile"))
         {
-            gameObject.GetComponent<Move>().stunMovement(1);
+            gameObject.GetComponent<Move>().stunMovement(.5f);
         }
     }
 

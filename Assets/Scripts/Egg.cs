@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Egg : MonoBehaviour, IPickup, Iinteractable
 {
+    Spawner eggSpawner;
     private GameObject holder = null;
     public IHighlight highlight { get => gameObject.GetComponent<IHighlight>(); }
     public GameObject Holder { get => holder; set => holder = value; }
 
     private void Start()
     {
+        eggSpawner = GameObject.Find("Egg Spawner").GetComponent<Spawner>();
         ObjectManager.Instance.addInteractable(gameObject);
     }
 
@@ -18,7 +20,7 @@ public class Egg : MonoBehaviour, IPickup, Iinteractable
     {
         if (playerHoldingObj == null)
         {
-            Spawner.Instance.removeObj(gameObject);
+            eggSpawner.removeObj(gameObject);
             pickup(player);
         }
         // if we are holding the pan and something else is highlighted

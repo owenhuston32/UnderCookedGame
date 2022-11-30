@@ -344,6 +344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5305a609c311ef442b9e8f71e35d2fa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eggSpawner: {fileID: 6575250259340120106, guid: 70500ebce718e2a4a919974ea4ea7b6b, type: 3}
 --- !u!114 &3881562550126245076
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -49,7 +49,9 @@ public class Move : MonoBehaviour
     private IEnumerator stunningMovement(float stunTime)
     {
         canMove = false;
+        gameObject.GetComponent<IHighlight>().HighlightMaterial();
         yield return new WaitForSeconds(stunTime);
+        gameObject.GetComponent<IHighlight>().RemoveHighlight();
         canMove = true;
     }
 
