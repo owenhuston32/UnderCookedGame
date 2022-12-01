@@ -185,7 +185,7 @@
                 {
                     "name": "",
                     "id": "6c3f3613-3489-44e3-b0da-0c1a0d31a30c",
-                    "path": "<Mouse>/press",
+                    "path": "<Keyboard>/period",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -207,7 +207,7 @@
                 {
                     "name": "",
                     "id": "83b533fc-bac6-4054-adc8-159f3275e5c7",
-                    "path": "<Keyboard>/enter",
+                    "path": "<Keyboard>/slash",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

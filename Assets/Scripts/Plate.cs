@@ -75,6 +75,8 @@ public class Plate : MonoBehaviour, IPickup, IHold, Iinteractable
             // if this is a submission table
             if(highlightedObj.GetComponent<Table>().IsSubmissionTable && currentHoldingObj != null )
             {
+                ScoreManager.Instance.AddScore(player, this.currentHoldingObj);
+
                 plateSpawner.removeObj(gameObject);
                 currentHoldingObj.SetActive(false);
                 this.holder = null;
