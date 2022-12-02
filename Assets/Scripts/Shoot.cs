@@ -9,6 +9,7 @@ public class Shoot : MonoBehaviour
     private GameObject playerObj;
     [SerializeField] float speed = 4f;
     [SerializeField] float despawnWaitTime = 1f;
+    [SerializeField] float eggStunTime = 1f;
     private GameObject objInHand;
 
     private void Start()
@@ -27,10 +28,12 @@ public class Shoot : MonoBehaviour
         {
             shoot();
             playerHolder.CurrentlyHoldingObj = null;
+            tagManager.setNoTags();
         }
         else if(objInHand != null && objInHand.CompareTag("Pan"))
         {
             melee();
+            tagManager.setNoTags();
         }
     }
     private IEnumerator waitThenDespawn(float despawnWaitTime)
@@ -52,8 +55,6 @@ public class Shoot : MonoBehaviour
         objInHand.GetComponent<Collider>().enabled = true;
 
         objInHand.tag = "Projectile";
-
-        tagManager.updateInteractableTags();
 
         StartCoroutine(waitThenDespawn(despawnWaitTime));
     }

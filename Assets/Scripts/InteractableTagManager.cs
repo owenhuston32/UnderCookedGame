@@ -83,6 +83,11 @@ public class InteractableTagManager : MonoBehaviour
         canInteractWithTags.Add("Table");
     }
 
+    public void setNoTags()
+    {
+        canInteractWithTags.Clear();
+    }
+
     public bool canInteract(GameObject obj)
     {
 

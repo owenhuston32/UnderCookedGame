@@ -18,6 +18,7 @@ public class Plate : MonoBehaviour, IPickup, IHold, Iinteractable
     {
         ObjectManager.Instance.addInteractable(gameObject);
         plateSpawner = GameObject.Find("Plate Spawner").GetComponent<Spawner>();
+
     }
 
     public void interact(GameObject player, GameObject highlightedObj, GameObject playerHoldingObj)
@@ -60,7 +61,7 @@ public class Plate : MonoBehaviour, IPickup, IHold, Iinteractable
 
     }
 
-    private void setDown(GameObject player, GameObject highlightedObj, GameObject playerHoldingObj)
+    public void setDown(GameObject player, GameObject highlightedObj, GameObject playerHoldingObj)
     {
         // if we are highlighting a plate place the food on the plate instead of the pan
         if (highlightedObj.CompareTag("Plate"))

@@ -5,6 +5,8 @@ using UnityEngine.Rendering;
 
 public class Player : MonoBehaviour, IHold
 {
+    [SerializeField] float eggStunTime = 1f;
+    [SerializeField] float panStunTime = 3f;
     InteractableTagManager tagManager;
     [SerializeField] GameObject player1;
     [SerializeField] GameObject player2; 
@@ -29,7 +31,7 @@ public class Player : MonoBehaviour, IHold
             // other.transform.parent.parent.gameObject is the obj that the player holds
             if(currentObjectInHand == null || !currentObjectInHand.Equals(other.transform.parent.parent.gameObject))
             {
-                gameObject.GetComponent<Move>().stunMovement(2);
+                gameObject.GetComponent<Move>().stunMovement(panStunTime);
             }
         }
     }
@@ -37,7 +39,7 @@ public class Player : MonoBehaviour, IHold
     {
         if(collision.gameObject.CompareTag("Projectile"))
         {
-            gameObject.GetComponent<Move>().stunMovement(.5f);
+            gameObject.GetComponent<Move>().stunMovement(eggStunTime);
         }
     }
 
