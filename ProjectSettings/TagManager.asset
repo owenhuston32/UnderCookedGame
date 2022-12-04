@@ -13,6 +13,7 @@ TagManager:
   - Submission Table
   - Player1
   - Player2
+  - Food
   layers:
   - Default
   - TransparentFX

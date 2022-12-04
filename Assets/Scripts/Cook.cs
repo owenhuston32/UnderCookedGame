@@ -43,10 +43,6 @@ public class Cook : MonoBehaviour
         }
 
     }
-    public void enableCookBar()
-    {
-        fullCookBar.SetActive(true);
-    }
     public void disableCookBar()
     {
         fullCookBar.SetActive(false);
@@ -54,6 +50,7 @@ public class Cook : MonoBehaviour
     public void cook()
     {
         isCooking = true;
+        fullCookBar.SetActive(true);
         StartCoroutine(cooking());
     }
     public void stopCook()

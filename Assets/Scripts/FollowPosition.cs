@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class FollowPosition : MonoBehaviour
 {
-    private Transform followObj;
-    public Transform FollowObj { get => followObj; set => followObj = value; }
+    private Transform followTransform;
+    public Transform FollowTransform { get => followTransform; set => followTransform = value; }
 
     private void Start()
     {
@@ -16,10 +16,10 @@ public class FollowPosition : MonoBehaviour
     {
         while (true)
         {
-            if(followObj != null)
+            if(followTransform != null)
             {
-                gameObject.transform.localRotation = followObj.transform.rotation;
-                gameObject.transform.position = followObj.transform.position;
+                gameObject.transform.localRotation = followTransform.transform.rotation;
+                gameObject.transform.position = followTransform.transform.position;
             }
             yield return new WaitForEndOfFrame();
         }

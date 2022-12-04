@@ -3,25 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class Player : MonoBehaviour, IHold
+public class Player : MonoBehaviour
 {
     [SerializeField] float eggStunTime = 1f;
     [SerializeField] float panStunTime = 3f;
-    InteractableTagManager tagManager;
     [SerializeField] GameObject player1;
     [SerializeField] GameObject player2; 
     [SerializeField] float reach = 2;
-    private GameObject currentObjectInHand = null;
+
+    private InteractableTagManager tagManager;
     private GameObject highlightedObj = null;
     private GameObject prevHighlightedObj = null;
-    public GameObject CurrentlyHoldingObj { get => currentObjectInHand; set => currentObjectInHand = value; }
-    [SerializeField] private Transform holdPosition;
-    public Transform HoldPosition { get => holdPosition; set => holdPosition = value; }
-    public GameObject CurrentObjectInHand { get => currentObjectInHand; set => currentObjectInHand = value; }
+    private BasicHolder holder;
     private void Start()
     {
         tagManager = GetComponent<InteractableTagManager>();
         tagManager.setDefaultInterableTags();
+        holder = GetComponent<BasicHolder>();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -29,7 +27,7 @@ public class Player : MonoBehaviour, IHold
         {
             // if we arent currently holding this obj
             // other.transform.parent.parent.gameObject is the obj that the player holds
-            if(currentObjectInHand == null || !currentObjectInHand.Equals(other.transform.parent.parent.gameObject))
+            if(holder.CurrentlyHoldingObj == null || !holder.CurrentlyHoldingObj.Equals(other.transform.parent.parent.gameObject))
             {
                 gameObject.GetComponent<Move>().stunMovement(panStunTime);
             }
@@ -92,19 +90,19 @@ public class Player : MonoBehaviour, IHold
     {
         Iinteractable interactable = null;
 
-        if(currentObjectInHand != null)
+        if(holder.CurrentlyHoldingObj != null)
         {
-            interactable = currentObjectInHand.GetComponent(typeof(Iinteractable)) as Iinteractable;
+            interactable = holder.CurrentlyHoldingObj.GetComponent<BasicInteractable>();
         }
         else
         {
             if(highlightedObj != null)
-                interactable = highlightedObj.GetComponent(typeof(Iinteractable)) as Iinteractable;
+                interactable = highlightedObj.GetComponent<BasicInteractable>();
         }
 
         if (interactable != null)
         {
-            interactable.interact(gameObject, highlightedObj, currentObjectInHand);
+            interactable.interact(gameObject, highlightedObj, holder.CurrentlyHoldingObj);
         }
         highlightedObj = null;
         tagManager.updateInteractableTags();

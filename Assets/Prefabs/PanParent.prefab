@@ -140,8 +140,9 @@ GameObject:
   - component: {fileID: 6837624776480961976}
   - component: {fileID: 6837624776480961979}
   - component: {fileID: 6837624776480961978}
-  - component: {fileID: 6837624776480961981}
   - component: {fileID: 6837624776480961980}
+  - component: {fileID: 813185434294123301}
+  - component: {fileID: 2272022998445761638}
   m_Layer: 0
   m_Name: PanParent
   m_TagString: Pan
@@ -210,19 +211,6 @@ MonoBehaviour:
   highlightObjects:
   - {fileID: 6837624777204344897}
   - {fileID: 6837624776156158237}
---- !u!114 &6837624776480961981
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6837624776480961982}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f5a5146e1964f84eb5c9f1acf0b858b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  holdPosition: {fileID: 6837624776214830999}
 --- !u!114 &6837624776480961980
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,6 +223,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0aa34d93f59a66428d2090fcc8f12ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &813185434294123301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6837624776480961982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72400c2707c4813469d9ca600a9c23d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followPosition: {fileID: 6837624776480961980}
+--- !u!114 &2272022998445761638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6837624776480961982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 819e1ac21331047478881a6dd9ef5fde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holdPosition: {fileID: 6837624776214830999}
 --- !u!1 &6837624776774365362
 GameObject:
   m_ObjectHideFlags: 0

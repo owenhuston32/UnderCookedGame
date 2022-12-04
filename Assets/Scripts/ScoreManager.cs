@@ -29,16 +29,16 @@ public class ScoreManager : MonoBehaviour
     public int Player1Score { get => player1Score; }
     public int Player2Score { get => player2Score; }
 
-    public void AddScore(GameObject player, GameObject egg)
+    public void AddScore(GameObject player, GameObject food)
     {
         if(player.CompareTag("Player1"))
         {
-            player1Score += egg.GetComponent<Cook>().CurrentScore();
+            player1Score += food.GetComponent<Cook>().CurrentScore();
             player1ScoreText.text = "Score: " + player1Score;
         }
         else
         {
-            player2Score += egg.GetComponent<Cook>().CurrentScore();
+            player2Score += food.GetComponent<Cook>().CurrentScore();
             player2ScoreText.text = "Score: " + player2Score;
         }
     }

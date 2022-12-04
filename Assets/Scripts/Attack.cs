@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shoot : MonoBehaviour
+public class Attack : MonoBehaviour
 {
     private Player player;
     private InteractableTagManager tagManager;
-    private GameObject playerObj;
     [SerializeField] float speed = 4f;
     [SerializeField] float despawnWaitTime = 1f;
     [SerializeField] float eggStunTime = 1f;
@@ -18,7 +17,7 @@ public class Shoot : MonoBehaviour
         tagManager = GetComponent<InteractableTagManager>();
     }
 
-    public void shootPress()
+    public void attackPress()
     {
         IHold playerHolder = player.GetComponent(typeof(IHold)) as IHold;
 
@@ -46,7 +45,7 @@ public class Shoot : MonoBehaviour
     private void shoot()
     {
         FollowPosition followScript = objInHand.GetComponent<FollowPosition>();
-        followScript.FollowObj = null;
+        followScript.FollowTransform = null;
 
         objInHand.GetComponent<Cook>().disableCookBar();
         objInHand.GetComponent<IHighlight>().RemoveHighlight();

@@ -42,7 +42,7 @@ public class KeyboardController : MonoBehaviour
 
     private void shoot(InputAction.CallbackContext callback)
     {
-        gameObject.GetComponent<Shoot>().shootPress();
+        gameObject.GetComponent<Attack>().attackPress();
     }
 
     private void interact(InputAction.CallbackContext callback)

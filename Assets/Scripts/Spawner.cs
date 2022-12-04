@@ -34,10 +34,10 @@ public class Spawner : MonoBehaviour
                 if (spawnedObjects[i] == null)
                 {
                     spawnedObjects[i] = Instantiate(objPrefab, spawnPositions[i].position, Quaternion.identity, parent);
-                    if(spawnedObjects[i].GetComponent<Plate>() != null)
+                    if(spawnedObjects[i].CompareTag("Plate"))
                     {
                         // put plate on table
-                        spawnedObjects[i].GetComponent<Plate>().Holder = holders[i];
+                        spawnedObjects[i].GetComponent<BasicPickup>().Holder = holders[i];
 
 
                         spawnedObjects[i].GetComponent<Collider>().enabled = false;
@@ -48,7 +48,7 @@ public class Spawner : MonoBehaviour
                         newHolder.CurrentlyHoldingObj = gameObject;
 
                         FollowPosition followScript = spawnedObjects[i].GetComponent<FollowPosition>();
-                        followScript.FollowObj = newHolder.HoldPosition;
+                        followScript.FollowTransform = newHolder.HoldPosition;
 
 
                     }

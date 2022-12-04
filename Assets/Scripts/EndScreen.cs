@@ -8,16 +8,22 @@ public class EndScreen : MonoBehaviour
     [SerializeField] private TextMeshProUGUI playerWinText;
     [SerializeField] private TextMeshProUGUI player1ScoreText;
     [SerializeField] private TextMeshProUGUI player2ScoreText;
+    [SerializeField] private Canvas endCanvas;
     public void ShowEndScreen()
     {
-        gameObject.GetComponent<Canvas>().enabled = true;
-        player1ScoreText.text = "PLAYER 1\nSCORE: " + ScoreManager.Instance.Player1Score.ToString();
-        player2ScoreText.text = "PLAYER 2\nSCORE: " + ScoreManager.Instance.Player2Score.ToString();
-        if (ScoreManager.Instance.Player1Score == ScoreManager.Instance.Player2Score)
+        endCanvas.enabled = true;
+
+        int player1Score = ScoreManager.Instance.Player1Score;
+        int player2Score = ScoreManager.Instance.Player2Score;
+
+
+        player1ScoreText.text = "PLAYER 1\nSCORE: " + player1Score;
+        player2ScoreText.text = "PLAYER 2\nSCORE: " + player2Score;
+        if (player1Score == player2Score)
         {
             playerWinText.text = "TIE";
         }
-        else if(ScoreManager.Instance.Player1Score > ScoreManager.Instance.Player2Score)
+        else if(player1Score > player2Score)
         {
             playerWinText.text = "PLAYER 1 WINS";
         }

@@ -9,9 +9,9 @@ public class InteractableTagManager : MonoBehaviour
     [SerializeField] GameObject player1;
     [SerializeField] GameObject player2;
 
-    private IHold currentPlayerHolder;
-    private IHold player1Holder;
-    private IHold player2Holder;
+    private BasicHolder currentPlayerHolder;
+    private BasicHolder player1Holder;
+    private BasicHolder player2Holder;
 
     private List<string> canInteractWithTags = new List<string>();
 
@@ -19,27 +19,31 @@ public class InteractableTagManager : MonoBehaviour
 
     private void Start()
     {
-        player1Holder = player1.GetComponent(typeof(IHold)) as IHold;
-        player2Holder = player2.GetComponent(typeof(IHold)) as IHold;
-        currentPlayerHolder = currentPlayer.GetComponent(typeof(IHold)) as IHold;
+        player1Holder = player1.GetComponent<BasicHolder>();
+        player2Holder = player2.GetComponent<BasicHolder>();
+        currentPlayerHolder = currentPlayer.GetComponent<BasicHolder>();
         setDefaultInterableTags();
     }
     public void updateInteractableTags()
     {
         if (currentPlayerHolder.CurrentlyHoldingObj == null)
         {
+            Debug.Log("default");
             setDefaultInterableTags();
         }
         else if (currentPlayerHolder.CurrentlyHoldingObj.CompareTag("Pan"))
         {
+            Debug.Log("Pan");
             setPanTags();
         }
-        else if (currentPlayerHolder.CurrentlyHoldingObj.CompareTag("Egg"))
+        else if (currentPlayerHolder.CurrentlyHoldingObj.CompareTag("Food"))
         {
-            setEggTags();
+            Debug.Log("Food");
+            setFoodTags();
         }
         else if (currentPlayerHolder.CurrentlyHoldingObj.CompareTag("Plate"))
         {
+            Debug.Log("plate");
             setPlateTags();
         }
     }
@@ -49,7 +53,7 @@ public class InteractableTagManager : MonoBehaviour
         canInteractWithTags.Clear();
         canInteractWithTags.Add("Pan");
         canInteractWithTags.Add("Plate");
-        canInteractWithTags.Add("Egg");
+        canInteractWithTags.Add("Food");
     }
     // when we have a pan in hand these are the tags we can interact with
     public void setPanTags()
@@ -58,19 +62,18 @@ public class InteractableTagManager : MonoBehaviour
         canInteractWithTags.Add("Table");
         canInteractWithTags.Add("Burner");
 
-        GameObject panHolder = ((IHold)currentPlayerHolder.CurrentlyHoldingObj.GetComponent<IHold>()).CurrentlyHoldingObj;
+        GameObject panHoldingObj = currentPlayerHolder.CurrentlyHoldingObj.GetComponent<BasicHolder>().CurrentlyHoldingObj;
 
         // if the pan is holding something then we can place it on a plate
-        if (panHolder != null)
+        if (panHoldingObj != null)
         {
-            // if the food on the pan is fully cooked then we can place it on the plate
-            if (panHolder.CompareTag("Egg"))
+            if (panHoldingObj.CompareTag("Food"))
             {
                 canInteractWithTags.Add("Plate");
             }
         }
     }
-    public void setEggTags()
+    public void setFoodTags()
     {
         canInteractWithTags.Clear();
         canInteractWithTags.Add("Pan");
@@ -81,6 +84,7 @@ public class InteractableTagManager : MonoBehaviour
     {
         canInteractWithTags.Clear();
         canInteractWithTags.Add("Table");
+        canInteractWithTags.Add("Submission Table");
     }
 
     public void setNoTags()
@@ -99,8 +103,8 @@ public class InteractableTagManager : MonoBehaviour
         }
 
 
-        // if the egg is on the pan/plate then we cant pick it up
-        if (obj.CompareTag("Egg"))
+        // if the Food is on the pan/plate then we cant pick it up
+        if (obj.CompareTag("Food"))
         {
             IPickup pickup = obj.GetComponent(typeof(IPickup)) as IPickup;
             if (pickup.Holder != null && (pickup.Holder.CompareTag("Pan") || pickup.Holder.CompareTag("Plate")))

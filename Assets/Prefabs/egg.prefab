@@ -212,12 +212,12 @@ GameObject:
   - component: {fileID: 3881562550126245033}
   - component: {fileID: 3881562550126245077}
   - component: {fileID: 3881562550126245034}
-  - component: {fileID: 3881562550126245075}
   - component: {fileID: 3881562550126245076}
   - component: {fileID: 3881562550126245074}
+  - component: {fileID: 7161599616199353076}
   m_Layer: 0
-  m_Name: Egg
-  m_TagString: Egg
+  m_Name: egg
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -332,19 +332,6 @@ MonoBehaviour:
   highlightedMaterial: {fileID: 2100000, guid: d8dd86db576cbe6418254977cf2c473f, type: 2}
   highlightObjects:
   - {fileID: 3881562550126245036}
---- !u!114 &3881562550126245075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3881562550126245036}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5305a609c311ef442b9e8f71e35d2fa6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eggSpawner: {fileID: 6575250259340120106, guid: 70500ebce718e2a4a919974ea4ea7b6b, type: 3}
 --- !u!114 &3881562550126245076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,6 +360,19 @@ MonoBehaviour:
   fullCookBar: {fileID: 3881562550187492768}
   cookBarParent: {fileID: 3881562548635636739}
   currentCookBar: {fileID: 3881562548749774765}
+--- !u!114 &7161599616199353076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3881562550126245036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72400c2707c4813469d9ca600a9c23d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followPosition: {fileID: 3881562550126245076}
 --- !u!1 &3881562550187492768
 GameObject:
   m_ObjectHideFlags: 0

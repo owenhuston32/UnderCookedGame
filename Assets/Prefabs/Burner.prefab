@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5247561787452902921}
   - component: {fileID: 5247561787452902920}
   - component: {fileID: 5247561787452902926}
-  - component: {fileID: 5247561787452902922}
+  - component: {fileID: 5529119854665662038}
   m_Layer: 0
   m_Name: Burner
   m_TagString: Burner
@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0aa34d93f59a66428d2090fcc8f12ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5247561787452902922
+--- !u!114 &5529119854665662038
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -73,7 +73,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5247561787452902925}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 313cbb40f1d00fd4c8562ebdba5bfa53, type: 3}
+  m_Script: {fileID: 11500000, guid: 819e1ac21331047478881a6dd9ef5fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   holdPosition: {fileID: 5247561787845035798}

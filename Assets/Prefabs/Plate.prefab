@@ -125,9 +125,10 @@ GameObject:
   - component: {fileID: 5957189935190479461}
   - component: {fileID: 5957189935190479460}
   - component: {fileID: 5957189935190479463}
-  - component: {fileID: 5957189935190479462}
   - component: {fileID: 5957189935190479459}
   - component: {fileID: 5957189935190479458}
+  - component: {fileID: 4896469928363924747}
+  - component: {fileID: 491867773238224077}
   m_Layer: 0
   m_Name: Plate
   m_TagString: Plate
@@ -181,20 +182,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5957189935190479462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5957189935190479481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b780e5ea1392d734daaa522b47410af1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  plateSpawner: {fileID: 7920487056805750189, guid: 467de30852a650b4e879fe6f5ff855b6, type: 3}
-  holdPosition: {fileID: 5957189934290463914}
 --- !u!114 &5957189935190479459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,3 +209,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0aa34d93f59a66428d2090fcc8f12ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4896469928363924747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5957189935190479481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 819e1ac21331047478881a6dd9ef5fde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holdPosition: {fileID: 5957189934290463914}
+--- !u!114 &491867773238224077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5957189935190479481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72400c2707c4813469d9ca600a9c23d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followPosition: {fileID: 5957189935190479458}
