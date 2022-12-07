@@ -118,11 +118,19 @@ public class BasicInteractable : MonoBehaviour, Iinteractable
         {
             ScoreManager.Instance.AddScore(player, playerHoldingObj.GetComponent<BasicHolder>().CurrentlyHoldingObj);
 
-            playerHoldingObj.GetComponent<BasicHolder>().CurrentlyHoldingObj.SetActive(false);
-            playerHoldingObj.GetComponent<BasicHolder>().CurrentlyHoldingObj = null;
+            // remove food from plate
+            GameObject food = playerHoldingObj.GetComponent<BasicHolder>().CurrentlyHoldingObj;
+
+            food.GetComponent<SpawnedObj>().Spawner.removeObj(food);
+
+            food.SetActive(false);
+            food = null;
+            
             // remove plate from player
             playerHoldingObj.GetComponent<BasicPickup>().Holder.GetComponent<BasicHolder>().CurrentlyHoldingObj = null;
             playerHoldingObj.GetComponent<BasicPickup>().Holder = null;
+
+            playerHoldingObj.GetComponent<SpawnedObj>().Spawner.removeObj(playerHoldingObj);
 
             playerHoldingObj.SetActive(false);
         }

@@ -11,6 +11,9 @@ public class Spawner : MonoBehaviour
     [SerializeField] private GameObject[] spawnedObjects;
     [SerializeField] private GameObject[] holders;
     [SerializeField] Transform parent;
+
+
+
     private void Start()
     {
         StartCoroutine(spawning());
@@ -34,7 +37,8 @@ public class Spawner : MonoBehaviour
                 if (spawnedObjects[i] == null)
                 {
                     spawnedObjects[i] = Instantiate(objPrefab, spawnPositions[i].position, Quaternion.identity, parent);
-                    if(spawnedObjects[i].CompareTag("Plate"))
+                    spawnedObjects[i].GetComponent<SpawnedObj>().Spawner = this;
+                    if(holders[i] != null)
                     {
                         // put plate on table
                         spawnedObjects[i].GetComponent<BasicPickup>().Holder = holders[i];
@@ -49,7 +53,6 @@ public class Spawner : MonoBehaviour
 
                         FollowPosition followScript = spawnedObjects[i].GetComponent<FollowPosition>();
                         followScript.FollowTransform = newHolder.HoldPosition;
-
 
                     }
                 }

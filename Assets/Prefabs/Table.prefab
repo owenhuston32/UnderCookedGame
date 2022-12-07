@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 819e1ac21331047478881a6dd9ef5fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentHoldingObj: {fileID: 0}
   holdPosition: {fileID: 8505268303575480534}
 --- !u!1 &8505268304310057613
 GameObject:
@@ -267,7 +268,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8c360ca21da657947aae4e7647dbe9bf, type: 2}
+  - {fileID: 2100000, guid: 810021267c22dba428e17f2289f0df23, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

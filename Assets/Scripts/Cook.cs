@@ -1,39 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Cook : MonoBehaviour
 {
-    [SerializeField] Material finishedCookingMaterial;
-    [SerializeField] GameObject fullCookBar;
-    [SerializeField] GameObject cookBarParent;
-    [SerializeField] GameObject currentCookBar;
+    [SerializeField] Image sliderFillImage;
+    [SerializeField] Slider slider;
+    [SerializeField] GameObject cookbarGameObject;
     private float cookingSpeed = .0005f;
     private bool isCooking = false;
     private bool isFinished = false;
-    private float maxXScale = 0.25f;
     // Start is called before the first frame update
     void Start()
     {
         disableCookBar();
-        if (gameObject.CompareTag("Egg"))
-            cookingSpeed = .0005f;
     }
     public int CurrentScore()
     {
-        if(cookBarParent.transform.localScale.x / maxXScale < .25f)
+        if(slider.value < .25f)
         {
             return 0;
         }
-        else if(cookBarParent.transform.localScale.x / maxXScale < .5f)
+        else if(slider.value < .5f)
         {
             return 1;
         }
-        else if (cookBarParent.transform.localScale.x / maxXScale < .75f)
+        else if (slider.value < .75f)
         {
             return 2;
         }
-        else if(cookBarParent.transform.localScale.x / maxXScale < .9f)
+        else if(slider.value < .9f)
         {
             return 3;
         }
@@ -45,12 +42,12 @@ public class Cook : MonoBehaviour
     }
     public void disableCookBar()
     {
-        fullCookBar.SetActive(false);
+        cookbarGameObject.SetActive(false);
     }
     public void cook()
     {
         isCooking = true;
-        fullCookBar.SetActive(true);
+        cookbarGameObject.SetActive(true);
         StartCoroutine(cooking());
     }
     public void stopCook()
@@ -60,16 +57,17 @@ public class Cook : MonoBehaviour
     
     private IEnumerator cooking()
     {
+        Color initialColor = Color.red;
+        Color finalColor = Color.green;
         while(isCooking && !isFinished)
         {
-            cookBarParent.transform.localScale = new Vector3(cookBarParent.transform.localScale.x + cookingSpeed,
-    cookBarParent.transform.localScale.y, cookBarParent.transform.localScale.z);
 
-            if (cookBarParent.transform.localScale.x >= maxXScale)
+            slider.value += cookingSpeed;
+            sliderFillImage.color = Color.Lerp(initialColor, finalColor, slider.value);
+
+            if (slider.value >= 1)
             {
                 isFinished = true;
-                currentCookBar.GetComponent<MeshRenderer>().material = finishedCookingMaterial;
-
             }
 
             yield return new WaitForEndOfFrame();

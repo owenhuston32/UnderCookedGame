@@ -23,7 +23,7 @@ public class Attack : MonoBehaviour
 
         objInHand = playerHolder.CurrentlyHoldingObj;
 
-        if (objInHand != null && objInHand.CompareTag("Egg"))
+        if (objInHand != null && objInHand.CompareTag("Food"))
         {
             shoot();
             playerHolder.CurrentlyHoldingObj = null;
@@ -38,6 +38,8 @@ public class Attack : MonoBehaviour
     private IEnumerator waitThenDespawn(float despawnWaitTime)
     {
         yield return new WaitForSeconds(despawnWaitTime);
+
+        objInHand.GetComponent<SpawnedObj>().Spawner.removeObj(objInHand);
 
         ObjectManager.Instance.removeInteractable(objInHand);
     }
