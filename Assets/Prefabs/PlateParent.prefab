@@ -44,8 +44,6 @@ GameObject:
   - component: {fileID: 5957189935190479463}
   - component: {fileID: 5957189935190479459}
   - component: {fileID: 5957189935190479458}
-  - component: {fileID: 4896469928363924747}
-  - component: {fileID: 491867773238224077}
   - component: {fileID: 2604982033168976394}
   m_Layer: 0
   m_Name: PlateParent
@@ -127,33 +125,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0aa34d93f59a66428d2090fcc8f12ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4896469928363924747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5957189935190479481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 819e1ac21331047478881a6dd9ef5fde, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentHoldingObj: {fileID: 0}
-  holdPosition: {fileID: 5957189934290463914}
---- !u!114 &491867773238224077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5957189935190479481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72400c2707c4813469d9ca600a9c23d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  followPosition: {fileID: 5957189935190479458}
 --- !u!114 &2604982033168976394
 MonoBehaviour:
   m_ObjectHideFlags: 0

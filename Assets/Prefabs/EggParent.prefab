@@ -34354,8 +34354,8 @@ GameObject:
   - component: {fileID: 3881562550126245034}
   - component: {fileID: 3881562550126245076}
   - component: {fileID: 3881562550126245074}
-  - component: {fileID: 7161599616199353076}
   - component: {fileID: 1173726991653709092}
+  - component: {fileID: -8509277683880122424}
   - component: {fileID: 1034332662393145279}
   - component: {fileID: 6786891776258358916}
   - component: {fileID: 7102114028092129051}
@@ -34493,19 +34493,6 @@ MonoBehaviour:
   sliderFillImage: {fileID: 4145272929747891855}
   slider: {fileID: 6887325913946650088}
   cookbarGameObject: {fileID: 2855554904010445875}
---- !u!114 &7161599616199353076
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3881562550126245036}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72400c2707c4813469d9ca600a9c23d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  followPosition: {fileID: 3881562550126245076}
 --- !u!114 &1173726991653709092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34516,6 +34503,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90b46dffb878b9b45bfe9ff6976b14ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-8509277683880122424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3881562550126245036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be9c3d3bef8ded469184bbe316446f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1034332662393145279

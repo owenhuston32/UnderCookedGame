@@ -6,5 +6,6 @@ public interface IHold
 {
     public GameObject CurrentlyHoldingObj { get; set; }
     public Transform HoldPosition { get ; set; }
+    public GameObject HolderObj { get; }
 
 }

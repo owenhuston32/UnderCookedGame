@@ -9,9 +9,9 @@ public class InteractableTagManager : MonoBehaviour
     [SerializeField] GameObject player1;
     [SerializeField] GameObject player2;
 
-    private BasicHolder currentPlayerHolder;
-    private BasicHolder player1Holder;
-    private BasicHolder player2Holder;
+    private IHold currentPlayerHolder;
+    private IHold player1Holder;
+    private IHold player2Holder;
 
     private List<string> canInteractWithTags = new List<string>();
 
@@ -19,9 +19,11 @@ public class InteractableTagManager : MonoBehaviour
 
     private void Start()
     {
-        player1Holder = player1.GetComponent<BasicHolder>();
-        player2Holder = player2.GetComponent<BasicHolder>();
-        currentPlayerHolder = currentPlayer.GetComponent<BasicHolder>();
+
+
+        player1Holder = player1.GetComponent<Player>();
+        player2Holder = player2.GetComponent<Player>();
+        currentPlayerHolder = currentPlayer.GetComponent<Player>();
         setDefaultInterableTags();
     }
     public void updateInteractableTags()
@@ -62,7 +64,9 @@ public class InteractableTagManager : MonoBehaviour
         canInteractWithTags.Add("Table");
         canInteractWithTags.Add("Burner");
 
-        GameObject panHoldingObj = currentPlayerHolder.CurrentlyHoldingObj.GetComponent<BasicHolder>().CurrentlyHoldingObj;
+        IHold panHolder = currentPlayerHolder.CurrentlyHoldingObj.GetComponent(typeof(IHold)) as IHold;
+
+        GameObject panHoldingObj = panHolder.CurrentlyHoldingObj;
 
         // if the pan is holding something then we can place it on a plate
         if (panHoldingObj != null)
@@ -95,6 +99,10 @@ public class InteractableTagManager : MonoBehaviour
     public bool canInteract(GameObject obj)
     {
 
+        IPickup pickup = obj.GetComponent(typeof(IPickup)) as IPickup;
+        IHold holder = obj.GetComponent(typeof(IHold)) as IHold;
+
+
         // we cant interact with an object that any player is holding
         if (player1Holder.CurrentlyHoldingObj != null && player1Holder.CurrentlyHoldingObj.Equals(obj)
             || player2Holder.CurrentlyHoldingObj != null && player2Holder.CurrentlyHoldingObj.Equals(obj))
@@ -102,17 +110,9 @@ public class InteractableTagManager : MonoBehaviour
             return false;
         }
 
+        if (pickup != null && !pickup.CanPickup)
+            return false;
 
-        // if the Food is on the pan/plate then we cant pick it up
-        if (obj.CompareTag("Food"))
-        {
-            IPickup pickup = obj.GetComponent(typeof(IPickup)) as IPickup;
-            if (pickup.Holder != null && (pickup.Holder.CompareTag("Pan") || pickup.Holder.CompareTag("Plate")))
-                return false;
-        }
-
-
-        IHold holder = obj.GetComponent(typeof(IHold)) as IHold;
 
         // if the obj is a holder such as a pan and it already has an object on top and we are carrying an obj
         // then we cant interact with the holder

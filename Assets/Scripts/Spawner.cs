@@ -40,6 +40,7 @@ public class Spawner : MonoBehaviour
                     spawnedObjects[i].GetComponent<SpawnedObj>().Spawner = this;
                     if(holders[i] != null)
                     {
+                        /*
                         // put plate on table
                         spawnedObjects[i].GetComponent<BasicPickup>().Holder = holders[i];
 
@@ -53,7 +54,7 @@ public class Spawner : MonoBehaviour
 
                         FollowPosition followScript = spawnedObjects[i].GetComponent<FollowPosition>();
                         followScript.FollowTransform = newHolder.HoldPosition;
-
+                        */
                     }
                 }
             }

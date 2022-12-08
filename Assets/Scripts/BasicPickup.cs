@@ -1,43 +1,59 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicPickup : BasicInteractable, IPickup
+public class BasicPickup : IPickup
 {
-    [SerializeField] private FollowPosition followPosition;
-    private GameObject holder = null;
-    public GameObject Holder { get => holder; set => holder = value; }
-
-    public void pickup(GameObject holder)
+    private GameObject pickupObj;
+    private bool canPickup = true;
+    private FollowPosition followPosition;
+    private IHold holder = null;
+    public IHold Holder { get => holder; set => holder = value; }
+    public bool CanPickup { get => canPickup; set => canPickup = value; }
+    public GameObject PickupObj { get => pickupObj; }
+    public BasicPickup(GameObject obj)
     {
-        // if we have an old holder remove it
-        if (this.holder != null)
-            this.holder.GetComponent<BasicHolder>().CurrentlyHoldingObj = null;
-
-
-        GetComponent<Collider>().enabled = false;
-        GetComponent<Rigidbody>().useGravity = false;
-        this.holder = holder;
-        holder.GetComponent<BasicHolder>().CurrentlyHoldingObj = gameObject;
-        followPosition.FollowTransform = holder.GetComponent<BasicHolder>().HoldPosition;
+        pickupObj = obj;
+        followPosition = obj.GetComponent<FollowPosition>();
     }
 
-    public void setDown(GameObject obj, GameObject holder)
+    public void pickup(IHold newHolder)
     {
+        canPickup = false;
+        // if we have an old holder remove it
+        if (this.holder != null)
+        {
+            this.holder.CurrentlyHoldingObj = null;
+        }
+
+        pickupObj.GetComponent<Collider>().enabled = false;
+        pickupObj.GetComponent<Rigidbody>().useGravity = false;
+        this.holder = newHolder;
+
+
+        newHolder.CurrentlyHoldingObj = pickupObj;
+        followPosition.FollowTransform = newHolder.HoldPosition;
+    }
+
+    public void setDown(GameObject obj, IHold newHolder)
+    {
+        canPickup = true;
         // remove old holder
-        this.holder.GetComponent<BasicHolder>().CurrentlyHoldingObj = null;
+        this.holder.CurrentlyHoldingObj = null;
 
         // set new holder
-        this.holder = holder;
-        holder.GetComponent<BasicHolder>().CurrentlyHoldingObj = obj;
-        followPosition.FollowTransform = holder.GetComponent<BasicHolder>().HoldPosition;
+        this.holder = newHolder;
+        holder.CurrentlyHoldingObj = obj;
+        followPosition.FollowTransform = holder.HoldPosition;
     }
     public void drop()
     {
-        GetComponent<Collider>().enabled = true;
-        GetComponent<Rigidbody>().useGravity = true;
+        canPickup = true;
+        pickupObj.GetComponent<Collider>().enabled = true;
+        pickupObj.GetComponent<Rigidbody>().useGravity = true;
         followPosition.FollowTransform = null;
-        this.holder.GetComponent<BasicHolder>().CurrentlyHoldingObj = null;
+        holder.CurrentlyHoldingObj = null;
         this.holder = null;
     }
 }

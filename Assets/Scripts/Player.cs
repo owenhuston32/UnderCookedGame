@@ -3,23 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IHold
 {
     [SerializeField] float eggStunTime = 1f;
     [SerializeField] float panStunTime = 3f;
     [SerializeField] GameObject player1;
     [SerializeField] GameObject player2; 
     [SerializeField] float reach = 2;
+    [SerializeField] Transform handPosition;
 
     private InteractableTagManager tagManager;
     private GameObject highlightedObj = null;
     private GameObject prevHighlightedObj = null;
-    private BasicHolder holder;
+    private IHold holder;
+
+    public GameObject CurrentlyHoldingObj { get => holder.CurrentlyHoldingObj; set => holder.CurrentlyHoldingObj = value; }
+    public Transform HoldPosition { get => holder.HoldPosition; set => holder.HoldPosition = value; }
+
+    public GameObject HolderObj => gameObject;
+
     private void Start()
     {
+        holder = new BasicHolder(gameObject, handPosition);
         tagManager = GetComponent<InteractableTagManager>();
         tagManager.setDefaultInterableTags();
-        holder = GetComponent<BasicHolder>();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -90,19 +97,20 @@ public class Player : MonoBehaviour
     {
         Iinteractable interactable = null;
 
-        if(holder.CurrentlyHoldingObj != null)
+        if(CurrentlyHoldingObj != null)
         {
-            interactable = holder.CurrentlyHoldingObj.GetComponent<BasicInteractable>();
+            interactable = CurrentlyHoldingObj.GetComponent(typeof(Iinteractable)) as Iinteractable;
         }
         else
         {
             if(highlightedObj != null)
-                interactable = highlightedObj.GetComponent<BasicInteractable>();
+                interactable = highlightedObj.GetComponent(typeof(Iinteractable)) as Iinteractable;
+
         }
 
         if (interactable != null)
         {
-            interactable.interact(gameObject, highlightedObj, holder.CurrentlyHoldingObj);
+            InteractionManager.Instance.interact(gameObject, highlightedObj, CurrentlyHoldingObj);
         }
         highlightedObj = null;
         tagManager.updateInteractableTags();

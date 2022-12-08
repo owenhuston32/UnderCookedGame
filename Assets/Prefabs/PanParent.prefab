@@ -141,8 +141,7 @@ GameObject:
   - component: {fileID: 6837624776480961979}
   - component: {fileID: 6837624776480961978}
   - component: {fileID: 6837624776480961980}
-  - component: {fileID: 813185434294123301}
-  - component: {fileID: 2272022998445761638}
+  - component: {fileID: 7280087140193250849}
   m_Layer: 0
   m_Name: PanParent
   m_TagString: Pan
@@ -223,7 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0aa34d93f59a66428d2090fcc8f12ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &813185434294123301
+--- !u!114 &7280087140193250849
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -232,20 +231,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6837624776480961982}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72400c2707c4813469d9ca600a9c23d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  followPosition: {fileID: 6837624776480961980}
---- !u!114 &2272022998445761638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6837624776480961982}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 819e1ac21331047478881a6dd9ef5fde, type: 3}
+  m_Script: {fileID: 11500000, guid: 0444896f75e90f345b3b516cf6e00cc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   holdPosition: {fileID: 6837624776214830999}

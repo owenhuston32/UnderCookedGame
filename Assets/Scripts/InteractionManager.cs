@@ -3,15 +3,31 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class BasicInteractable : MonoBehaviour
+public class InteractionManager : MonoBehaviour, Iinteractable
 {
+    public static InteractionManager Instance { get; private set; }
+    private void Awake()
+    {
+        // If there is an instance, and it's not me, delete myself.
 
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
     public void interact(GameObject player, GameObject highlightedObj, GameObject playerHoldingObj)
     {
+        Debug.Log(player + " : " + highlightedObj + " : " + playerHoldingObj);
+
+
         // if we arent highlighting anything drop whatever we are holding
         if (highlightedObj == null)
         {
-            if(playerHoldingObj != null)
+            if (playerHoldingObj != null)
             {
                 IPickup pickup = playerHoldingObj.GetComponent(typeof(IPickup)) as IPickup;
                 pickup.drop();
@@ -19,7 +35,7 @@ public class BasicInteractable : MonoBehaviour
         }
 
         // we arent holding anything we can pick stuff up
-        else if(playerHoldingObj == null)
+        else if (playerHoldingObj == null)
         {
             IPickup pickup = highlightedObj.GetComponent(typeof(IPickup)) as IPickup;
             if (pickup != null)
@@ -37,32 +53,11 @@ public class BasicInteractable : MonoBehaviour
 
             if (holder != null)
             {
-                // set down food and drop pan
-                if (highlightedObj.CompareTag("Plate"))
-                {
-                    //interactWithPlate(playerHoldingObj, highlightedObj);
-                }
-                else if(highlightedObj.CompareTag("Pan"))
-                {
-                    Iinteractable interactable = highlightedObj.GetComponent(typeof(Iinteractable)) as Iinteractable;
-                    interactable.interact(player, highlightedObj, playerHoldingObj);
-                    //interactWithPan(playerHoldingObj, highlightedObj);
-                }
-                else if(highlightedObj.CompareTag("Submission Table"))
-                {
-                    //interactWithSubmissionTable(player, playerHoldingObj, highlightedObj);
-                }
-                else if(highlightedObj.CompareTag("Burner"))
-                {
-                    //interactWithBurner(playerHoldingObj, highlightedObj);
-                }
-                else
-                {
-                    IPickup playerPickup = playerHoldingObj.GetComponent(typeof(IPickup)) as IPickup;
-                    playerPickup.setDown(playerHoldingObj, highlightedObj.GetComponent(typeof(IHold)) as IHold);
-                }
+                Iinteractable interactable = highlightedObj.GetComponent(typeof(Iinteractable)) as Iinteractable;
+                interactable.interact(player, highlightedObj, playerHoldingObj);
+
             }
-            else if(pickup != null)
+            else if (pickup != null)
             {
                 IHold playerHoldingObjHolder = playerHoldingObj.GetComponent(typeof(IHold)) as IHold;
                 pickup.pickup(playerHoldingObjHolder);
@@ -77,19 +72,6 @@ public class BasicInteractable : MonoBehaviour
             if (playerHoldingObj.GetComponent<BasicHolder>().CurrentlyHoldingObj != null)
             {
                 playerHoldingObj.GetComponent<BasicHolder>().CurrentlyHoldingObj.GetComponent<Cook>().cook();
-            }
-            playerHoldingObj.GetComponent<BasicPickup>().setDown(playerHoldingObj, highlightedObj);
-        }
-    }
-    private void interactWithPan(GameObject playerHoldingObj, GameObject highlightedObj)
-    {
-        if(playerHoldingObj.CompareTag("Food"))
-        {
-            // if the pan is on the burner start cooking
-            if(highlightedObj.GetComponent<BasicPickup>().Holder != null
-                && highlightedObj.GetComponent<BasicPickup>().Holder.CompareTag("Burner"))
-            {
-                playerHoldingObj.GetComponent<Cook>().cook();
             }
             playerHoldingObj.GetComponent<BasicPickup>().setDown(playerHoldingObj, highlightedObj);
         }

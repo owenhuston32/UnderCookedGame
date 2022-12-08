@@ -2,12 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicHolder : BasicInteractable, IHold
+public class BasicHolder :  IHold
 {
-    [SerializeField] private GameObject currentHoldingObj = null;
+    private GameObject holderObj;
+    private Transform holdPosition;
+    private GameObject currentHoldingObj = null;
+    public GameObject HolderObj { get => holderObj; }
+    public BasicHolder(GameObject obj, Transform holdPosition)
+    {
+        holderObj = obj;
+        this.holdPosition = holdPosition;
+    }
 
     public GameObject CurrentlyHoldingObj { get => currentHoldingObj; set => currentHoldingObj = value; }
-    [SerializeField] private Transform holdPosition;
+
     public Transform HoldPosition { get => holdPosition; set => holdPosition = value; }
 
 }

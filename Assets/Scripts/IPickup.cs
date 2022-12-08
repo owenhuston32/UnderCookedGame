@@ -1,13 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public interface IPickup
 {
-    GameObject Holder { get; set; }
+    public bool CanPickup { get; set; }
+    public IHold Holder { get; set; }
+    public GameObject PickupObj { get; }
 
-    public void pickup(GameObject holder);
-    public void setDown(GameObject obj, GameObject holder);
+    public void pickup(IHold newHolder);
+    public void setDown(GameObject obj, IHold newHolder);
     public void drop();
 
 }
