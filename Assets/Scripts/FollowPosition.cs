@@ -5,16 +5,42 @@ using UnityEngine;
 public class FollowPosition : MonoBehaviour
 {
     private Transform followTransform;
-    public Transform FollowTransform { get => followTransform; set => followTransform = value; }
-
-    private void Start()
+    private bool isFollowing = false;
+    public void setPosition(Transform followTransform)
     {
+        gameObject.GetComponent<Collider>().enabled = false;
+        gameObject.GetComponent<Rigidbody>().useGravity = false;
+        isFollowing = false;
+        StartCoroutine(waitFrameThenSetPosition(followTransform));
+    }
+    private IEnumerator waitFrameThenSetPosition(Transform followTransform)
+    {
+        yield return new WaitForEndOfFrame();
+        gameObject.transform.position = followTransform.transform.position;
+    }
+
+    public void startFollowing(Transform followTransform)
+    {
+        this.followTransform = followTransform;
+
+        gameObject.GetComponent<Collider>().enabled = false;
+        gameObject.GetComponent<Rigidbody>().useGravity = false;
+
+        isFollowing = true;
         StartCoroutine(following());
+
+    }
+
+    public void stopFollowing()
+    {
+        isFollowing = false;
+        gameObject.GetComponent<Collider>().enabled = true;
+        gameObject.GetComponent<Rigidbody>().useGravity = true;
     }
 
     private IEnumerator following()
     {
-        while (true)
+        while (isFollowing)
         {
             if(followTransform != null)
             {

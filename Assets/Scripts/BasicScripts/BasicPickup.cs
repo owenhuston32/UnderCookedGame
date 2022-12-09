@@ -31,14 +31,11 @@ public class BasicPickup : IPickup
         {
             this.pickupHolder.CurrentlyHoldingObj = null;
         }
-
-        pickupObj.GetComponent<Collider>().enabled = false;
-        pickupObj.GetComponent<Rigidbody>().useGravity = false;
         this.pickupHolder = newHolder;
 
 
         newHolder.CurrentlyHoldingObj = pickupObj;
-        followPosition.FollowTransform = newHolder.HoldPosition;
+        followPosition.startFollowing(newHolder.HoldPosition);
     }
 
     public void setDown(GameObject obj, IHold newHolder, GameObject playerHoldingObj)
@@ -52,14 +49,13 @@ public class BasicPickup : IPickup
         // set new holder
         pickupHolder = newHolder;
         pickupHolder.CurrentlyHoldingObj = obj;
-        followPosition.FollowTransform = pickupHolder.HoldPosition;
+
+        followPosition.setPosition(pickupHolder.HoldPosition);
     }
     public void drop()
     {
         canPickup = true;
-        pickupObj.GetComponent<Collider>().enabled = true;
-        pickupObj.GetComponent<Rigidbody>().useGravity = true;
-        followPosition.FollowTransform = null;
+        followPosition.stopFollowing();
         pickupHolder.CurrentlyHoldingObj = null;
         this.pickupHolder = null;
     }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FoodCrate : BasicInteractable, Iinteractable, IHold
 {
+    [SerializeField] private Animator anim;
     [SerializeField] private Transform holdPosition;
     private IHold holder;
     public GameObject HolderObj { get => gameObject; }
@@ -21,10 +22,16 @@ public class FoodCrate : BasicInteractable, Iinteractable, IHold
 
     }
 
-    public void SpawnObj()
+    public void SpawnObj(IHold holder)
     {
-        if(CurrentlyHoldingObj == null)
-            GetComponent<Spawner>().SpawnObj();
+        anim.Play("crateOpenAnim");
+
+        GameObject food = GetComponent<Spawner>().SpawnObj(holder);
+
+        IPickup pickup = food.GetComponent(typeof(IPickup)) as IPickup;
+
+        pickup.pickup(holder);
+
     }
 
 }

@@ -27,7 +27,7 @@ public class Table : BasicInteractable, Iinteractable, IHold
 
         Spawner spawner = gameObject.GetComponent<Spawner>();
         if (spawner != null && spawnObjOnStart)
-            spawner.SpawnObj();
+            spawner.SpawnObj(this);
             
 
     }

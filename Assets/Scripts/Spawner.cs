@@ -8,20 +8,19 @@ public class Spawner : MonoBehaviour
     [SerializeField] Transform spawnPosition;
     [SerializeField] float spawnWaitTime;
     [SerializeField] GameObject objPrefab;
-    [SerializeField] private GameObject holder;
     [SerializeField] Transform parent;
 
-    public void SpawnObj()
+    public GameObject SpawnObj(IHold holder)
     {
-        spawn();
+        return spawn(holder);
     }
 
-    public void WaitThenSpawn()
+    public void WaitThenSpawn(IHold holder)
     {
-            StartCoroutine(spawning());
+        StartCoroutine(spawning(holder));
     }
 
-    private void spawn()
+    private GameObject spawn(IHold holder)
     {
         GameObject spawnedObject = Instantiate(objPrefab, spawnPosition.position, Quaternion.identity, parent);
         
@@ -33,15 +32,16 @@ public class Spawner : MonoBehaviour
 
             pickup.Initialize();
 
-            pickup.setDown(spawnedObject, holder.GetComponent(typeof(IHold)) as IHold, null);
+            pickup.setDown(spawnedObject, holder, null);
 
         }
+        return spawnedObject;
     }
 
-    private IEnumerator spawning()
+    private IEnumerator spawning(IHold holder)
     {
         yield return new WaitForSeconds(spawnWaitTime);
-        spawn();
+        spawn(holder);
     }
 
 }

@@ -40,7 +40,9 @@ public class Egg : BasicInteractable, IPickup, Iinteractable
 
         // we can't pickup the egg after setting on a pan or plate
         if (newHolder.HolderObj.CompareTag("Pan") || newHolder.HolderObj.CompareTag("Plate"))
+        {
             CanPickup = false;
+        }
     }
     public void drop()
     {

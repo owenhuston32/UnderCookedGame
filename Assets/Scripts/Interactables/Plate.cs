@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class Plate : BasicInteractable, IPickup, IHold, Iinteractable
 {
+    [SerializeField] GameObject plateRespawnHolderObj;
     [SerializeField] Transform holdPosition;
     private IHold basicHolder;
     private IPickup basicPickup;
@@ -24,6 +26,10 @@ public class Plate : BasicInteractable, IPickup, IHold, Iinteractable
 
     public void pickup(IHold newHolder)
     {
+        // make whatever we are holding follow
+        if(CurrentlyHoldingObj != null)
+            CurrentlyHoldingObj.GetComponent<FollowPosition>().startFollowing(holdPosition);
+
         basicPickup.pickup(newHolder);
     }
 
@@ -47,8 +53,25 @@ public class Plate : BasicInteractable, IPickup, IHold, Iinteractable
             // remove plate from scene
             ObjectManager.Instance.removeInteractable(gameObject);
 
-            //respawn after a few seconds
-            table.GetComponentInChildren<Spawner>().WaitThenSpawn();
+            //respawn onto the plate respawn position
+            IHold respawnPlateHolder = null;
+
+            // find holder in children
+            List<Transform> transforms= new List<Transform>(table.GetComponentsInChildren<Transform>());
+            transforms.Remove(table.transform);
+            Transform[] childTransforms = transforms.ToArray();
+
+            for(int i = 0; i < childTransforms.Length; i++)
+            {
+                IHold tempHolder = childTransforms[i].GetComponent(typeof(IHold)) as IHold;
+                if(tempHolder != null)
+                {
+                    respawnPlateHolder = tempHolder;
+                    break;
+                }
+            }
+
+            table.GetComponentInChildren<Spawner>().WaitThenSpawn(respawnPlateHolder);
         }
         else
         {

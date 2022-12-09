@@ -13,6 +13,23 @@ public class InteractableTagManager : MonoBehaviour
     private IHold player1Holder;
     private IHold player2Holder;
 
+    private List<string> defaultTags = new List<string>()
+    {
+        "Pan", "Plate", "Food", "FoodCrate"
+    };
+
+    private List<string> foodTags = new List<string>()
+    {
+        "Pan", "Table", "Plate"
+    };
+
+    private List<string> plateTags = new List<string>()
+    {
+        "Table"
+    };
+
+    private List<string> emptyTags = new List<string>();
+
     private List<string> canInteractWithTags = new List<string>();
 
     public List<string> CanInteractWithTags { get => canInteractWithTags; }
@@ -24,14 +41,14 @@ public class InteractableTagManager : MonoBehaviour
         player1Holder = player1.GetComponent<Player>();
         player2Holder = player2.GetComponent<Player>();
         currentPlayerHolder = currentPlayer.GetComponent<Player>();
-        setDefaultInterableTags();
+        setTags(defaultTags);
     }
     public void updateInteractableTags()
     {
         if (currentPlayerHolder.CurrentlyHoldingObj == null)
         {
             Debug.Log("default");
-            setDefaultInterableTags();
+            setTags(defaultTags);
         }
         else if (currentPlayerHolder.CurrentlyHoldingObj.CompareTag("Pan"))
         {
@@ -41,29 +58,27 @@ public class InteractableTagManager : MonoBehaviour
         else if (currentPlayerHolder.CurrentlyHoldingObj.CompareTag("Food"))
         {
             Debug.Log("Food");
-            setFoodTags();
+            setTags(foodTags);
         }
         else if (currentPlayerHolder.CurrentlyHoldingObj.CompareTag("Plate"))
         {
             Debug.Log("plate");
-            setPlateTags();
+            setTags(plateTags);
         }
     }
 
-    public void setDefaultInterableTags()
+    private void setTags(List<string> newTagList)
     {
-        canInteractWithTags.Clear();
-        canInteractWithTags.Add("Pan");
-        canInteractWithTags.Add("Plate");
-        canInteractWithTags.Add("Food");
-        canInteractWithTags.Add("FoodCrate");
+        canInteractWithTags = newTagList;
     }
+
     // when we have a pan in hand these are the tags we can interact with
     public void setPanTags()
     {
-        canInteractWithTags.Clear();
-        canInteractWithTags.Add("Table");
-        canInteractWithTags.Add("Burner");
+        List<string> newList = new List<string>()
+        {
+            "Table", "Burner"
+        };
 
         IHold panHolder = currentPlayerHolder.CurrentlyHoldingObj.GetComponent(typeof(IHold)) as IHold;
 
@@ -74,27 +89,15 @@ public class InteractableTagManager : MonoBehaviour
         {
             if (panHoldingObj.CompareTag("Food"))
             {
-                canInteractWithTags.Add("Plate");
+                newList.Add("Plate");
             }
         }
-    }
-    public void setFoodTags()
-    {
-        canInteractWithTags.Clear();
-        canInteractWithTags.Add("Pan");
-        canInteractWithTags.Add("Table");
-        canInteractWithTags.Add("Plate");
-    }
-    public void setPlateTags()
-    {
-        canInteractWithTags.Clear();
-        canInteractWithTags.Add("Table");
-        canInteractWithTags.Add("Submission Table");
+        canInteractWithTags = newList;
     }
 
     public void setNoTags()
     {
-        canInteractWithTags.Clear();
+        canInteractWithTags = emptyTags;
     }
 
     public bool canInteract(GameObject obj)
@@ -104,7 +107,7 @@ public class InteractableTagManager : MonoBehaviour
         IHold holder = obj.GetComponent(typeof(IHold)) as IHold;
 
 
-        // we cant interact with an object that any player is holding
+        // we cant interact with an object that any other player is holding
         if (player1Holder.CurrentlyHoldingObj != null && player1Holder.CurrentlyHoldingObj.Equals(obj)
             || player2Holder.CurrentlyHoldingObj != null && player2Holder.CurrentlyHoldingObj.Equals(obj))
         {

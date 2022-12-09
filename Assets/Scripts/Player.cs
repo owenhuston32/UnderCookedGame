@@ -27,7 +27,6 @@ public class Player : MonoBehaviour, IHold
     {
         holder = new BasicHolder(gameObject, handPosition);
         tagManager = GetComponent<InteractableTagManager>();
-        tagManager.setDefaultInterableTags();
     }
     private void OnTriggerEnter(Collider other)
     {

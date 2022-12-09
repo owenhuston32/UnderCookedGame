@@ -30,6 +30,7 @@ public class Pan : BasicInteractable, IPickup, IHold, Iinteractable
         if (CurrentlyHoldingObj != null)
         {
             CurrentlyHoldingObj.GetComponent<Cook>().stopCook();
+            CurrentlyHoldingObj.GetComponent<FollowPosition>().startFollowing(holdPosition);
         }
         basicPickup.pickup(newHolder);
     }

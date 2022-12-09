@@ -39,16 +39,13 @@ public class Attack : MonoBehaviour
     {
         yield return new WaitForSeconds(despawnWaitTime);
 
-        // spawn new obj
-        objInHand.GetComponent<SpawnedObj>().Spawner.SpawnObj();
-
         ObjectManager.Instance.removeInteractable(objInHand);
     }
 
     private void shoot()
     {
         FollowPosition followScript = objInHand.GetComponent<FollowPosition>();
-        followScript.FollowTransform = null;
+        followScript.stopFollowing();
 
         objInHand.GetComponent<Cook>().disableCookBar();
         objInHand.GetComponent<IHighlight>().RemoveHighlight();
