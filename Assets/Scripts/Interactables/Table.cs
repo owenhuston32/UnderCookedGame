@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Table : BasicInteractable, Iinteractable, IHold
 {
+    [SerializeField] private bool spawnObjOnStart = true;
     [SerializeField] private Transform holdPosition;
+    [SerializeField] private bool isSubmissionTable;
+    [SerializeField] private int submissionTableNum;
     private IHold holder;
     public GameObject HolderObj { get => gameObject; }
 
@@ -12,15 +15,20 @@ public class Table : BasicInteractable, Iinteractable, IHold
 
     public Transform HoldPosition { get => holdPosition; set => holdPosition = value; }
 
+    public bool IsSubmissionTable { get => isSubmissionTable; }
+    public int SubmissionTableNum { get => submissionTableNum; }
+
+
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         holder = new BasicHolder(gameObject, holdPosition);
         ObjectManager.Instance.addInteractable(gameObject);
-    }
 
-    public void interact(GameObject player, GameObject highlightedObj, GameObject playerHoldingObj)
-    {
+        Spawner spawner = gameObject.GetComponent<Spawner>();
+        if (spawner != null && spawnObjOnStart)
+            spawner.SpawnObj();
+            
 
     }
 

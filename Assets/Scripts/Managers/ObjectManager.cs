@@ -31,8 +31,9 @@ public class ObjectManager : MonoBehaviour
     }
     public void removeInteractable(GameObject obj)
     {
-        obj.SetActive(false);
         interactables.Remove(obj);
+
+        obj.SetActive(false);
     }
 
 }

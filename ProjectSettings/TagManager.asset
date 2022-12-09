@@ -7,13 +7,12 @@ TagManager:
   - Pan
   - Table
   - Burner
-  - Egg
   - Plate
   - Projectile
-  - Submission Table
   - Player1
   - Player2
   - Food
+  - FoodCrate
   layers:
   - Default
   - TransparentFX

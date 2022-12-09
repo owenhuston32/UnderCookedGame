@@ -39,7 +39,8 @@ public class Attack : MonoBehaviour
     {
         yield return new WaitForSeconds(despawnWaitTime);
 
-        objInHand.GetComponent<SpawnedObj>().Spawner.removeObj(objInHand);
+        // spawn new obj
+        objInHand.GetComponent<SpawnedObj>().Spawner.SpawnObj();
 
         ObjectManager.Instance.removeInteractable(objInHand);
     }

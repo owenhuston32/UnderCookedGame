@@ -42,11 +42,11 @@ GameObject:
   - component: {fileID: 8505268304153600020}
   - component: {fileID: 8505268304153600021}
   - component: {fileID: 8505268304153600023}
-  - component: {fileID: 3688292056576762318}
-  - component: {fileID: 8011543213889686110}
+  - component: {fileID: 7938325041629547958}
+  - component: {fileID: 8134462593333488942}
   m_Layer: 0
-  m_Name: Table
-  m_TagString: Table
+  m_Name: FoodCrate
+  m_TagString: FoodCrate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,23 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0aa34d93f59a66428d2090fcc8f12ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3688292056576762318
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8505268304153600040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3871d754d00ff8241ae5508008b2a96f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnObjOnStart: 0
-  holdPosition: {fileID: 8505268303575480534}
-  isSubmissionTable: 0
-  submissionTableNum: 0
---- !u!114 &8011543213889686110
+--- !u!114 &7938325041629547958
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -125,10 +109,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPosition: {fileID: 8505268303575480534}
-  spawnWaitTime: 0
-  objPrefab: {fileID: 5957189935190479481, guid: afc48a19fa93995478a0729e55ba1a99, type: 3}
+  spawnWaitTime: 5
+  objPrefab: {fileID: 3881562550126245036, guid: c7716cec558b2054b9587f5fdff468ea, type: 3}
   holder: {fileID: 8505268304153600040}
   parent: {fileID: 0}
+--- !u!114 &8134462593333488942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8505268304153600040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5456904b6e1b61344a860459682d6865, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holdPosition: {fileID: 8505268303575480534}
 --- !u!1 &8505268304310057613
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,7 +189,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 810021267c22dba428e17f2289f0df23, type: 2}
+  - {fileID: 2100000, guid: 552d4728b4315c6449e8da49fd13f69c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -507,7 +504,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1d05c78186f03e249a4168f2214987d9, type: 2}
+  - {fileID: 2100000, guid: 8c360ca21da657947aae4e7647dbe9bf, type: 2}
+  - {fileID: 2100000, guid: d023a44b9f70b3241919a432cd9a4178, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -586,7 +584,7 @@ MonoBehaviour:
       m_Rotation: 0
       m_Anchor: 9
     m_Material: {fileID: 0}
-    m_SubmeshIndex: 0
+    m_SubmeshIndex: 1
     m_ManualUV: 1
     elementGroup: -1
     m_TextureGroup: -1
@@ -754,7 +752,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 12
+  m_VersionIndex: 8
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []

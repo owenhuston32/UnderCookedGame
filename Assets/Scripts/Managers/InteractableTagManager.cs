@@ -56,6 +56,7 @@ public class InteractableTagManager : MonoBehaviour
         canInteractWithTags.Add("Pan");
         canInteractWithTags.Add("Plate");
         canInteractWithTags.Add("Food");
+        canInteractWithTags.Add("FoodCrate");
     }
     // when we have a pan in hand these are the tags we can interact with
     public void setPanTags()
@@ -116,13 +117,17 @@ public class InteractableTagManager : MonoBehaviour
 
         // if the obj is a holder such as a pan and it already has an object on top and we are carrying an obj
         // then we cant interact with the holder
-        if (holder != null  && currentPlayerHolder.CurrentlyHoldingObj != null)
+
+        // or if the object is a spawner and it is already carrying something then we can't interact with it
+        if (holder != null && holder.CurrentlyHoldingObj != null)
         {
-            if (holder.CurrentlyHoldingObj != null)
-            {
+            if(currentPlayerHolder.CurrentlyHoldingObj != null)
                 return false;
-            }
+
+            if (holder.HolderObj.GetComponent<Spawner>() != null)
+                return false;
         }
+
         return true;
     }
 }

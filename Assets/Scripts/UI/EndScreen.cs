@@ -13,8 +13,8 @@ public class EndScreen : MonoBehaviour
     {
         endCanvas.enabled = true;
 
-        int player1Score = ScoreManager.Instance.Player1Score;
-        int player2Score = ScoreManager.Instance.Player2Score;
+        int player1Score = ScoreManager.Instance.GetScoreFromIndex(0);
+        int player2Score = ScoreManager.Instance.GetScoreFromIndex(1);
 
 
         player1ScoreText.text = "PLAYER 1\nSCORE: " + player1Score;

@@ -8,7 +8,7 @@ public class Cook : MonoBehaviour
     [SerializeField] Image sliderFillImage;
     [SerializeField] Slider slider;
     [SerializeField] GameObject cookbarGameObject;
-    private float cookingSpeed = .0005f;
+    [SerializeField] private float cookingSpeed = .0005f;
     private bool isCooking = false;
     private bool isFinished = false;
     // Start is called before the first frame update
@@ -18,26 +18,7 @@ public class Cook : MonoBehaviour
     }
     public int CurrentScore()
     {
-        if(slider.value < .25f)
-        {
-            return 0;
-        }
-        else if(slider.value < .5f)
-        {
-            return 1;
-        }
-        else if (slider.value < .75f)
-        {
-            return 2;
-        }
-        else if(slider.value < .9f)
-        {
-            return 3;
-        }
-        else
-        {
-            return 4;
-        }
+        return Mathf.CeilToInt(slider.value * 10) - 2;
 
     }
     public void disableCookBar()

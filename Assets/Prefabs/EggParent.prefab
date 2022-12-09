@@ -119,7 +119,7 @@ Transform:
   m_GameObject: {fileID: 2331065547827187636}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3881562550126245078}
@@ -34265,7 +34265,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2855554904010445875}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0.375}
+  m_LocalPosition: {x: 0, y: 0, z: 0.82}
   m_LocalScale: {x: 0.00075756636, y: 0.0002626937, z: 0.00075756636}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -34465,7 +34465,6 @@ MonoBehaviour:
   highlightedMaterial: {fileID: 2100000, guid: d8dd86db576cbe6418254977cf2c473f, type: 2}
   highlightObjects:
   - {fileID: 2331065547827187636}
-  - {fileID: 8174493223779601436}
 --- !u!114 &3881562550126245076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34493,6 +34492,7 @@ MonoBehaviour:
   sliderFillImage: {fileID: 4145272929747891855}
   slider: {fileID: 6887325913946650088}
   cookbarGameObject: {fileID: 2855554904010445875}
+  cookingSpeed: 0.01
 --- !u!114 &1173726991653709092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68660,7 +68660,7 @@ Transform:
   m_GameObject: {fileID: 8174493223779601436}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.15, y: 0.054, z: -0.16}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3881562550126245078}
@@ -68878,7 +68878,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 379
+  m_VersionIndex: 385
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
