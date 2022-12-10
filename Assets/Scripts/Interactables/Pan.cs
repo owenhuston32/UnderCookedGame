@@ -37,7 +37,7 @@ public class Pan : BasicInteractable, IPickup, IHold, Iinteractable
     public void setDown(GameObject obj, IHold newHolder, GameObject playerHoldingObj)
     {
         // set the food on the plate and drop pan
-        if(newHolder.HolderObj.CompareTag("Plate"))
+        if(newHolder.HolderObj.CompareTag(StaticStrings.Plate))
         {
             IPickup food = CurrentlyHoldingObj.GetComponent(typeof(IPickup)) as IPickup;
             food.setDown(food.PickupObj, newHolder, playerHoldingObj);
@@ -58,9 +58,9 @@ public class Pan : BasicInteractable, IPickup, IHold, Iinteractable
 
     public void StartHolding(IHold oldHolder, IPickup pickup)
     {
-        if(pickup.PickupObj.CompareTag("Food"))
+        if(pickup.PickupObj.CompareTag(StaticStrings.Food))
         {
-            if(PickupHolder != null && PickupHolder.HolderObj.CompareTag("Burner"))
+            if(PickupHolder != null && PickupHolder.HolderObj.CompareTag(StaticStrings.Burner))
             {
                 pickup.PickupObj.GetComponent<Cook>().cook();
             }

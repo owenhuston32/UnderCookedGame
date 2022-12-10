@@ -34,11 +34,11 @@ public class Burner : BasicInteractable, Iinteractable, IHold
 
     public void StartHolding(IHold oldHolder, IPickup pickup)
     { 
-        if(pickup.PickupObj.CompareTag("Pan"))
+        if(pickup.PickupObj.CompareTag(StaticStrings.Pan))
         {
             IHold panHolder = pickup.PickupObj.GetComponent(typeof(IHold)) as IHold;
 
-            if(panHolder.CurrentlyHoldingObj != null && panHolder.CurrentlyHoldingObj.CompareTag("Food"))
+            if(panHolder.CurrentlyHoldingObj != null && panHolder.CurrentlyHoldingObj.CompareTag(StaticStrings.Food))
             {
                 panHolder.CurrentlyHoldingObj.GetComponent<Cook>().cook();
             }

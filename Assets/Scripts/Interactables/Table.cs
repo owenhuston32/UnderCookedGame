@@ -38,11 +38,12 @@ public class Table : BasicInteractable, Iinteractable, IHold
         holder.StartHolding(oldHolder, pickup);
 
 
-        if (IsSubmissionTable && pickup.PickupObj.CompareTag("Plate"))
+        if (IsSubmissionTable && pickup.PickupObj.CompareTag(StaticStrings.Plate))
         {
             IHold plateHolder = pickup.PickupObj.GetComponent(typeof(IHold)) as IHold;
             if (plateHolder != null && plateHolder.CurrentlyHoldingObj != null)
             {
+                holder.StopHolding(pickup);
 
                 ScoreManager.Instance.AddScore(SubmissionTableNum, plateHolder.CurrentlyHoldingObj);
 

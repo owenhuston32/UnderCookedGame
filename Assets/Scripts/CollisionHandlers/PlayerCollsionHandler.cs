@@ -8,7 +8,7 @@ public class PlayerCollsionHandler
 
     public void onTriggerEnter(GameObject obj, Collider collider)
     {
-        if (collider.CompareTag("Pan"))
+        if (collider.CompareTag(StaticStrings.Pan))
         {
             IHold playerHolder = obj.GetComponent(typeof(IHold)) as IHold;
 
@@ -22,7 +22,7 @@ public class PlayerCollsionHandler
     }
     public void onCollisionEnter(GameObject obj, Collision collision)
     {
-        if (collision.gameObject.CompareTag("Projectile"))
+        if (collision.gameObject.CompareTag(StaticStrings.Projectile))
         {
             obj.GetComponent<Move>().stunMovement(.5f);
         }

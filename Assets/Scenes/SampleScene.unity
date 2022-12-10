@@ -4178,7 +4178,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   endScreenScript: {fileID: 1698367643}
-  timeLeft: 10
+  timeLeft: 60
 --- !u!43 &365141914
 Mesh:
   m_ObjectHideFlags: 0
@@ -11774,7 +11774,6 @@ GameObject:
   - component: {fileID: 1190964939}
   - component: {fileID: 1190964938}
   - component: {fileID: 1190964937}
-  - component: {fileID: 1190964936}
   - component: {fileID: 1190964935}
   - component: {fileID: 1190964933}
   m_Layer: 0
@@ -11814,21 +11813,6 @@ MonoBehaviour:
   highlightedMaterial: {fileID: 2100000, guid: cce00fbe7e4d26644bd64f6a41e9b007, type: 2}
   highlightObjects:
   - {fileID: 1190964932}
---- !u!114 &1190964936
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1190964932}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acadcf896b4a92b49a98ad1ae5ccef10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentPlayer: {fileID: 1190964932}
-  player1: {fileID: 1190964932}
-  player2: {fileID: 1732667014}
 --- !u!114 &1190964937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11841,8 +11825,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 737666f3f0a91774ca78008668087545, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eggStunTime: 1
-  panStunTime: 3
   player1: {fileID: 1732667014}
   player2: {fileID: 1190964932}
   reach: 3
@@ -16070,7 +16052,6 @@ GameObject:
   - component: {fileID: 1732667029}
   - component: {fileID: 1732667021}
   - component: {fileID: 1732667026}
-  - component: {fileID: 1732667030}
   - component: {fileID: 1732667031}
   - component: {fileID: 1732667033}
   m_Layer: 0
@@ -16215,8 +16196,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 737666f3f0a91774ca78008668087545, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eggStunTime: 1
-  panStunTime: 3
   player1: {fileID: 1732667014}
   player2: {fileID: 1190964932}
   reach: 3
@@ -16234,21 +16213,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b1bb296c0f2a4548b9c2d18cb567a16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1732667030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1732667014}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acadcf896b4a92b49a98ad1ae5ccef10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentPlayer: {fileID: 1732667014}
-  player1: {fileID: 1732667014}
-  player2: {fileID: 1190964932}
 --- !u!114 &1732667031
 MonoBehaviour:
   m_ObjectHideFlags: 0

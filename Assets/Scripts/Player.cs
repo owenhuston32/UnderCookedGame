@@ -5,30 +5,27 @@ using UnityEngine;
 using UnityEngine.Rendering;
 
 public class Player : MonoBehaviour, IHold
-{
-    [SerializeField] float eggStunTime = 1f;
-    [SerializeField] float panStunTime = 3f;
-    [SerializeField] GameObject player1;
-    [SerializeField] GameObject player2; 
+{ 
     [SerializeField] float reach = 2;
     [SerializeField] Transform[] holdPositions;
 
 
     private PlayerCollsionHandler collisionHandler = new PlayerCollsionHandler();
     private InteractableTagManager tagManager;
-    private GameObject highlightedObj = null;
-    private GameObject prevHighlightedObj = null;
     private IHold holder;
+    private HighlightManager highlightManager;
 
     public GameObject CurrentlyHoldingObj { get => holder.CurrentlyHoldingObj; set => holder.CurrentlyHoldingObj = value; }
     public Transform[] HoldPositions { get => holder.HoldPositions; }
 
     public GameObject HolderObj => gameObject;
+    public InteractableTagManager TagManager { get => tagManager; }
 
     private void Start()
     {
+        tagManager = new InteractableTagManager(this);
+        highlightManager = new HighlightManager(this, reach);
         holder = new BasicHolder(gameObject, holdPositions);
-        tagManager = GetComponent<InteractableTagManager>();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -41,46 +38,7 @@ public class Player : MonoBehaviour, IHold
 
     private void Update()
     {
-        highlightedObj = null;
-
-        if (prevHighlightedObj != null)
-            prevHighlightedObj.GetComponent<IHighlight>().RemoveHighlight();
-
-        GameObject closestInteractable = getClosestInteractable();
-        if (closestInteractable != null)
-        {
-
-            highlightedObj = closestInteractable;
-            prevHighlightedObj = highlightedObj;
-            closestInteractable.GetComponent<IHighlight>().HighlightMaterial();
-        }
-
-    }
-    private GameObject getClosestInteractable()
-    {
-        float closestObjDistance = float.MaxValue;
-        GameObject closestInteractable = null;
-
-        foreach (GameObject interactable in ObjectManager.Instance.Interactables)
-        {
-            if (tagManager.canInteract(interactable))
-            {
-
-                if (tagManager.CanInteractWithTags.Contains(interactable.tag))
-                {
-                    float distance = Vector3.Distance(interactable.transform.position, gameObject.transform.position);
-                    if (distance <= reach)
-                    {
-                        if (distance < closestObjDistance)
-                        {
-                            closestObjDistance = distance;
-                            closestInteractable = interactable;
-                        }
-                    }
-                }
-            }
-        }
-        return closestInteractable;
+        highlightManager.Update();
     }
 
  
@@ -94,16 +52,15 @@ public class Player : MonoBehaviour, IHold
         }
         else
         {
-            if(highlightedObj != null)
-                interactable = highlightedObj.GetComponent(typeof(Iinteractable)) as Iinteractable;
+            if(highlightManager.HighlightedObj != null)
+                interactable = highlightManager.HighlightedObj.GetComponent(typeof(Iinteractable)) as Iinteractable;
 
         }
 
         if (interactable != null)
         {
-            InteractionManager.Instance.interact(gameObject, highlightedObj, CurrentlyHoldingObj);
+            InteractionManager.Instance.interact(gameObject, highlightManager.HighlightedObj, CurrentlyHoldingObj);
         }
-        highlightedObj = null;
         tagManager.updateInteractableTags();
     }
 

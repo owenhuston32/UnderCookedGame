@@ -24,7 +24,7 @@ public class FoodCrate : BasicInteractable, Iinteractable, IHold
 
     public void SpawnObj(IHold holder)
     {
-        anim.Play("crateOpenAnim");
+        anim.Play(StaticStrings.OpenFoodCrateAnim);
 
         GameObject food = GetComponent<Spawner>().SpawnObj(holder);
 

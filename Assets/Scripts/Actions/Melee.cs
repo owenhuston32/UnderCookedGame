@@ -6,6 +6,6 @@ public class Melee : MonoBehaviour
 {
     public void melee()
     {
-        Debug.Log(this.gameObject.name + "melee");
+        Debug.Log("melee");
     }
 }

@@ -8,13 +8,12 @@ public class Attack : MonoBehaviour
     private InteractableTagManager tagManager;
     [SerializeField] float speed = 4f;
     [SerializeField] float despawnWaitTime = 1f;
-    [SerializeField] float eggStunTime = 1f;
     private GameObject objInHand;
 
     private void Start()
     {
         player = GetComponent<Player>();
-        tagManager = GetComponent<InteractableTagManager>();
+        tagManager = player.TagManager;
     }
 
     public void attackPress()
@@ -23,13 +22,12 @@ public class Attack : MonoBehaviour
 
         objInHand = playerHolder.CurrentlyHoldingObj;
 
-        if (objInHand != null && objInHand.CompareTag("Food"))
+        if (objInHand != null && objInHand.CompareTag(StaticStrings.Food))
         {
             shoot();
-            playerHolder.CurrentlyHoldingObj = null;
             tagManager.setNoTags();
         }
-        else if(objInHand != null && objInHand.CompareTag("Pan"))
+        else if(objInHand != null && objInHand.CompareTag(StaticStrings.Pan))
         {
             melee();
             tagManager.setNoTags();
@@ -53,7 +51,7 @@ public class Attack : MonoBehaviour
         objInHand.GetComponent<Rigidbody>().AddForce(speed * objInHand.transform.forward, ForceMode.Impulse);
         objInHand.GetComponent<Collider>().enabled = true;
 
-        objInHand.tag = "Projectile";
+        objInHand.tag = StaticStrings.Projectile;
 
         StartCoroutine(waitThenDespawn(despawnWaitTime));
     }
@@ -68,8 +66,6 @@ public class Attack : MonoBehaviour
             panHolder.CurrentlyHoldingObj = null;
         }
 
-        objInHand.GetComponentInChildren<Animator>().Play("melee");
-
-        Debug.Log("Melee");
+        objInHand.GetComponentInChildren<Animator>().Play(StaticStrings.MeleeAnim);
     }
 }

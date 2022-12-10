@@ -31,7 +31,7 @@ public class Egg : BasicInteractable, IPickup, Iinteractable
         basicPickup.setDown(obj, newHolder, playerHoldingObj);
 
         // we can't pickup the egg after setting on a pan or plate
-        if (newHolder.HolderObj.CompareTag("Pan") || newHolder.HolderObj.CompareTag("Plate"))
+        if (newHolder.HolderObj.CompareTag(StaticStrings.Pan) || newHolder.HolderObj.CompareTag(StaticStrings.Plate))
         {
             CanPickup = false;
         }
