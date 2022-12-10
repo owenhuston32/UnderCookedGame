@@ -33,52 +33,9 @@ public class Plate : BasicInteractable, IPickup, IHold, Iinteractable
 
     public void setDown(GameObject obj, IHold newHolder, GameObject playerHoldingObj)
     {
-
-        Debug.Log(obj + " : " + newHolder + " : " + playerHoldingObj);
-
-        Table table = newHolder.HolderObj.GetComponent<Table>();
-        if (table != null && table.IsSubmissionTable && CurrentlyHoldingObj != null)
-        {
-            ScoreManager.Instance.AddScore(table.SubmissionTableNum, CurrentlyHoldingObj);
-
-            PickupHolder.StopHolding(this);
-
-            //remove food from scene
-            ObjectManager.Instance.removeInteractable(CurrentlyHoldingObj);
-
-            // remove plate from scene
-            ObjectManager.Instance.removeInteractable(gameObject);
-
-            respawnPlate(table);
-        }
-        else
-        {
-            newHolder.StartHolding(PickupHolder, this);
-            basicPickup.setDown(obj, newHolder, playerHoldingObj);
-        }
-    }
-
-    private void respawnPlate(Table table)
-    {
-        //respawn onto the plate respawn position
-        IHold respawnPlateHolder = null;
-
-        // find holder in children
-        List<Transform> transforms = new List<Transform>(table.GetComponentsInChildren<Transform>());
-        transforms.Remove(table.transform);
-        Transform[] childTransforms = transforms.ToArray();
-
-        for (int i = 0; i < childTransforms.Length; i++)
-        {
-            IHold tempHolder = childTransforms[i].GetComponent(typeof(IHold)) as IHold;
-            if (tempHolder != null)
-            {
-                respawnPlateHolder = tempHolder;
-                break;
-            }
-        }
-
-        table.GetComponentInChildren<Spawner>().WaitThenSpawn(respawnPlateHolder);
+        newHolder.StartHolding(PickupHolder, this);
+        basicPickup.setDown(obj, newHolder, playerHoldingObj);
+        
     }
     public void drop()
     {

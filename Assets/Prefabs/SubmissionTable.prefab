@@ -236,7 +236,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3871d754d00ff8241ae5508008b2a96f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnObjOnStart: 1
+  plateRespawnObj: {fileID: 9215648134613917057}
+  spawnObjOnStart: 0
   holdPositions:
   - {fileID: 8505268303575480534}
   isSubmissionTable: 1
@@ -511,6 +512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3871d754d00ff8241ae5508008b2a96f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  plateRespawnObj: {fileID: 0}
   spawnObjOnStart: 0
   holdPositions:
   - {fileID: 6627933937136184118}

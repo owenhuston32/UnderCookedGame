@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Table : BasicInteractable, Iinteractable, IHold
 {
+    [SerializeField] private GameObject plateRespawnObj;
     [SerializeField] private bool spawnObjOnStart = true;
     [SerializeField] private Transform[] holdPositions;
     [SerializeField] private bool isSubmissionTable;
@@ -35,6 +36,26 @@ public class Table : BasicInteractable, Iinteractable, IHold
     public void StartHolding(IHold oldHolder, IPickup pickup)
     {
         holder.StartHolding(oldHolder, pickup);
+
+
+        if (IsSubmissionTable && pickup.PickupObj.CompareTag("Plate"))
+        {
+            IHold plateHolder = pickup.PickupObj.GetComponent(typeof(IHold)) as IHold;
+            if (plateHolder != null && plateHolder.CurrentlyHoldingObj != null)
+            {
+
+                ScoreManager.Instance.AddScore(SubmissionTableNum, plateHolder.CurrentlyHoldingObj);
+
+                //remove food from scene
+                ObjectManager.Instance.removeInteractable(plateHolder.CurrentlyHoldingObj);
+
+                // remove plate from scene
+                ObjectManager.Instance.removeInteractable(plateHolder.HolderObj);
+
+                // respawn plate
+                plateRespawnObj.GetComponent<Spawner>().WaitThenSpawn(plateRespawnObj.GetComponent(typeof(IHold)) as IHold);
+            }
+        }
     }
 
     public void StopHolding(IPickup pickup)
