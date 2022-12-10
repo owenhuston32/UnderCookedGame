@@ -43,26 +43,23 @@ public class Player : MonoBehaviour, IHold
  
     public void interact()
     {
-        Iinteractable interactable = getInteractable();
+        bool canInteract = checkCanInteract();
 
-        if (interactable != null)
+        if (canInteract)
         {
             InteractionManager.Instance.interact(gameObject, highlightManager.HighlightedObj, CurrentlyHoldingObj);
         }
         tagManager.updateInteractableTags();
     }
 
-    private Iinteractable getInteractable()
+    // get the object that we can interact with (either the obj we are holding or the obj we are highlighting)
+    private bool checkCanInteract()
     {
-        if (CurrentlyHoldingObj != null)
+        if (CurrentlyHoldingObj != null || highlightManager.HighlightedObj != null)
         {
-            return CurrentlyHoldingObj.GetComponent(typeof(Iinteractable)) as Iinteractable;
+            return true;
         }
-        else if(highlightManager.HighlightedObj != null)
-        {
-            return highlightManager.HighlightedObj.GetComponent(typeof(Iinteractable)) as Iinteractable;
-        }
-        return null;
+        return false;
     }
 
     public void StartHolding(IHold oldHolder, IPickup pickup, Transform followTransform)

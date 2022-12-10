@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class Egg : BasicInteractable, IPickup, Iinteractable
 {
-    private IHold basicHolder;
     private IPickup basicPickup;
     public bool CanPickup { get => basicPickup.CanPickup; set => basicPickup.CanPickup = value; }
     public IHold PickupHolder { get => basicPickup.PickupHolder; set => basicPickup.PickupHolder = value; }

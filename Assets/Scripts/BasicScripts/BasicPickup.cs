@@ -7,7 +7,6 @@ public class BasicPickup : IPickup
 {
     private GameObject pickupObj;
     private bool canPickup = true;
-    private FollowPosition followPosition;
     private IHold pickupHolder = null;
     public IHold PickupHolder { get => pickupHolder; set => pickupHolder = value; }
     public bool CanPickup { get => canPickup; set => canPickup = value; }
@@ -15,7 +14,6 @@ public class BasicPickup : IPickup
     public BasicPickup(GameObject obj)
     {
         pickupObj = obj;
-        followPosition = obj.GetComponent<FollowPosition>();
     }
 
     public void Initialize()

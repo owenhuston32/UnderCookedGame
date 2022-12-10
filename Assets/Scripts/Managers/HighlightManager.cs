@@ -26,6 +26,8 @@ public class HighlightManager
         if (prevHighlightedObj != null)
             prevHighlightedObj.GetComponent<IHighlight>().RemoveHighlight();
 
+        highlightedObj = null;
+
         GameObject closestInteractable = getClosestInteractable();
         if (closestInteractable != null)
         {

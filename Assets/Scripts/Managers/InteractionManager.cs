@@ -42,7 +42,7 @@ public class InteractionManager : MonoBehaviour, Iinteractable
 
             if (highlightedHolder != null)
             {
-                setDown(playerHoldingObj, highlightedHolder, playerHoldingObj);
+                setDown(playerHoldingObj, highlightedHolder);
             }
             else if (highlightedPickup != null)
             {
@@ -60,7 +60,7 @@ public class InteractionManager : MonoBehaviour, Iinteractable
             playerHoldingObjPickup.drop();
         }
     }
-    private void setDown(GameObject obj, IHold newHolder, GameObject playerHoldingObj)
+    private void setDown(GameObject obj, IHold newHolder)
     {
         IPickup pickup = obj.GetComponent(typeof(IPickup)) as IPickup;
 
