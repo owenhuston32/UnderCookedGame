@@ -6,10 +6,11 @@ using UnityEngine.Rendering;
 
 public class Player : MonoBehaviour, IHold
 { 
-    [SerializeField] float reach = 2;
-    [SerializeField] Transform[] holdPositions;
+    [SerializeField] private float reach = 2;
+    [SerializeField] private Transform[] holdPositions;
+    [SerializeField] private Animator anim;
 
-
+    private PlayerAnimationManager animationManager; 
     private PlayerCollsionHandler collisionHandler = new PlayerCollsionHandler();
     private InteractableTagManager tagManager;
     private IHold holder;
@@ -24,6 +25,7 @@ public class Player : MonoBehaviour, IHold
     {
         tagManager = new InteractableTagManager(this);
         highlightManager = new HighlightManager(this, reach);
+        animationManager = new PlayerAnimationManager(anim);
         holder = new BasicHolder(gameObject);
     }
     private void OnTriggerEnter(Collider other)
@@ -64,11 +66,26 @@ public class Player : MonoBehaviour, IHold
 
     public void StartHolding(IHold oldHolder, IPickup pickup, Transform followTransform)
     {
-        holder.StartHolding(oldHolder, pickup, holdPositions[0]);
+        animationManager.SetHoldingObjAnim(pickup.PickupObj.tag, true);
+
+        Debug.Log("pickup");
+
+        if (pickup.PickupObj.CompareTag(StaticStrings.Food) || pickup.PickupObj.CompareTag(StaticStrings.Plate))
+            holder.StartHolding(oldHolder, pickup, holdPositions[0]);
+        else
+            holder.StartHolding(oldHolder, pickup, holdPositions[1]);
     }
 
     public void StopHolding(IPickup pickup)
     {
+        animationManager.SetHoldingObjAnim(pickup.PickupObj.tag, false);
         holder.StopHolding(pickup);
+    }
+
+
+
+    public void SetAnimParam(string clipName, bool val)
+    {
+        animationManager.SetAnimParam(clipName, val);
     }
 }

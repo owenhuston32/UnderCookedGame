@@ -21,4 +21,11 @@ public static class StaticStrings
     public static readonly string MeleeAnim = "melee";
 
 
+    // player animation params
+    public static readonly string isWalking = "isWalking";
+    public static readonly string isHoldingInFront = "isHoldingInFront";
+    public static readonly string isHoldingToSide = "isHoldingToSide";
+
+
+
 }

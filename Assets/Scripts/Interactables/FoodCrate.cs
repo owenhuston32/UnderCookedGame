@@ -26,10 +26,6 @@ public class FoodCrate : BasicInteractable, Iinteractable, IHold
 
         GameObject food = GetComponent<Spawner>().SpawnObj(holder);
 
-        IPickup pickup = food.GetComponent(typeof(IPickup)) as IPickup;
-
-        pickup.pickup(holder);
-
     }
 
     public void StartHolding(IHold oldHolder, IPickup pickup, Transform followTransform)

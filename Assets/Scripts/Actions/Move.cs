@@ -10,10 +10,12 @@ public class Move : MonoBehaviour
     [SerializeField] private float speed = 20f;
     private Rigidbody rb;
     private bool canMove = true;
+    private Player player;
 
     // Start is called before the first frame update
     void Start()
     {
+        player = gameObject.GetComponent<Player>();
         rb = gameObject.GetComponent<Rigidbody>();
     }
 
@@ -21,11 +23,13 @@ public class Move : MonoBehaviour
     {
         if (isMoving && canMove)
         {
+            player.SetAnimParam(StaticStrings.isWalking, true);
             transform.forward = moveDirection;
             rb.AddForce(transform.forward * speed);
         }
         else
         {
+            player.SetAnimParam(StaticStrings.isWalking, false);
             rb.angularVelocity = Vector3.zero;
         }
     }

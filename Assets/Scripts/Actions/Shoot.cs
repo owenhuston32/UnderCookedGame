@@ -17,6 +17,7 @@ public class Shoot
         FollowPosition followScript = objInHand.GetComponent<FollowPosition>();
         followScript.stopFollowing();
 
+
         objInHand.GetComponent<Cook>().disableCookBar();
         objInHand.GetComponent<IHighlight>().RemoveHighlight();
         objInHand.GetComponent<Rigidbody>().useGravity = false;
