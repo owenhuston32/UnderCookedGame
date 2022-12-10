@@ -16,25 +16,24 @@ public class Plate : BasicInteractable, IPickup, IHold, Iinteractable
 
     public IHold PickupHolder { get => basicPickup.PickupHolder; set => basicPickup.PickupHolder = value; }
     public GameObject CurrentlyHoldingObj { get => basicHolder.CurrentlyHoldingObj; set => basicHolder.CurrentlyHoldingObj = value; }
-    public Transform[] HoldPositions { get => basicHolder.HoldPositions; }
 
     public void Initialize()
     {
-        basicHolder = new BasicHolder(gameObject, holdPositions);
+        basicHolder = new BasicHolder(gameObject);
         basicPickup = new BasicPickup(gameObject);
         ObjectManager.Instance.addInteractable(gameObject);
     }
 
     public void pickup(IHold newHolder)
     {
-        newHolder.StartHolding(PickupHolder, this);
+        newHolder.StartHolding(PickupHolder, this, null);
         basicPickup.pickup(newHolder);
     }
 
-    public void setDown(GameObject obj, IHold newHolder, GameObject playerHoldingObj)
+    public void setDown(IHold newHolder)
     {
-        newHolder.StartHolding(PickupHolder, this);
-        basicPickup.setDown(obj, newHolder, playerHoldingObj);
+        newHolder.StartHolding(PickupHolder, this, null);
+        basicPickup.setDown(newHolder);
         
     }
     public void drop()
@@ -43,9 +42,9 @@ public class Plate : BasicInteractable, IPickup, IHold, Iinteractable
         basicPickup.drop();
     }
 
-    public void StartHolding(IHold oldHolder, IPickup pickup)
+    public void StartHolding(IHold oldHolder, IPickup pickup, Transform followTransform)
     {
-        basicHolder.StartHolding(oldHolder, pickup);
+        basicHolder.StartHolding(oldHolder, pickup, holdPositions[0]);
     }
 
     public void StopHolding(IPickup pickup)

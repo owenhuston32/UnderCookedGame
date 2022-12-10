@@ -65,7 +65,7 @@ public class InteractionManager : MonoBehaviour, Iinteractable
         IPickup pickup = obj.GetComponent(typeof(IPickup)) as IPickup;
 
         if (pickup != null)
-            pickup.setDown(obj, newHolder, playerHoldingObj);
+            pickup.setDown(newHolder);
     }
     private void pickup(GameObject obj, GameObject holder)
     {
@@ -74,6 +74,7 @@ public class InteractionManager : MonoBehaviour, Iinteractable
         {
             pickup.pickup(holder.GetComponent(typeof(IHold)) as IHold);
         }
+        // interact with crate
         else
         {
             FoodCrate crate = obj.GetComponent<FoodCrate>();

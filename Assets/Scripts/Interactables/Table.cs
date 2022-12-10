@@ -14,8 +14,6 @@ public class Table : BasicInteractable, Iinteractable, IHold
 
     public GameObject CurrentlyHoldingObj { get => holder.CurrentlyHoldingObj; set => holder.CurrentlyHoldingObj = value; }
 
-    public Transform[] HoldPositions { get => holdPositions; }
-
     public bool IsSubmissionTable { get => isSubmissionTable; }
     public int SubmissionTableNum { get => submissionTableNum; }
 
@@ -23,7 +21,7 @@ public class Table : BasicInteractable, Iinteractable, IHold
     // Start is called before the first frame update
     public void Start()
     {
-        holder = new BasicHolder(gameObject, holdPositions);
+        holder = new BasicHolder(gameObject);
         ObjectManager.Instance.addInteractable(gameObject);
 
         Spawner spawner = gameObject.GetComponent<Spawner>();
@@ -33,10 +31,9 @@ public class Table : BasicInteractable, Iinteractable, IHold
 
     }
 
-    public void StartHolding(IHold oldHolder, IPickup pickup)
+    public void StartHolding(IHold oldHolder, IPickup pickup, Transform followTransform)
     {
-        holder.StartHolding(oldHolder, pickup);
-
+        holder.StartHolding(oldHolder, pickup, holdPositions[0]);
 
         if (IsSubmissionTable && pickup.PickupObj.CompareTag(StaticStrings.Plate))
         {

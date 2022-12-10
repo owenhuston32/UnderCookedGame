@@ -32,7 +32,7 @@ public class Spawner : MonoBehaviour
 
             pickup.Initialize();
 
-            pickup.setDown(spawnedObject, holder, null);
+            pickup.setDown(holder);
 
         }
         return spawnedObject;

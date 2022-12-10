@@ -5,10 +5,9 @@ using UnityEngine;
 public interface IHold
 {
     public GameObject CurrentlyHoldingObj { get; set; }
-    public Transform[] HoldPositions { get ; }
     public GameObject HolderObj { get; }
 
-    public void StartHolding(IHold oldHolder, IPickup obj);
+    public void StartHolding(IHold oldHolder, IPickup obj, Transform followTransform);
 
     public void StopHolding(IPickup obj);
 

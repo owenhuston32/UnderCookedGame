@@ -25,17 +25,19 @@ public class BasicPickup : IPickup
 
     public void pickup(IHold newHolder)
     {
+        pickupHolder = newHolder;
         canPickup = false;
     }
 
-    public void setDown(GameObject obj, IHold newHolder, GameObject playerHoldingObj)
+    public void setDown(IHold newHolder)
     {
-
+        pickupHolder = newHolder;
         canPickup = true;
 
     }
     public void drop()
     {
+        pickupHolder = null;
         canPickup = true;
     }
 }

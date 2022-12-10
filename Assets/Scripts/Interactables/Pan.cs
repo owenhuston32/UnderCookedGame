@@ -14,12 +14,11 @@ public class Pan : BasicInteractable, IPickup, IHold, Iinteractable
 
     public IHold PickupHolder { get => basicPickup.PickupHolder; set => basicPickup.PickupHolder = value; }
     public GameObject CurrentlyHoldingObj { get => basicHolder.CurrentlyHoldingObj; set => basicHolder.CurrentlyHoldingObj = value; }
-    public Transform[] HoldPositions { get => basicHolder.HoldPositions; }
 
 
     public void Initialize()
     {
-        basicHolder = new BasicHolder(gameObject, holdPositions);
+        basicHolder = new BasicHolder(gameObject);
         basicPickup = new BasicPickup(gameObject);
         ObjectManager.Instance.addInteractable(gameObject);
     }
@@ -30,23 +29,23 @@ public class Pan : BasicInteractable, IPickup, IHold, Iinteractable
         {
             CurrentlyHoldingObj.GetComponent<Cook>().stopCook();
         }
-        newHolder.StartHolding(PickupHolder, this);
+        newHolder.StartHolding(PickupHolder, this, null);
         basicPickup.pickup(newHolder);
     }
 
-    public void setDown(GameObject obj, IHold newHolder, GameObject playerHoldingObj)
+    public void setDown(IHold newHolder)
     {
         // set the food on the plate and drop pan
         if(newHolder.HolderObj.CompareTag(StaticStrings.Plate))
         {
             IPickup food = CurrentlyHoldingObj.GetComponent(typeof(IPickup)) as IPickup;
-            food.setDown(food.PickupObj, newHolder, playerHoldingObj);
+            food.setDown(newHolder);
             drop();
         }
         else
         {
-            newHolder.StartHolding(PickupHolder, this);
-            basicPickup.setDown(obj, newHolder, playerHoldingObj);
+            newHolder.StartHolding(PickupHolder, this, null);
+            basicPickup.setDown(newHolder);
         }
 
     }
@@ -56,7 +55,7 @@ public class Pan : BasicInteractable, IPickup, IHold, Iinteractable
         basicPickup.drop();
     }
 
-    public void StartHolding(IHold oldHolder, IPickup pickup)
+    public void StartHolding(IHold oldHolder, IPickup pickup, Transform followTransform)
     {
         if(pickup.PickupObj.CompareTag(StaticStrings.Food))
         {
@@ -69,7 +68,7 @@ public class Pan : BasicInteractable, IPickup, IHold, Iinteractable
                 pickup.PickupObj.GetComponent<Cook>().stopCook();
             }
         }
-        basicHolder.StartHolding(oldHolder, pickup);
+        basicHolder.StartHolding(oldHolder, pickup, holdPositions[0]);
     }
 
     public void StopHolding(IPickup pickup)

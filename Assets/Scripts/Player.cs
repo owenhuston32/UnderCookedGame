@@ -16,7 +16,6 @@ public class Player : MonoBehaviour, IHold
     private HighlightManager highlightManager;
 
     public GameObject CurrentlyHoldingObj { get => holder.CurrentlyHoldingObj; set => holder.CurrentlyHoldingObj = value; }
-    public Transform[] HoldPositions { get => holder.HoldPositions; }
 
     public GameObject HolderObj => gameObject;
     public InteractableTagManager TagManager { get => tagManager; }
@@ -25,7 +24,7 @@ public class Player : MonoBehaviour, IHold
     {
         tagManager = new InteractableTagManager(this);
         highlightManager = new HighlightManager(this, reach);
-        holder = new BasicHolder(gameObject, holdPositions);
+        holder = new BasicHolder(gameObject);
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -44,18 +43,7 @@ public class Player : MonoBehaviour, IHold
  
     public void interact()
     {
-        Iinteractable interactable = null;
-
-        if(CurrentlyHoldingObj != null)
-        {
-            interactable = CurrentlyHoldingObj.GetComponent(typeof(Iinteractable)) as Iinteractable;
-        }
-        else
-        {
-            if(highlightManager.HighlightedObj != null)
-                interactable = highlightManager.HighlightedObj.GetComponent(typeof(Iinteractable)) as Iinteractable;
-
-        }
+        Iinteractable interactable = getInteractable();
 
         if (interactable != null)
         {
@@ -64,9 +52,22 @@ public class Player : MonoBehaviour, IHold
         tagManager.updateInteractableTags();
     }
 
-    public void StartHolding(IHold oldHolder, IPickup pickup)
+    private Iinteractable getInteractable()
     {
-        holder.StartHolding(oldHolder, pickup);
+        if (CurrentlyHoldingObj != null)
+        {
+            return CurrentlyHoldingObj.GetComponent(typeof(Iinteractable)) as Iinteractable;
+        }
+        else if(highlightManager.HighlightedObj != null)
+        {
+            return highlightManager.HighlightedObj.GetComponent(typeof(Iinteractable)) as Iinteractable;
+        }
+        return null;
+    }
+
+    public void StartHolding(IHold oldHolder, IPickup pickup, Transform followTransform)
+    {
+        holder.StartHolding(oldHolder, pickup, holdPositions[0]);
     }
 
     public void StopHolding(IPickup pickup)

@@ -11,13 +11,11 @@ public class FoodCrate : BasicInteractable, Iinteractable, IHold
 
     public GameObject CurrentlyHoldingObj { get => holder.CurrentlyHoldingObj; set => holder.CurrentlyHoldingObj = value; }
 
-    public Transform[] HoldPositions { get => holdPositions; }
-
 
     // Start is called before the first frame update
     public void Start()
     {
-        holder = new BasicHolder(gameObject, holdPositions);
+        holder = new BasicHolder(gameObject);
         ObjectManager.Instance.addInteractable(gameObject);
 
     }
@@ -34,7 +32,7 @@ public class FoodCrate : BasicInteractable, Iinteractable, IHold
 
     }
 
-    public void StartHolding(IHold oldHolder, IPickup pickup)
+    public void StartHolding(IHold oldHolder, IPickup pickup, Transform followTransform)
     {
 
     }

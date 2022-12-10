@@ -10,7 +10,7 @@ public interface IPickup
     public IHold PickupHolder { get; set; }
     public GameObject PickupObj { get; }
     public void pickup(IHold newHolder);
-    public void setDown(GameObject obj, IHold newHolder, GameObject playerHoldingObj);
+    public void setDown(IHold newHolder);
     public void drop();
 
 }
