@@ -150,7 +150,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98eb88d130648e24d84b32ed52a1f5ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdPosition: {fileID: 5957189934290463914}
+  plateRespawnHolderObj: {fileID: 0}
+  holdPositions:
+  - {fileID: 5957189934290463914}
 --- !u!1 &7033748983786445344
 GameObject:
   m_ObjectHideFlags: 0

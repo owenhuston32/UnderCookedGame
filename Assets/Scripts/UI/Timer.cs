@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Events;
 
 public class Timer : MonoBehaviour
 {
+    public UnityEvent EndGameEvent;
     [SerializeField] EndScreen endScreenScript;
     TextMeshProUGUI timerText;
     [SerializeField] int timeLeft = 60;
@@ -25,7 +27,7 @@ public class Timer : MonoBehaviour
             yield return new WaitForSeconds(1);
         }
 
-        endScreenScript.ShowEndScreen();
+        EndGameEvent.Invoke();
 
     }
 

@@ -11,7 +11,7 @@ public class Player : MonoBehaviour, IHold
     [SerializeField] GameObject player1;
     [SerializeField] GameObject player2; 
     [SerializeField] float reach = 2;
-    [SerializeField] Transform handPosition;
+    [SerializeField] Transform[] holdPositions;
 
     private InteractableTagManager tagManager;
     private GameObject highlightedObj = null;
@@ -19,13 +19,13 @@ public class Player : MonoBehaviour, IHold
     private IHold holder;
 
     public GameObject CurrentlyHoldingObj { get => holder.CurrentlyHoldingObj; set => holder.CurrentlyHoldingObj = value; }
-    public Transform HoldPosition { get => holder.HoldPosition; set => holder.HoldPosition = value; }
+    public Transform[] HoldPositions { get => holder.HoldPositions; }
 
     public GameObject HolderObj => gameObject;
 
     private void Start()
     {
-        holder = new BasicHolder(gameObject, handPosition);
+        holder = new BasicHolder(gameObject, holdPositions);
         tagManager = GetComponent<InteractableTagManager>();
     }
     private void OnTriggerEnter(Collider other)
@@ -114,5 +114,15 @@ public class Player : MonoBehaviour, IHold
         }
         highlightedObj = null;
         tagManager.updateInteractableTags();
+    }
+
+    public void StartHolding(IHold oldHolder, IPickup pickup)
+    {
+        holder.StartHolding(oldHolder, pickup);
+    }
+
+    public void StopHolding(IPickup pickup)
+    {
+        holder.StopHolding(pickup);
     }
 }

@@ -19,44 +19,39 @@ public class Highlight : MonoBehaviour, IHighlight
         {
             renderers[i] = highlightObjects[i].GetComponent<Renderer>();
 
-            Material[] originalMats = new Material[renderers[i].materials.Length];
-
-            for(int j = 0; j < renderers[i].materials.Length; j++)
-            {
-                originalMats[j] = renderers[i].materials[j];
-            }
-            normalMaterials[i] = originalMats;
+            normalMaterials[i] = renderers[i].materials;
         }
-
     }
+
+
 
     public void HighlightMaterial()
     {
-        if(renderers != null)
+        for (int i = 0; i < renderers.Length; i++)
         {
-            for (int i = 0; i < renderers.Length; i++)
-            {
-                Material[] newMats = new Material[renderers[i].materials.Length];
-                for (int j = 0; j < renderers[i].materials.Length; j++)
-                {
-                    newMats[j] = highlightedMaterial;
-                }
 
-                renderers[i].materials = newMats;
-            }
+            renderers[i].materials = createHighlightMaterialsArray(renderers[i].materials);
         }
-
     }
+
+    private Material[] createHighlightMaterialsArray(Material[] mats)
+    {
+        Material[] newMats = new Material[mats.Length];
+        for (int j = 0; j < mats.Length; j++)
+        {
+            newMats[j] = highlightedMaterial;
+        }
+        return newMats;
+    }
+
 
     public void RemoveHighlight()
     {
-        if(renderers != null)
+        for (int i = 0; i < renderers.Length; i++)
         {
-            for (int i = 0; i < renderers.Length; i++)
-            {
-                renderers[i].materials = normalMaterials[i];
-            }
+            renderers[i].materials = normalMaterials[i];
         }
+
     }
 
 }

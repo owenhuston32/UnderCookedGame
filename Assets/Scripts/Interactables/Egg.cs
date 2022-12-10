@@ -21,21 +21,13 @@ public class Egg : BasicInteractable, IPickup, Iinteractable
 
     public void pickup(IHold newHolder)
     {
+        newHolder.StartHolding(PickupHolder, this);
         basicPickup.pickup(newHolder);
     }
     public void setDown(GameObject obj, IHold newHolder, GameObject playerHoldingObj)
     {
 
-        // if we set an egg on a pan that is on a burner
-        if (newHolder.HolderObj.CompareTag("Pan"))
-        {
-            IPickup pickup = newHolder.HolderObj.GetComponent(typeof(IPickup)) as IPickup;
-            if(pickup != null && pickup.PickupHolder != null && pickup.PickupHolder.HolderObj.CompareTag("Burner"))
-            {
-                playerHoldingObj.GetComponent<Cook>().cook();
-            }
-        }
-       
+        newHolder.StartHolding(PickupHolder, this);
         basicPickup.setDown(obj, newHolder, playerHoldingObj);
 
         // we can't pickup the egg after setting on a pan or plate
@@ -46,6 +38,8 @@ public class Egg : BasicInteractable, IPickup, Iinteractable
     }
     public void drop()
     {
+        PickupHolder.StopHolding(this);
+
         basicPickup.drop();
     }
 

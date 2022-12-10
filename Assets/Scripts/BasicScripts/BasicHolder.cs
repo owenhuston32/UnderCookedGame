@@ -5,17 +5,36 @@ using UnityEngine;
 public class BasicHolder :  IHold
 {
     private GameObject holderObj;
-    private Transform holdPosition;
+    private Transform[] holdPositions;
     private GameObject currentHoldingObj = null;
     public GameObject HolderObj { get => holderObj; }
-    public BasicHolder(GameObject obj, Transform holdPosition)
+    public GameObject CurrentlyHoldingObj { get => currentHoldingObj; set => currentHoldingObj = value; }
+    public Transform[] HoldPositions { get => holdPositions; }
+
+    public BasicHolder(GameObject obj, Transform[] holdPositions)
     {
         holderObj = obj;
-        this.holdPosition = holdPosition;
+        this.holdPositions = holdPositions;
     }
 
-    public GameObject CurrentlyHoldingObj { get => currentHoldingObj; set => currentHoldingObj = value; }
+    public void StartHolding(IHold oldHolder, IPickup pickup)
+    {
+        // stop following old holder
+        if(oldHolder != null)
+        {
+            oldHolder.StopHolding(pickup);
+            oldHolder.CurrentlyHoldingObj = null;
+        }
 
-    public Transform HoldPosition { get => holdPosition; set => holdPosition = value; }
+        currentHoldingObj = pickup.PickupObj;
+        pickup.PickupObj.GetComponent<FollowPosition>().startFollowing(holdPositions[0]);
 
+        pickup.PickupHolder = this;
+    }
+
+    public void StopHolding(IPickup pickup)
+    {
+        currentHoldingObj = null;
+        pickup.PickupObj.GetComponent<FollowPosition>().stopFollowing();
+    }
 }

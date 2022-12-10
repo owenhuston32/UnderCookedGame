@@ -109,7 +109,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnObjOnStart: 1
-  holdPosition: {fileID: 8505268303575480534}
+  holdPositions:
+  - {fileID: 8505268303575480534}
   isSubmissionTable: 0
   submissionTableNum: 0
 --- !u!114 &7938325041629547958
@@ -127,7 +128,6 @@ MonoBehaviour:
   spawnPosition: {fileID: 8505268303575480534}
   spawnWaitTime: 5
   objPrefab: {fileID: 5957189935190479481, guid: afc48a19fa93995478a0729e55ba1a99, type: 3}
-  holder: {fileID: 8505268304153600040}
   parent: {fileID: 0}
 --- !u!1 &8505268304310057613
 GameObject:

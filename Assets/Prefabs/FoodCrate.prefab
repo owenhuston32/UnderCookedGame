@@ -178,7 +178,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 3216965149091111694}
-  holdPosition: {fileID: 8505268303575480534}
+  holdPositions:
+  - {fileID: 8505268303575480534}
 --- !u!1 &8505268304310057613
 GameObject:
   m_ObjectHideFlags: 0
