@@ -13,6 +13,8 @@ public class Player : MonoBehaviour, IHold
     [SerializeField] float reach = 2;
     [SerializeField] Transform[] holdPositions;
 
+
+    private PlayerCollsionHandler collisionHandler = new PlayerCollsionHandler();
     private InteractableTagManager tagManager;
     private GameObject highlightedObj = null;
     private GameObject prevHighlightedObj = null;
@@ -30,22 +32,11 @@ public class Player : MonoBehaviour, IHold
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Pan"))
-        {
-            // if we arent currently holding this obj
-            // other.transform.parent.parent.gameObject is the obj that the player holds
-            if(holder.CurrentlyHoldingObj == null || !holder.CurrentlyHoldingObj.Equals(other.transform.parent.parent.gameObject))
-            {
-                gameObject.GetComponent<Move>().stunMovement(panStunTime);
-            }
-        }
+        collisionHandler.onTriggerEnter(gameObject, other);
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Projectile"))
-        {
-            gameObject.GetComponent<Move>().stunMovement(eggStunTime);
-        }
+        collisionHandler.onCollisionEnter(gameObject, collision);
     }
 
     private void Update()
