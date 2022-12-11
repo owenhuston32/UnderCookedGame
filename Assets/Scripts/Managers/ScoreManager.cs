@@ -21,7 +21,7 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    private int[] scores = new int[2];
+    private int[] scores = new int[2] { 0, 0 };
 
     public UnityEvent UpdatePlayer1ScoreUI;
     public UnityEvent UpdatePlayer2ScoreUI;

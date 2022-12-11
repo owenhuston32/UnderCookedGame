@@ -55,6 +55,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""Player1Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""23e51969-3315-4174-aa8e-24071865d01d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Player2Move"",
                     ""type"": ""Value"",
                     ""id"": ""b4a624ee-8720-4609-889d-d8f456a76d05"",
@@ -80,6 +89,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Player2Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""84501be8-09d5-45e5-bd1e-f5733bad825a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -236,6 +254,28 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Player2Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""47bc832b-db2a-4e18-b669-6cac75d516a7"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Player1Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""86ab4f93-5570-4810-a0ce-3d0c03d66110"",
+                    ""path"": ""<Keyboard>/delete"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Player2Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -247,9 +287,11 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_Movement_Player1Move = m_Movement.FindAction("Player1Move", throwIfNotFound: true);
         m_Movement_Player1Interact = m_Movement.FindAction("Player1Interact", throwIfNotFound: true);
         m_Movement_Player1Shoot = m_Movement.FindAction("Player1Shoot", throwIfNotFound: true);
+        m_Movement_Player1Pause = m_Movement.FindAction("Player1Pause", throwIfNotFound: true);
         m_Movement_Player2Move = m_Movement.FindAction("Player2Move", throwIfNotFound: true);
         m_Movement_Player2Shoot = m_Movement.FindAction("Player2Shoot", throwIfNotFound: true);
         m_Movement_Player2Interact = m_Movement.FindAction("Player2Interact", throwIfNotFound: true);
+        m_Movement_Player2Pause = m_Movement.FindAction("Player2Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -312,9 +354,11 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Movement_Player1Move;
     private readonly InputAction m_Movement_Player1Interact;
     private readonly InputAction m_Movement_Player1Shoot;
+    private readonly InputAction m_Movement_Player1Pause;
     private readonly InputAction m_Movement_Player2Move;
     private readonly InputAction m_Movement_Player2Shoot;
     private readonly InputAction m_Movement_Player2Interact;
+    private readonly InputAction m_Movement_Player2Pause;
     public struct MovementActions
     {
         private @Controls m_Wrapper;
@@ -322,9 +366,11 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         public InputAction @Player1Move => m_Wrapper.m_Movement_Player1Move;
         public InputAction @Player1Interact => m_Wrapper.m_Movement_Player1Interact;
         public InputAction @Player1Shoot => m_Wrapper.m_Movement_Player1Shoot;
+        public InputAction @Player1Pause => m_Wrapper.m_Movement_Player1Pause;
         public InputAction @Player2Move => m_Wrapper.m_Movement_Player2Move;
         public InputAction @Player2Shoot => m_Wrapper.m_Movement_Player2Shoot;
         public InputAction @Player2Interact => m_Wrapper.m_Movement_Player2Interact;
+        public InputAction @Player2Pause => m_Wrapper.m_Movement_Player2Pause;
         public InputActionMap Get() { return m_Wrapper.m_Movement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -343,6 +389,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Player1Shoot.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnPlayer1Shoot;
                 @Player1Shoot.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnPlayer1Shoot;
                 @Player1Shoot.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnPlayer1Shoot;
+                @Player1Pause.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnPlayer1Pause;
+                @Player1Pause.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnPlayer1Pause;
+                @Player1Pause.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnPlayer1Pause;
                 @Player2Move.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnPlayer2Move;
                 @Player2Move.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnPlayer2Move;
                 @Player2Move.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnPlayer2Move;
@@ -352,6 +401,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Player2Interact.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnPlayer2Interact;
                 @Player2Interact.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnPlayer2Interact;
                 @Player2Interact.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnPlayer2Interact;
+                @Player2Pause.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnPlayer2Pause;
+                @Player2Pause.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnPlayer2Pause;
+                @Player2Pause.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnPlayer2Pause;
             }
             m_Wrapper.m_MovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -365,6 +417,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Player1Shoot.started += instance.OnPlayer1Shoot;
                 @Player1Shoot.performed += instance.OnPlayer1Shoot;
                 @Player1Shoot.canceled += instance.OnPlayer1Shoot;
+                @Player1Pause.started += instance.OnPlayer1Pause;
+                @Player1Pause.performed += instance.OnPlayer1Pause;
+                @Player1Pause.canceled += instance.OnPlayer1Pause;
                 @Player2Move.started += instance.OnPlayer2Move;
                 @Player2Move.performed += instance.OnPlayer2Move;
                 @Player2Move.canceled += instance.OnPlayer2Move;
@@ -374,6 +429,9 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Player2Interact.started += instance.OnPlayer2Interact;
                 @Player2Interact.performed += instance.OnPlayer2Interact;
                 @Player2Interact.canceled += instance.OnPlayer2Interact;
+                @Player2Pause.started += instance.OnPlayer2Pause;
+                @Player2Pause.performed += instance.OnPlayer2Pause;
+                @Player2Pause.canceled += instance.OnPlayer2Pause;
             }
         }
     }
@@ -383,8 +441,10 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnPlayer1Move(InputAction.CallbackContext context);
         void OnPlayer1Interact(InputAction.CallbackContext context);
         void OnPlayer1Shoot(InputAction.CallbackContext context);
+        void OnPlayer1Pause(InputAction.CallbackContext context);
         void OnPlayer2Move(InputAction.CallbackContext context);
         void OnPlayer2Shoot(InputAction.CallbackContext context);
         void OnPlayer2Interact(InputAction.CallbackContext context);
+        void OnPlayer2Pause(InputAction.CallbackContext context);
     }
 }

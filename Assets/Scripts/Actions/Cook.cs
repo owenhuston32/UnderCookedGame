@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Cook : MonoBehaviour
 {
+    [SerializeField] GameObject cookedFoodMesh;
+    [SerializeField] GameObject regularFoodMesh;
     [SerializeField] Image sliderFillImage;
     [SerializeField] Slider slider;
     [SerializeField] GameObject cookbarGameObject;
@@ -27,6 +29,8 @@ public class Cook : MonoBehaviour
     }
     public void cook()
     {
+        regularFoodMesh.SetActive(false);
+        cookedFoodMesh.SetActive(true);
         isCooking = true;
         cookbarGameObject.SetActive(true);
         StartCoroutine(cooking());

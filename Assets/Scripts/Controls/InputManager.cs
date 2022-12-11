@@ -32,8 +32,8 @@ public class InputManager : MonoBehaviour
     {
         if (keyboardController)
         {
-            player1.initialize(controls.Movement.Player1Move, controls.Movement.Player1Shoot, controls.Movement.Player1Interact);
-            player2.initialize(controls.Movement.Player2Move, controls.Movement.Player2Shoot, controls.Movement.Player2Interact);
+            player1.initialize(controls.Movement.Player1Move, controls.Movement.Player1Shoot, controls.Movement.Player1Interact, controls.Movement.Player1Pause);
+            player2.initialize(controls.Movement.Player2Move, controls.Movement.Player2Shoot, controls.Movement.Player2Interact, controls.Movement.Player2Pause);
         }
         else
         {

@@ -34489,6 +34489,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b127dd576b562342b8b3c0c5e1116c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cookedFoodMesh: {fileID: 8174493223779601436}
+  regularFoodMesh: {fileID: 2331065547827187636}
   sliderFillImage: {fileID: 4145272929747891855}
   slider: {fileID: 6887325913946650088}
   cookbarGameObject: {fileID: 2855554904010445875}
