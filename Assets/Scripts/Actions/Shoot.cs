@@ -18,13 +18,16 @@ public class Shoot
     {
         objInHand.tag = StaticStrings.Projectile;
 
-        FollowPosition followScript = objInHand.GetComponent<FollowPosition>();
-        followScript.stopFollowing();
+        //FollowPosition followScript = objInHand.GetComponent<FollowPosition>();
+        //followScript.stopFollowing();
+
+        objInHand.transform.parent = null;
 
         player.SetAnimTrigger(StaticStrings.throwTrigger);
 
         objInHand.GetComponent<Cook>().disableCookBar();
         objInHand.GetComponent<IHighlight>().RemoveHighlight();
+        objInHand.GetComponent<Rigidbody>().isKinematic = false;
         objInHand.GetComponent<Rigidbody>().useGravity = false;
         objInHand.GetComponent<Rigidbody>().AddForce(projectileSpeed * objInHand.transform.forward, ForceMode.Impulse);
         objInHand.GetComponent<Collider>().enabled = true;
