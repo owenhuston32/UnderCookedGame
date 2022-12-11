@@ -12,9 +12,10 @@ public class PlayerCollsionHandler
         {
             IHold playerHolder = obj.GetComponent(typeof(IHold)) as IHold;
 
-            // if we arent currently holding this obj
-            // other.transform.parent.parent.gameObject is the obj that the player holds
-            if (playerHolder.CurrentlyHoldingObj == null || !playerHolder.CurrentlyHoldingObj.Equals(collider.transform.parent.parent.gameObject))
+            GameObject panParent = collider.transform.parent.parent.gameObject;
+            // if we arent currently holding this obj or we arent carrying this pan
+            // (other.transform.parent.parent.gameObject is the obj that the player holds)
+            if (playerHolder.CurrentlyHoldingObj == null || !playerHolder.CurrentlyHoldingObj.Equals(panParent))
             {
                 obj.GetComponent<Move>().stunMovement(1);
             }

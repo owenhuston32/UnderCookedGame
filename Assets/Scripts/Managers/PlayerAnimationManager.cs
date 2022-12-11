@@ -20,9 +20,14 @@ public class PlayerAnimationManager
         this.anim = anim;
     }
 
-    public void SetAnimParam(string animParam, bool val)
+    public void SetAnimTrigger(string animTrigger)
     {
-        anim.SetBool(animParam, val);
+        anim.SetTrigger(animTrigger);
+    }
+
+    public void SetAnimBool(string animBool, bool val)
+    {
+        anim.SetBool(animBool, val);
     }
 
     public void SetHoldingObjAnim(string objTag, bool val)

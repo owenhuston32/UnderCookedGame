@@ -23,13 +23,13 @@ public class Move : MonoBehaviour
     {
         if (isMoving && canMove)
         {
-            player.SetAnimParam(StaticStrings.isWalking, true);
+            player.SetAnimBool(StaticStrings.isWalking, true);
             transform.forward = moveDirection;
             rb.AddForce(transform.forward * speed);
         }
         else
         {
-            player.SetAnimParam(StaticStrings.isWalking, false);
+            player.SetAnimBool(StaticStrings.isWalking, false);
             rb.angularVelocity = Vector3.zero;
         }
     }
@@ -48,7 +48,13 @@ public class Move : MonoBehaviour
 
     public void stunMovement(float stunTime)
     {
+        if(!canMove)
+        {
+            // stop old coroutine
+            StopCoroutine(stunningMovement(stunTime));
+        }
         StartCoroutine(stunningMovement(stunTime));
+        
     }
     private IEnumerator stunningMovement(float stunTime)
     {

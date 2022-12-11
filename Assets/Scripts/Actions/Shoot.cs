@@ -6,17 +6,22 @@ public class Shoot
 {
     private float projectileSpeed = 0;
     private float despawnWaitTime = 0;
-    public Shoot(float projectileSpeed, float despawnWaitTime)
+    private Player player;
+    public Shoot(Player player, float projectileSpeed, float despawnWaitTime)
     {
+        this.player = player;
         this.projectileSpeed = projectileSpeed;
         this.despawnWaitTime = despawnWaitTime;
     }
 
     public void startShoot(GameObject objInHand)
     {
+        objInHand.tag = StaticStrings.Projectile;
+
         FollowPosition followScript = objInHand.GetComponent<FollowPosition>();
         followScript.stopFollowing();
 
+        player.SetAnimTrigger(StaticStrings.throwTrigger);
 
         objInHand.GetComponent<Cook>().disableCookBar();
         objInHand.GetComponent<IHighlight>().RemoveHighlight();
@@ -24,7 +29,6 @@ public class Shoot
         objInHand.GetComponent<Rigidbody>().AddForce(projectileSpeed * objInHand.transform.forward, ForceMode.Impulse);
         objInHand.GetComponent<Collider>().enabled = true;
 
-        objInHand.tag = StaticStrings.Projectile;
 
         ObjectManager.Instance.removeInteractableAfterSeconds(objInHand, despawnWaitTime);
     }

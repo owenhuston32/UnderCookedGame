@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Melee 
 {
+    Player player;
+    public Melee(Player player)
+    {
+        this.player = player;
+    }
+
     public void startMelee(GameObject objInHand)
     {
         // if pan has something on it remove it
@@ -15,6 +21,7 @@ public class Melee
             panHolder.CurrentlyHoldingObj = null;
         }
 
-        objInHand.GetComponentInChildren<Animator>().Play(StaticStrings.MeleeAnim);
+        objInHand.GetComponentInChildren<Animator>().SetTrigger(StaticStrings.panMelee);
+        player.SetAnimTrigger(StaticStrings.meleeTrigger);
     }
 }

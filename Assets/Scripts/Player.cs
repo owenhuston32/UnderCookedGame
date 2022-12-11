@@ -68,8 +68,6 @@ public class Player : MonoBehaviour, IHold
     {
         animationManager.SetHoldingObjAnim(pickup.PickupObj.tag, true);
 
-        Debug.Log("pickup");
-
         if (pickup.PickupObj.CompareTag(StaticStrings.Food) || pickup.PickupObj.CompareTag(StaticStrings.Plate))
             holder.StartHolding(oldHolder, pickup, holdPositions[0]);
         else
@@ -84,8 +82,12 @@ public class Player : MonoBehaviour, IHold
 
 
 
-    public void SetAnimParam(string clipName, bool val)
+    public void SetAnimBool(string clipName, bool val)
     {
-        animationManager.SetAnimParam(clipName, val);
+        animationManager.SetAnimBool(clipName, val);
+    }
+    public void SetAnimTrigger(string animTrigger)
+    {
+        animationManager.SetAnimTrigger(animTrigger);
     }
 }

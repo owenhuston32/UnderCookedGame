@@ -17,8 +17,8 @@ public class Attack : MonoBehaviour
         player = GetComponent<Player>();
         tagManager = player.TagManager;
 
-        shoot = new Shoot(projectileSpeed, despawnWaitTime);
-        melee = new Melee();
+        shoot = new Shoot(player, projectileSpeed, despawnWaitTime);
+        melee = new Melee(player);
     }
 
     public void attackPress()

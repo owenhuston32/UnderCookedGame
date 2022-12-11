@@ -16,15 +16,20 @@ public static class StaticStrings
     public static readonly string Projectile = "Projectile";
 
 
-    //animations
+    //crate animation clip name
     public static readonly string OpenFoodCrateAnim = "crateOpenAnim";
-    public static readonly string MeleeAnim = "melee";
 
+    //pan animation trigger
+    public static readonly string panMelee = "meleeTrigger";
 
-    // player animation params
+    // player animation bools
     public static readonly string isWalking = "isWalking";
     public static readonly string isHoldingInFront = "isHoldingInFront";
     public static readonly string isHoldingToSide = "isHoldingToSide";
+
+    //player animation triggers
+    public static readonly string throwTrigger = "throwTrigger";
+    public static readonly string meleeTrigger = "meleeTrigger";
 
 
 
