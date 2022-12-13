@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CanvasManager : MonoBehaviour
@@ -19,19 +20,23 @@ public class CanvasManager : MonoBehaviour
         }
     }
 
-    [SerializeField] EndScreen EndScreen;
-    [SerializeField] Canvas PauseCanvas;
+    private string activeMenu = StaticStrings.mainMenu;
+    public string ActiveMenu { get=> activeMenu; set => activeMenu = value; }
 
 
-    public void ShowEndScreen()
+    public void MainMenuEnabled()
     {
-        EndScreen.ShowEndScreen();
+        ActiveMenu = StaticStrings.mainMenu;
     }
 
-    public void SetPauseCanvas(bool val)
+    public void EndScreenEnabled()
     {
-        PauseCanvas.enabled = val;
+        ActiveMenu = StaticStrings.endMenu;
     }
 
+    public void InGameMenuEnabled()
+    {
+        ActiveMenu = StaticStrings.inGameMenu;
+    }
 
 }

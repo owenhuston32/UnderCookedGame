@@ -48,4 +48,11 @@ public class ScoreManager : MonoBehaviour
         return scores[index];
     }
 
+    public void ResetScores()
+    {
+        scores[0] = 0;
+        scores[1] = 0;
+        UpdatePlayer1ScoreUI.Invoke();
+        UpdatePlayer2ScoreUI.Invoke();
+    }
 }

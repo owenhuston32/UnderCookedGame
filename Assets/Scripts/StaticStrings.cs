@@ -31,6 +31,11 @@ public static class StaticStrings
     public static readonly string throwTrigger = "throwTrigger";
     public static readonly string meleeTrigger = "meleeTrigger";
 
+    //screen names
+    public static readonly string pauseMenu = "pauseMenu";
+    public static readonly string mainMenu = "mainMenu";
+    public static readonly string inGameMenu = "inGameMenu";
+    public static readonly string endMenu = "endMenu";
 
 
 }

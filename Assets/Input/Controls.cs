@@ -24,7 +24,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     ""name"": ""Controls"",
     ""maps"": [
         {
-            ""name"": ""Movement"",
+            ""name"": ""InGameControls"",
             ""id"": ""ab36e899-937a-4404-b088-457d9ed97f6a"",
             ""actions"": [
                 {
@@ -55,15 +55,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Player1Pause"",
-                    ""type"": ""Button"",
-                    ""id"": ""23e51969-3315-4174-aa8e-24071865d01d"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Player2Move"",
                     ""type"": ""Value"",
                     ""id"": ""b4a624ee-8720-4609-889d-d8f456a76d05"",
@@ -89,15 +80,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""Player2Pause"",
-                    ""type"": ""Button"",
-                    ""id"": ""84501be8-09d5-45e5-bd1e-f5733bad825a"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -254,26 +236,52 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Player2Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
+                }
+            ]
+        },
+        {
+            ""name"": ""PersistentActions"",
+            ""id"": ""fd6ddcab-c8dc-4cff-befe-ec939fe264ba"",
+            ""actions"": [
                 {
-                    ""name"": """",
-                    ""id"": ""47bc832b-db2a-4e18-b669-6cac75d516a7"",
-                    ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": """",
+                    ""name"": ""Player2Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""1828af6b-5306-402b-a7f0-e08004ce4515"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Player1Pause"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Player1Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""99b5d327-2477-4656-9778-d89d6074e43f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
                     ""name"": """",
-                    ""id"": ""86ab4f93-5570-4810-a0ce-3d0c03d66110"",
+                    ""id"": ""bcddaace-8ef9-41d5-baf8-ac9b1423252a"",
                     ""path"": ""<Keyboard>/delete"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Player2Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a29a25af-31aa-4f3a-adc3-f5447f3cecc6"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Player1Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -282,16 +290,18 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     ],
     ""controlSchemes"": []
 }");
-        // Movement
-        m_Movement = asset.FindActionMap("Movement", throwIfNotFound: true);
-        m_Movement_Player1Move = m_Movement.FindAction("Player1Move", throwIfNotFound: true);
-        m_Movement_Player1Interact = m_Movement.FindAction("Player1Interact", throwIfNotFound: true);
-        m_Movement_Player1Shoot = m_Movement.FindAction("Player1Shoot", throwIfNotFound: true);
-        m_Movement_Player1Pause = m_Movement.FindAction("Player1Pause", throwIfNotFound: true);
-        m_Movement_Player2Move = m_Movement.FindAction("Player2Move", throwIfNotFound: true);
-        m_Movement_Player2Shoot = m_Movement.FindAction("Player2Shoot", throwIfNotFound: true);
-        m_Movement_Player2Interact = m_Movement.FindAction("Player2Interact", throwIfNotFound: true);
-        m_Movement_Player2Pause = m_Movement.FindAction("Player2Pause", throwIfNotFound: true);
+        // InGameControls
+        m_InGameControls = asset.FindActionMap("InGameControls", throwIfNotFound: true);
+        m_InGameControls_Player1Move = m_InGameControls.FindAction("Player1Move", throwIfNotFound: true);
+        m_InGameControls_Player1Interact = m_InGameControls.FindAction("Player1Interact", throwIfNotFound: true);
+        m_InGameControls_Player1Shoot = m_InGameControls.FindAction("Player1Shoot", throwIfNotFound: true);
+        m_InGameControls_Player2Move = m_InGameControls.FindAction("Player2Move", throwIfNotFound: true);
+        m_InGameControls_Player2Shoot = m_InGameControls.FindAction("Player2Shoot", throwIfNotFound: true);
+        m_InGameControls_Player2Interact = m_InGameControls.FindAction("Player2Interact", throwIfNotFound: true);
+        // PersistentActions
+        m_PersistentActions = asset.FindActionMap("PersistentActions", throwIfNotFound: true);
+        m_PersistentActions_Player2Pause = m_PersistentActions.FindAction("Player2Pause", throwIfNotFound: true);
+        m_PersistentActions_Player1Pause = m_PersistentActions.FindAction("Player1Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -348,64 +358,54 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // Movement
-    private readonly InputActionMap m_Movement;
-    private IMovementActions m_MovementActionsCallbackInterface;
-    private readonly InputAction m_Movement_Player1Move;
-    private readonly InputAction m_Movement_Player1Interact;
-    private readonly InputAction m_Movement_Player1Shoot;
-    private readonly InputAction m_Movement_Player1Pause;
-    private readonly InputAction m_Movement_Player2Move;
-    private readonly InputAction m_Movement_Player2Shoot;
-    private readonly InputAction m_Movement_Player2Interact;
-    private readonly InputAction m_Movement_Player2Pause;
-    public struct MovementActions
+    // InGameControls
+    private readonly InputActionMap m_InGameControls;
+    private IInGameControlsActions m_InGameControlsActionsCallbackInterface;
+    private readonly InputAction m_InGameControls_Player1Move;
+    private readonly InputAction m_InGameControls_Player1Interact;
+    private readonly InputAction m_InGameControls_Player1Shoot;
+    private readonly InputAction m_InGameControls_Player2Move;
+    private readonly InputAction m_InGameControls_Player2Shoot;
+    private readonly InputAction m_InGameControls_Player2Interact;
+    public struct InGameControlsActions
     {
         private @Controls m_Wrapper;
-        public MovementActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Player1Move => m_Wrapper.m_Movement_Player1Move;
-        public InputAction @Player1Interact => m_Wrapper.m_Movement_Player1Interact;
-        public InputAction @Player1Shoot => m_Wrapper.m_Movement_Player1Shoot;
-        public InputAction @Player1Pause => m_Wrapper.m_Movement_Player1Pause;
-        public InputAction @Player2Move => m_Wrapper.m_Movement_Player2Move;
-        public InputAction @Player2Shoot => m_Wrapper.m_Movement_Player2Shoot;
-        public InputAction @Player2Interact => m_Wrapper.m_Movement_Player2Interact;
-        public InputAction @Player2Pause => m_Wrapper.m_Movement_Player2Pause;
-        public InputActionMap Get() { return m_Wrapper.m_Movement; }
+        public InGameControlsActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Player1Move => m_Wrapper.m_InGameControls_Player1Move;
+        public InputAction @Player1Interact => m_Wrapper.m_InGameControls_Player1Interact;
+        public InputAction @Player1Shoot => m_Wrapper.m_InGameControls_Player1Shoot;
+        public InputAction @Player2Move => m_Wrapper.m_InGameControls_Player2Move;
+        public InputAction @Player2Shoot => m_Wrapper.m_InGameControls_Player2Shoot;
+        public InputAction @Player2Interact => m_Wrapper.m_InGameControls_Player2Interact;
+        public InputActionMap Get() { return m_Wrapper.m_InGameControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(MovementActions set) { return set.Get(); }
-        public void SetCallbacks(IMovementActions instance)
+        public static implicit operator InputActionMap(InGameControlsActions set) { return set.Get(); }
+        public void SetCallbacks(IInGameControlsActions instance)
         {
-            if (m_Wrapper.m_MovementActionsCallbackInterface != null)
+            if (m_Wrapper.m_InGameControlsActionsCallbackInterface != null)
             {
-                @Player1Move.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnPlayer1Move;
-                @Player1Move.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnPlayer1Move;
-                @Player1Move.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnPlayer1Move;
-                @Player1Interact.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnPlayer1Interact;
-                @Player1Interact.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnPlayer1Interact;
-                @Player1Interact.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnPlayer1Interact;
-                @Player1Shoot.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnPlayer1Shoot;
-                @Player1Shoot.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnPlayer1Shoot;
-                @Player1Shoot.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnPlayer1Shoot;
-                @Player1Pause.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnPlayer1Pause;
-                @Player1Pause.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnPlayer1Pause;
-                @Player1Pause.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnPlayer1Pause;
-                @Player2Move.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnPlayer2Move;
-                @Player2Move.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnPlayer2Move;
-                @Player2Move.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnPlayer2Move;
-                @Player2Shoot.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnPlayer2Shoot;
-                @Player2Shoot.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnPlayer2Shoot;
-                @Player2Shoot.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnPlayer2Shoot;
-                @Player2Interact.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnPlayer2Interact;
-                @Player2Interact.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnPlayer2Interact;
-                @Player2Interact.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnPlayer2Interact;
-                @Player2Pause.started -= m_Wrapper.m_MovementActionsCallbackInterface.OnPlayer2Pause;
-                @Player2Pause.performed -= m_Wrapper.m_MovementActionsCallbackInterface.OnPlayer2Pause;
-                @Player2Pause.canceled -= m_Wrapper.m_MovementActionsCallbackInterface.OnPlayer2Pause;
+                @Player1Move.started -= m_Wrapper.m_InGameControlsActionsCallbackInterface.OnPlayer1Move;
+                @Player1Move.performed -= m_Wrapper.m_InGameControlsActionsCallbackInterface.OnPlayer1Move;
+                @Player1Move.canceled -= m_Wrapper.m_InGameControlsActionsCallbackInterface.OnPlayer1Move;
+                @Player1Interact.started -= m_Wrapper.m_InGameControlsActionsCallbackInterface.OnPlayer1Interact;
+                @Player1Interact.performed -= m_Wrapper.m_InGameControlsActionsCallbackInterface.OnPlayer1Interact;
+                @Player1Interact.canceled -= m_Wrapper.m_InGameControlsActionsCallbackInterface.OnPlayer1Interact;
+                @Player1Shoot.started -= m_Wrapper.m_InGameControlsActionsCallbackInterface.OnPlayer1Shoot;
+                @Player1Shoot.performed -= m_Wrapper.m_InGameControlsActionsCallbackInterface.OnPlayer1Shoot;
+                @Player1Shoot.canceled -= m_Wrapper.m_InGameControlsActionsCallbackInterface.OnPlayer1Shoot;
+                @Player2Move.started -= m_Wrapper.m_InGameControlsActionsCallbackInterface.OnPlayer2Move;
+                @Player2Move.performed -= m_Wrapper.m_InGameControlsActionsCallbackInterface.OnPlayer2Move;
+                @Player2Move.canceled -= m_Wrapper.m_InGameControlsActionsCallbackInterface.OnPlayer2Move;
+                @Player2Shoot.started -= m_Wrapper.m_InGameControlsActionsCallbackInterface.OnPlayer2Shoot;
+                @Player2Shoot.performed -= m_Wrapper.m_InGameControlsActionsCallbackInterface.OnPlayer2Shoot;
+                @Player2Shoot.canceled -= m_Wrapper.m_InGameControlsActionsCallbackInterface.OnPlayer2Shoot;
+                @Player2Interact.started -= m_Wrapper.m_InGameControlsActionsCallbackInterface.OnPlayer2Interact;
+                @Player2Interact.performed -= m_Wrapper.m_InGameControlsActionsCallbackInterface.OnPlayer2Interact;
+                @Player2Interact.canceled -= m_Wrapper.m_InGameControlsActionsCallbackInterface.OnPlayer2Interact;
             }
-            m_Wrapper.m_MovementActionsCallbackInterface = instance;
+            m_Wrapper.m_InGameControlsActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @Player1Move.started += instance.OnPlayer1Move;
@@ -417,9 +417,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Player1Shoot.started += instance.OnPlayer1Shoot;
                 @Player1Shoot.performed += instance.OnPlayer1Shoot;
                 @Player1Shoot.canceled += instance.OnPlayer1Shoot;
-                @Player1Pause.started += instance.OnPlayer1Pause;
-                @Player1Pause.performed += instance.OnPlayer1Pause;
-                @Player1Pause.canceled += instance.OnPlayer1Pause;
                 @Player2Move.started += instance.OnPlayer2Move;
                 @Player2Move.performed += instance.OnPlayer2Move;
                 @Player2Move.canceled += instance.OnPlayer2Move;
@@ -429,22 +426,63 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Player2Interact.started += instance.OnPlayer2Interact;
                 @Player2Interact.performed += instance.OnPlayer2Interact;
                 @Player2Interact.canceled += instance.OnPlayer2Interact;
-                @Player2Pause.started += instance.OnPlayer2Pause;
-                @Player2Pause.performed += instance.OnPlayer2Pause;
-                @Player2Pause.canceled += instance.OnPlayer2Pause;
             }
         }
     }
-    public MovementActions @Movement => new MovementActions(this);
-    public interface IMovementActions
+    public InGameControlsActions @InGameControls => new InGameControlsActions(this);
+
+    // PersistentActions
+    private readonly InputActionMap m_PersistentActions;
+    private IPersistentActionsActions m_PersistentActionsActionsCallbackInterface;
+    private readonly InputAction m_PersistentActions_Player2Pause;
+    private readonly InputAction m_PersistentActions_Player1Pause;
+    public struct PersistentActionsActions
+    {
+        private @Controls m_Wrapper;
+        public PersistentActionsActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Player2Pause => m_Wrapper.m_PersistentActions_Player2Pause;
+        public InputAction @Player1Pause => m_Wrapper.m_PersistentActions_Player1Pause;
+        public InputActionMap Get() { return m_Wrapper.m_PersistentActions; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PersistentActionsActions set) { return set.Get(); }
+        public void SetCallbacks(IPersistentActionsActions instance)
+        {
+            if (m_Wrapper.m_PersistentActionsActionsCallbackInterface != null)
+            {
+                @Player2Pause.started -= m_Wrapper.m_PersistentActionsActionsCallbackInterface.OnPlayer2Pause;
+                @Player2Pause.performed -= m_Wrapper.m_PersistentActionsActionsCallbackInterface.OnPlayer2Pause;
+                @Player2Pause.canceled -= m_Wrapper.m_PersistentActionsActionsCallbackInterface.OnPlayer2Pause;
+                @Player1Pause.started -= m_Wrapper.m_PersistentActionsActionsCallbackInterface.OnPlayer1Pause;
+                @Player1Pause.performed -= m_Wrapper.m_PersistentActionsActionsCallbackInterface.OnPlayer1Pause;
+                @Player1Pause.canceled -= m_Wrapper.m_PersistentActionsActionsCallbackInterface.OnPlayer1Pause;
+            }
+            m_Wrapper.m_PersistentActionsActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Player2Pause.started += instance.OnPlayer2Pause;
+                @Player2Pause.performed += instance.OnPlayer2Pause;
+                @Player2Pause.canceled += instance.OnPlayer2Pause;
+                @Player1Pause.started += instance.OnPlayer1Pause;
+                @Player1Pause.performed += instance.OnPlayer1Pause;
+                @Player1Pause.canceled += instance.OnPlayer1Pause;
+            }
+        }
+    }
+    public PersistentActionsActions @PersistentActions => new PersistentActionsActions(this);
+    public interface IInGameControlsActions
     {
         void OnPlayer1Move(InputAction.CallbackContext context);
         void OnPlayer1Interact(InputAction.CallbackContext context);
         void OnPlayer1Shoot(InputAction.CallbackContext context);
-        void OnPlayer1Pause(InputAction.CallbackContext context);
         void OnPlayer2Move(InputAction.CallbackContext context);
         void OnPlayer2Shoot(InputAction.CallbackContext context);
         void OnPlayer2Interact(InputAction.CallbackContext context);
+    }
+    public interface IPersistentActionsActions
+    {
         void OnPlayer2Pause(InputAction.CallbackContext context);
+        void OnPlayer1Pause(InputAction.CallbackContext context);
     }
 }

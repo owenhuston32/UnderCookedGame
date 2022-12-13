@@ -29,17 +29,21 @@ public class PauseManager : MonoBehaviour
 
     public void togglePause()
     {
-        if(isPaused)
-        {
-            UnPause.Invoke();
-        }
-        else
+
+        if(CanvasManager.Instance.ActiveMenu.Equals(StaticStrings.inGameMenu) && !isPaused)
         {
             Pause.Invoke();
+            CanvasManager.Instance.ActiveMenu = StaticStrings.pauseMenu;
+
+            isPaused = !isPaused;
         }
+        else if(isPaused)
+        {
+            Pause.Invoke();
+            CanvasManager.Instance.ActiveMenu = StaticStrings.inGameMenu;
 
-
-        isPaused = !isPaused;
+            isPaused = !isPaused;
+        }
     }
 
 

@@ -2,22 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class EndScreen : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI playerWinText;
     [SerializeField] private TextMeshProUGUI player1ScoreText;
     [SerializeField] private TextMeshProUGUI player2ScoreText;
-    [SerializeField] private Canvas endCanvas;
 
     private int player1Score = 0;
     private int player2Score = 0;
-
-    private void UpdateUI()
-    {
-        UpdateScoreText();
-        UpdateWinText();
-    }
 
     private void UpdateScoreText()
     {
@@ -49,11 +44,22 @@ public class EndScreen : MonoBehaviour
 
     }
 
-    public void ShowEndScreen()
+    public void UpdateEndScreenUI()
     {
         UpdateScores();
-        UpdateUI();
-        endCanvas.enabled = true;
+        UpdateScoreText();
+        UpdateWinText();
+    }
+
+    public void ShowEndScreen()
+    {
+        UpdateEndScreenUI();
+        gameObject.GetComponent<Canvas>().enabled = true;
+    }
+
+    public void ReplayButtonPress()
+    {
+        SceneManager.LoadScene(0);
     }
 
 }

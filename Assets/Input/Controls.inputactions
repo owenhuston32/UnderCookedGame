@@ -2,7 +2,7 @@
     "name": "Controls",
     "maps": [
         {
-            "name": "Movement",
+            "name": "InGameControls",
             "id": "ab36e899-937a-4404-b088-457d9ed97f6a",
             "actions": [
                 {
@@ -33,15 +33,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Player1Pause",
-                    "type": "Button",
-                    "id": "23e51969-3315-4174-aa8e-24071865d01d",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "Player2Move",
                     "type": "Value",
                     "id": "b4a624ee-8720-4609-889d-d8f456a76d05",
@@ -67,15 +58,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "Player2Pause",
-                    "type": "Button",
-                    "id": "84501be8-09d5-45e5-bd1e-f5733bad825a",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -232,26 +214,52 @@
                     "action": "Player2Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
+                }
+            ]
+        },
+        {
+            "name": "PersistentActions",
+            "id": "fd6ddcab-c8dc-4cff-befe-ec939fe264ba",
+            "actions": [
                 {
-                    "name": "",
-                    "id": "47bc832b-db2a-4e18-b669-6cac75d516a7",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
+                    "name": "Player2Pause",
+                    "type": "Button",
+                    "id": "1828af6b-5306-402b-a7f0-e08004ce4515",
+                    "expectedControlType": "Button",
                     "processors": "",
-                    "groups": "",
-                    "action": "Player1Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
+                    "interactions": "",
+                    "initialStateCheck": false
                 },
                 {
+                    "name": "Player1Pause",
+                    "type": "Button",
+                    "id": "99b5d327-2477-4656-9778-d89d6074e43f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
                     "name": "",
-                    "id": "86ab4f93-5570-4810-a0ce-3d0c03d66110",
+                    "id": "bcddaace-8ef9-41d5-baf8-ac9b1423252a",
                     "path": "<Keyboard>/delete",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Player2Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a29a25af-31aa-4f3a-adc3-f5447f3cecc6",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Player1Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
