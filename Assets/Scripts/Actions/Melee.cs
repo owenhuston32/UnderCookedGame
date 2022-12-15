@@ -24,4 +24,5 @@ public class Melee
         objInHand.GetComponentInChildren<Animator>().SetTrigger(StaticStrings.panMelee);
         player.SetAnimTrigger(StaticStrings.meleeTrigger);
     }
+
 }

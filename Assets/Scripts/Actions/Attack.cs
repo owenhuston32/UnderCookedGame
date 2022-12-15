@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
+    
     [SerializeField] float projectileSpeed = 10f;
     [SerializeField] float despawnWaitTime = 3f;
     private Player player;

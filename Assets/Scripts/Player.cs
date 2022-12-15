@@ -5,7 +5,8 @@ using UnityEngine;
 using UnityEngine.Rendering;
 
 public class Player : MonoBehaviour, IHold
-{ 
+{
+    [SerializeField] private GameObject cantHoldImageObj;
     [SerializeField] private float reach = 2;
     [SerializeField] private Transform[] holdPositions;
     [SerializeField] private Animator anim;
@@ -23,7 +24,7 @@ public class Player : MonoBehaviour, IHold
 
     private void Start()
     {
-        tagManager = new InteractableTagManager(this);
+        tagManager = new InteractableTagManager(this, cantHoldImageObj);
         highlightManager = new HighlightManager(this, reach);
         animationManager = new PlayerAnimationManager(anim);
         holder = new BasicHolder(gameObject);

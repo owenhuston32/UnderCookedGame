@@ -51,10 +51,14 @@ public class EndScreen : MonoBehaviour
         UpdateWinText();
     }
 
-    public void ShowEndScreen()
+    public void SetEndScreen(bool val)
     {
-        UpdateEndScreenUI();
-        gameObject.GetComponent<Canvas>().enabled = true;
+        if(val == true)
+        {
+            CanvasManager.Instance.ActiveMenu = StaticStrings.endMenu;
+            UpdateEndScreenUI();
+        }
+        gameObject.GetComponent<Canvas>().enabled = val;
     }
 
     public void ReplayButtonPress()

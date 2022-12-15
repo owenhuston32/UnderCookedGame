@@ -39,7 +39,7 @@ public class PauseManager : MonoBehaviour
         }
         else if(isPaused)
         {
-            Pause.Invoke();
+            UnPause.Invoke();
             CanvasManager.Instance.ActiveMenu = StaticStrings.inGameMenu;
 
             isPaused = !isPaused;

@@ -26,6 +26,8 @@ public class ScoreManager : MonoBehaviour
     public UnityEvent UpdatePlayer1ScoreUI;
     public UnityEvent UpdatePlayer2ScoreUI;
 
+    [SerializeField] AudioSource goodSubmissionSound;
+    [SerializeField] AudioSource badSubmissionSound;
 
 
     public void AddScore(int playerIndex, GameObject food)
@@ -33,13 +35,29 @@ public class ScoreManager : MonoBehaviour
 
         if (playerIndex == 0)
         {
-            scores[0] += food.GetComponent<Cook>().CurrentScore();
+            int score = food.GetComponent<Cook>().CurrentScore();
+            PlayAddScoreSoundEffect(score);
+            scores[0] += score;
             UpdatePlayer1ScoreUI.Invoke();
         }
         else
         {
-            scores[1] += food.GetComponent<Cook>().CurrentScore();
+            int score = food.GetComponent<Cook>().CurrentScore();
+            PlayAddScoreSoundEffect(score);
+            scores[1] += score;
             UpdatePlayer2ScoreUI.Invoke();
+        }
+    }
+
+    private void PlayAddScoreSoundEffect(int score)
+    {
+        if(score > 0)
+        {
+            goodSubmissionSound.Play();
+        }
+        else
+        {
+            badSubmissionSound.Play();
         }
     }
 

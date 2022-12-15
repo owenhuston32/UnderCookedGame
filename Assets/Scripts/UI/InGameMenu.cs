@@ -10,6 +10,7 @@ public class InGameMenu : MonoBehaviour
         ScoreManager.Instance.ResetScores();
         GetComponent<Canvas>().enabled = true;
         gameTimer.StartTimer();
+        CanvasManager.Instance.ActiveMenu = StaticStrings.inGameMenu;
     }
 
 

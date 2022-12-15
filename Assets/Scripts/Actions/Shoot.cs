@@ -18,12 +18,9 @@ public class Shoot
     {
         objInHand.tag = StaticStrings.Projectile;
 
-        //FollowPosition followScript = objInHand.GetComponent<FollowPosition>();
-        //followScript.stopFollowing();
-
         objInHand.transform.parent = null;
 
-        player.SetAnimTrigger(StaticStrings.throwTrigger);
+        player.SetAnimBool(StaticStrings.isHoldingInFront, false);
 
         objInHand.GetComponent<Cook>().disableCookBar();
         objInHand.GetComponent<IHighlight>().RemoveHighlight();

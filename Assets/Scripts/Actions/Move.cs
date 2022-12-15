@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
+    private float stunTime = 0;
     private bool isMoving = false;
     private Vector3 moveDirection = Vector3.zero;
     [SerializeField] private float rotationSpeed = 5f;
@@ -48,19 +49,22 @@ public class Move : MonoBehaviour
 
     public void stunMovement(float stunTime)
     {
-        if(!canMove)
-        {
-            // stop old coroutine
-            StopCoroutine(stunningMovement(stunTime));
-        }
-        StartCoroutine(stunningMovement(stunTime));
+        this.stunTime = stunTime;
+
+        if(canMove)
+            StartCoroutine(stunningMovement(stunTime));
         
     }
     private IEnumerator stunningMovement(float stunTime)
     {
         canMove = false;
         gameObject.GetComponent<IHighlight>().HighlightMaterial();
-        yield return new WaitForSeconds(stunTime);
+
+        while(this.stunTime > 0)
+        {
+            this.stunTime -= stunTime;
+            yield return new WaitForSeconds(stunTime);
+        }
         gameObject.GetComponent<IHighlight>().RemoveHighlight();
         canMove = true;
     }

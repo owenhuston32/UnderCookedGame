@@ -39,7 +39,7 @@ public class Timer : MonoBehaviour
 
     private IEnumerator ticking()
     {
-        while(timeLeft > 0)
+        while(timeLeft > 1)
         {
             if(!paused)
             {
@@ -54,7 +54,7 @@ public class Timer : MonoBehaviour
             }
         }
 
-        if (timeLeft <= 0)
+        if (timeLeft <= 1)
             TimesUpEvent.Invoke();
 
 
@@ -64,12 +64,12 @@ public class Timer : MonoBehaviour
 
     public void unpauseClock()
     {
-        paused = true;
+        paused = false;
     }
 
     public void pauseClock()
     {
-        paused = false;
+        paused = true;
     }
 
 

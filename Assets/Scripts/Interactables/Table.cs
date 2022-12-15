@@ -52,6 +52,7 @@ public class Table : BasicInteractable, Iinteractable, IHold
 
                 // respawn plate
                 plateRespawnObj.GetComponent<Spawner>().WaitThenSpawn(plateRespawnObj.GetComponent(typeof(IHold)) as IHold);
+            
             }
         }
     }

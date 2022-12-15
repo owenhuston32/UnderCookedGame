@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Cook : MonoBehaviour
 {
+    [SerializeField] AudioSource cookingAudio;
     [SerializeField] GameObject cookedFoodMesh;
     [SerializeField] GameObject regularFoodMesh;
     [SerializeField] Image sliderFillImage;
@@ -34,10 +35,12 @@ public class Cook : MonoBehaviour
         isCooking = true;
         cookbarGameObject.SetActive(true);
         StartCoroutine(cooking());
+        cookingAudio.Play();
     }
     public void stopCook()
     {
         isCooking = false;
+        cookingAudio.Stop();
     }
     
     private IEnumerator cooking()

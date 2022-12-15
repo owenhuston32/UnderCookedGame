@@ -9,6 +9,10 @@ public class MainMenu : MonoBehaviour
 
     public UnityEvent StartGameEvent;
 
+    private void Start()
+    {
+        CanvasManager.Instance.ActiveMenu = StaticStrings.mainMenu;
+    }
 
     public void PlayPress()
     {

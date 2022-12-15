@@ -24,19 +24,4 @@ public class CanvasManager : MonoBehaviour
     public string ActiveMenu { get=> activeMenu; set => activeMenu = value; }
 
 
-    public void MainMenuEnabled()
-    {
-        ActiveMenu = StaticStrings.mainMenu;
-    }
-
-    public void EndScreenEnabled()
-    {
-        ActiveMenu = StaticStrings.endMenu;
-    }
-
-    public void InGameMenuEnabled()
-    {
-        ActiveMenu = StaticStrings.inGameMenu;
-    }
-
 }
