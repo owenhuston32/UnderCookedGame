@@ -35480,7 +35480,7 @@ MonoBehaviour:
   sliderFillImage: {fileID: 4145272929747891855}
   slider: {fileID: 6887325913946650088}
   cookbarGameObject: {fileID: 2855554904010445875}
-  cookingSpeed: 0.01
+  cookingSpeed: 0.001
 --- !u!114 &1173726991653709092
 MonoBehaviour:
   m_ObjectHideFlags: 0
