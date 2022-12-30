@@ -28,12 +28,12 @@ public class FoodCrate : BasicInteractable, Iinteractable, IHold
 
     }
 
-    public void StartHolding(IHold oldHolder, IPickup pickup, Transform followTransform)
+    public void StartHolding(IHold oldHolder, GameObject pickupObj, Transform followTransform)
     {
 
     }
 
-    public void StopHolding(IPickup pickup)
+    public void StopHolding(GameObject pickupObj)
     {
 
     }

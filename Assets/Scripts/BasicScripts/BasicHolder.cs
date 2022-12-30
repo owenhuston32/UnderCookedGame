@@ -13,34 +13,32 @@ public class BasicHolder :  IHold
         holderObj = obj;
     }
 
-    public void StartHolding(IHold oldHolder, IPickup pickup, Transform followTransform)
+    public void StartHolding(IHold oldHolder, GameObject pickupObj, Transform followTransform)
     {
         // stop following old holder
         if(oldHolder != null)
         {
-            oldHolder.StopHolding(pickup);
+            oldHolder.StopHolding(pickupObj);
         }
 
-        currentHoldingObj = pickup.PickupObj;
+        currentHoldingObj = pickupObj;
 
-        pickup.PickupObj.GetComponent<Collider>().enabled = false;
-        pickup.PickupObj.GetComponent<Rigidbody>().isKinematic = true;
+        pickupObj.GetComponent<Collider>().enabled = false;
+        pickupObj.GetComponent<Rigidbody>().isKinematic = true;
 
 
-        pickup.PickupObj.transform.position = followTransform.position;
-        pickup.PickupObj.transform.localRotation = followTransform.transform.rotation;
-        pickup.PickupObj.transform.SetParent(followTransform);
-        //pickup.PickupObj.GetComponent<FollowPosition>().startFollowing(followTransform);
+        pickupObj.transform.position = followTransform.position;
+        pickupObj.transform.localRotation = followTransform.transform.rotation;
+        pickupObj.transform.SetParent(followTransform);
     }
 
-    public void StopHolding(IPickup pickup)
+    public void StopHolding(GameObject pickupObj)
     {
         currentHoldingObj = null;
 
-        pickup.PickupObj.GetComponent<Collider>().enabled = true;
-        pickup.PickupObj.GetComponent<Rigidbody>().isKinematic = false;
+        pickupObj.GetComponent<Collider>().enabled = true;
+        pickupObj.GetComponent<Rigidbody>().isKinematic = false;
 
-        pickup.PickupObj.transform.parent = null;
-        //pickup.PickupObj.GetComponent<FollowPosition>().stopFollowing();
+        pickupObj.transform.parent = null;
     }
 }

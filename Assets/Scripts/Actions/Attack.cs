@@ -31,7 +31,7 @@ public class Attack : MonoBehaviour
         if (objInHand != null && objInHand.CompareTag(StaticStrings.Food))
         {
             shoot.startShoot(objInHand);
-            tagManager.setNoTags();
+            tagManager.setDefaultTags();
         }
         else if(objInHand != null && objInHand.CompareTag(StaticStrings.Pan))
         {

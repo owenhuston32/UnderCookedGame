@@ -30,6 +30,8 @@ public class Cook : MonoBehaviour
     }
     public void cook()
     {
+        Debug.Log("cooking");
+
         regularFoodMesh.SetActive(false);
         cookedFoodMesh.SetActive(true);
         isCooking = true;
@@ -49,9 +51,10 @@ public class Cook : MonoBehaviour
         Color finalColor = Color.green;
         while(isCooking && !isFinished)
         {
-
+            Debug.Log(slider.value);
             slider.value += cookingSpeed;
-            sliderFillImage.color = Color.Lerp(initialColor, finalColor, slider.value);
+            float sliderVal = slider.value;
+            sliderFillImage.color = Color.Lerp(initialColor, finalColor, sliderVal);
 
             if (slider.value >= 1)
             {

@@ -31,16 +31,16 @@ public class Table : BasicInteractable, Iinteractable, IHold
 
     }
 
-    public void StartHolding(IHold oldHolder, IPickup pickup, Transform followTransform)
+    public void StartHolding(IHold oldHolder, GameObject pickupObj, Transform followTransform)
     {
-        holder.StartHolding(oldHolder, pickup, holdPositions[0]);
+        holder.StartHolding(oldHolder, pickupObj, holdPositions[0]);
 
-        if (IsSubmissionTable && pickup.PickupObj.CompareTag(StaticStrings.Plate))
+        if (IsSubmissionTable && pickupObj.CompareTag(StaticStrings.Plate))
         {
-            IHold plateHolder = pickup.PickupObj.GetComponent(typeof(IHold)) as IHold;
+            IHold plateHolder = pickupObj.GetComponent(typeof(IHold)) as IHold;
             if (plateHolder != null && plateHolder.CurrentlyHoldingObj != null)
             {
-                holder.StopHolding(pickup);
+                holder.StopHolding(pickupObj);
 
                 ScoreManager.Instance.AddScore(SubmissionTableNum, plateHolder.CurrentlyHoldingObj);
 
@@ -57,8 +57,8 @@ public class Table : BasicInteractable, Iinteractable, IHold
         }
     }
 
-    public void StopHolding(IPickup pickup)
+    public void StopHolding(GameObject pickupObj)
     {
-        holder.StopHolding(pickup);
+        holder.StopHolding(pickupObj);
     }
 }

@@ -26,30 +26,30 @@ public class Plate : BasicInteractable, IPickup, IHold, Iinteractable
 
     public void pickup(IHold newHolder)
     {
-        newHolder.StartHolding(PickupHolder, this, null);
+        newHolder.StartHolding(PickupHolder, PickupObj, null);
         basicPickup.pickup(newHolder);
     }
 
     public void setDown(IHold newHolder)
     {
-        newHolder.StartHolding(PickupHolder, this, null);
+        newHolder.StartHolding(PickupHolder, PickupObj, null);
         basicPickup.setDown(newHolder);
         
     }
     public void drop()
     {
-        PickupHolder.StopHolding(this);
+        PickupHolder.StopHolding(PickupObj);
         basicPickup.drop();
     }
 
-    public void StartHolding(IHold oldHolder, IPickup pickup, Transform followTransform)
+    public void StartHolding(IHold oldHolder, GameObject pickupObj, Transform followTransform)
     {
-        basicHolder.StartHolding(oldHolder, pickup, holdPositions[0]);
+        basicHolder.StartHolding(oldHolder, pickupObj, holdPositions[0]);
     }
 
-    public void StopHolding(IPickup pickup)
+    public void StopHolding(GameObject pickupObj)
     {
-        basicHolder.StopHolding(pickup);
+        basicHolder.StopHolding(pickupObj);
     }
 
 }

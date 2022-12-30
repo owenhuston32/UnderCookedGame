@@ -28,11 +28,11 @@ public class Burner : BasicInteractable, Iinteractable, IHold
 
     }
 
-    public void StartHolding(IHold oldHolder, IPickup pickup, Transform followTransform)
+    public void StartHolding(IHold oldHolder, GameObject pickupObj, Transform followTransform)
     { 
-        if(pickup.PickupObj.CompareTag(StaticStrings.Pan))
+        if(pickupObj.CompareTag(StaticStrings.Pan))
         {
-            IHold panHolder = pickup.PickupObj.GetComponent(typeof(IHold)) as IHold;
+            IHold panHolder = pickupObj.GetComponent(typeof(IHold)) as IHold;
 
             if(panHolder.CurrentlyHoldingObj != null && panHolder.CurrentlyHoldingObj.CompareTag(StaticStrings.Food))
             {
@@ -40,11 +40,11 @@ public class Burner : BasicInteractable, Iinteractable, IHold
             }
         }
 
-        holder.StartHolding(oldHolder, pickup, holdPositions[0]);
+        holder.StartHolding(oldHolder, pickupObj, holdPositions[0]);
     }
 
-    public void StopHolding(IPickup pickup)
+    public void StopHolding(GameObject pickupObj)
     {
-        holder.StopHolding(pickup);
+        holder.StopHolding(pickupObj);
     }
 }

@@ -29,7 +29,7 @@ public class Pan : BasicInteractable, IPickup, IHold, Iinteractable
         {
             CurrentlyHoldingObj.GetComponent<Cook>().stopCook();
         }
-        newHolder.StartHolding(PickupHolder, this, null);
+        newHolder.StartHolding(PickupHolder, PickupObj, null);
         basicPickup.pickup(newHolder);
     }
 
@@ -40,39 +40,38 @@ public class Pan : BasicInteractable, IPickup, IHold, Iinteractable
         {
             IPickup food = CurrentlyHoldingObj.GetComponent(typeof(IPickup)) as IPickup;
             food.setDown(newHolder);
-            drop();
         }
         else
         {
-            newHolder.StartHolding(PickupHolder, this, null);
+            newHolder.StartHolding(PickupHolder, PickupObj, null);
             basicPickup.setDown(newHolder);
         }
 
     }
     public void drop()
     {
-        PickupHolder.StopHolding(this);
+        PickupHolder.StopHolding(PickupObj);
         basicPickup.drop();
     }
 
-    public void StartHolding(IHold oldHolder, IPickup pickup, Transform followTransform)
+    public void StartHolding(IHold oldHolder, GameObject pickupObj, Transform followTransform)
     {
-        if(pickup.PickupObj.CompareTag(StaticStrings.Food))
+        if(pickupObj.CompareTag(StaticStrings.Food))
         {
             if(PickupHolder != null && PickupHolder.HolderObj.CompareTag(StaticStrings.Burner))
             {
-                pickup.PickupObj.GetComponent<Cook>().cook();
+                pickupObj.GetComponent<Cook>().cook();
             }
             else
             {
-                pickup.PickupObj.GetComponent<Cook>().stopCook();
+                pickupObj.GetComponent<Cook>().stopCook();
             }
         }
-        basicHolder.StartHolding(oldHolder, pickup, holdPositions[0]);
+        basicHolder.StartHolding(oldHolder, pickupObj, holdPositions[0]);
     }
 
-    public void StopHolding(IPickup pickup)
+    public void StopHolding(GameObject pickupObj)
     {
-        basicHolder.StopHolding(pickup);
+        basicHolder.StopHolding(pickupObj);
     }
 }

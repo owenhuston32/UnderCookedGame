@@ -7,8 +7,8 @@ public interface IHold
     public GameObject CurrentlyHoldingObj { get; set; }
     public GameObject HolderObj { get; }
 
-    public void StartHolding(IHold oldHolder, IPickup obj, Transform followTransform);
+    public void StartHolding(IHold oldHolder, GameObject pickupObj, Transform followTransform);
 
-    public void StopHolding(IPickup obj);
+    public void StopHolding(GameObject pickupObj);
 
 }

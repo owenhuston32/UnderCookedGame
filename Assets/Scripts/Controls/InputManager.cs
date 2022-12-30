@@ -7,11 +7,8 @@ using UnityEngine.InputSystem;
 public class InputManager : MonoBehaviour
 {
     private Controls controls;
-    [SerializeField] private KeyboardController player1;
-    [SerializeField] private KeyboardController player2;
-    [SerializeField] private MakeyMakeyController player1MakeyController;
-    [SerializeField] private MakeyMakeyController player2MakeyController;
-    [SerializeField] private bool keyboardController = false;
+    [SerializeField] private Controller player1;
+    [SerializeField] private Controller player2;
 
     private void Awake()
     {
@@ -41,16 +38,9 @@ public class InputManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (keyboardController)
-        {
-            player1.initialize(controls.InGameControls.Player1Move, controls.InGameControls.Player1Shoot, controls.InGameControls.Player1Interact, controls.PersistentActions.Player1Pause);
-            player2.initialize(controls.InGameControls.Player2Move, controls.InGameControls.Player2Shoot, controls.InGameControls.Player2Interact, controls.PersistentActions.Player2Pause);
-        }
-        else
-        {
-            player1MakeyController.initialize(controls.InGameControls.Player1Move, controls.InGameControls.Player1Shoot, controls.InGameControls.Player1Interact);
-            player2MakeyController.initialize(controls.InGameControls.Player2Move, controls.InGameControls.Player2Shoot, controls.InGameControls.Player2Interact);
-        }
+        player1.initialize(controls.InGameControls.Player1Move, controls.InGameControls.Player1Shoot, controls.InGameControls.Player1Interact, controls.PersistentActions.Player1Pause);
+        player2.initialize(controls.InGameControls.Player2Move, controls.InGameControls.Player2Shoot, controls.InGameControls.Player2Interact, controls.PersistentActions.Player2Pause);
+        
 
         // disable in game controls on start
        DisableInGameControls();

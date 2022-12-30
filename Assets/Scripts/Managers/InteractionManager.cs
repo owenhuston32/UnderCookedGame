@@ -78,7 +78,7 @@ public class InteractionManager : MonoBehaviour, Iinteractable
         else
         {
             FoodCrate crate = obj.GetComponent<FoodCrate>();
-            if (obj.GetComponent<FoodCrate>() != null && obj)
+            if (crate != null)
             {
                 crate.SpawnObj(holder.GetComponent(typeof(IHold)) as IHold);
             }

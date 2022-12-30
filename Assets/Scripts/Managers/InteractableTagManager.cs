@@ -7,7 +7,6 @@ public class InteractableTagManager
 {
 
     private IHold playerHolder;
-    private GameObject cantHoldImageObj;
 
     private List<string> defaultTags = new List<string>()
     {
@@ -30,16 +29,14 @@ public class InteractableTagManager
 
     public List<string> CanInteractWithTags { get => canInteractWithTags; }
 
-    public InteractableTagManager(IHold playerHolder, GameObject cantHoldImageObj)
+    public InteractableTagManager(IHold playerHolder)
     {
         this.playerHolder = playerHolder;
-        this.cantHoldImageObj = cantHoldImageObj;
         setTags(defaultTags);
     }
 
     public void updateInteractableTags()
     {
-        cantHoldImageObj.SetActive(false);
         if (playerHolder.CurrentlyHoldingObj == null)
         {
             setTags(defaultTags);
@@ -86,10 +83,9 @@ public class InteractableTagManager
         canInteractWithTags = newList;
     }
 
-    public void setNoTags()
+    public void setDefaultTags()
     {
-        cantHoldImageObj.SetActive(true);
-        canInteractWithTags = emptyTags;
+        setTags(defaultTags);
     }
 
     public bool canInteract(GameObject obj)

@@ -20,12 +20,12 @@ public class Egg : BasicInteractable, IPickup, Iinteractable
 
     public void pickup(IHold newHolder)
     {
-        newHolder.StartHolding(PickupHolder, this, null);
+        newHolder.StartHolding(PickupHolder, PickupObj, null);
         basicPickup.pickup(newHolder);
     }
     public void setDown(IHold newHolder)
     {
-        newHolder.StartHolding(PickupHolder, this, null);
+        newHolder.StartHolding(PickupHolder, PickupObj, null);
         basicPickup.setDown(newHolder);
 
         // we can't pickup the egg after setting on a pan or plate
@@ -36,7 +36,7 @@ public class Egg : BasicInteractable, IPickup, Iinteractable
     }
     public void drop()
     {
-        PickupHolder.StopHolding(this);
+        PickupHolder.StopHolding(PickupObj);
 
         basicPickup.drop();
     }

@@ -3,25 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class MakeyMakeyController : MonoBehaviour
+public class Controller : MonoBehaviour
 {
     private InputAction moveAction;
     private InputAction shootAction;
     private InputAction interactAction;
+    private InputAction pauseAction;
 
-    public void initialize(InputAction moveAction, InputAction shootAction, InputAction interactAction)
+    public void initialize(InputAction moveAction, InputAction shootAction, InputAction interactAction, InputAction pauseAction)
     {
 
         this.moveAction = moveAction;
         this.shootAction = shootAction;
         this.interactAction = interactAction;
+        this.pauseAction = pauseAction;
 
         this.moveAction.performed += move;
         this.shootAction.performed += shoot;
         this.interactAction.performed += interact;
+        this.pauseAction.performed += togglePause;
 
 
-        this.interactAction.canceled += interact;
         this.moveAction.canceled += stopMove;
 
     }
@@ -49,6 +51,11 @@ public class MakeyMakeyController : MonoBehaviour
     private void interact(InputAction.CallbackContext callback)
     {
         gameObject.GetComponent<Player>().interact();
+    }
+
+    private void togglePause(InputAction.CallbackContext callback)
+    {
+        PauseManager.Instance.togglePause();
     }
     
 
