@@ -35335,7 +35335,6 @@ GameObject:
   - component: {fileID: 3881562550126245032}
   - component: {fileID: 3881562550126245077}
   - component: {fileID: 3881562550126245034}
-  - component: {fileID: 3881562550126245076}
   - component: {fileID: 3881562550126245074}
   - component: {fileID: 1173726991653709092}
   - component: {fileID: -8509277683880122424}
@@ -35450,18 +35449,6 @@ MonoBehaviour:
   highlightObjects:
   - {fileID: 2331065547827187636}
   - {fileID: 3461074333773596752}
---- !u!114 &3881562550126245076
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3881562550126245036}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0aa34d93f59a66428d2090fcc8f12ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3881562550126245074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35480,7 +35467,7 @@ MonoBehaviour:
   sliderFillImage: {fileID: 4145272929747891855}
   slider: {fileID: 6887325913946650088}
   cookbarGameObject: {fileID: 2855554904010445875}
-  cookingSpeed: 0.001
+  cookingSpeed: 0.01
 --- !u!114 &1173726991653709092
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -32,36 +32,36 @@ public class InteractableTagManager
     public InteractableTagManager(IHold playerHolder)
     {
         this.playerHolder = playerHolder;
-        setTags(defaultTags);
+        SetTags(defaultTags);
     }
 
-    public void updateInteractableTags()
+    public void UpdateInteractableTags()
     {
         if (playerHolder.CurrentlyHoldingObj == null)
         {
-            setTags(defaultTags);
+            SetTags(defaultTags);
         }
         else if (playerHolder.CurrentlyHoldingObj.CompareTag(StaticStrings.Pan))
         {
-            setPanTags();
+            SetPanTags();
         }
         else if (playerHolder.CurrentlyHoldingObj.CompareTag(StaticStrings.Food))
         {
-            setTags(foodTags);
+            SetTags(foodTags);
         }
         else if (playerHolder.CurrentlyHoldingObj.CompareTag(StaticStrings.Plate))
         {
-            setTags(plateTags);
+            SetTags(plateTags);
         }
     }
 
-    private void setTags(List<string> newTagList)
+    private void SetTags(List<string> newTagList)
     {
         canInteractWithTags = newTagList;
     }
 
     // when we have a pan in hand these are the tags we can interact with
-    public void setPanTags()
+    public void SetPanTags()
     {
         List<string> newList = new List<string>()
         {
@@ -83,12 +83,12 @@ public class InteractableTagManager
         canInteractWithTags = newList;
     }
 
-    public void setDefaultTags()
+    public void SetDefaultTags()
     {
-        setTags(defaultTags);
+        SetTags(defaultTags);
     }
 
-    public bool canInteract(GameObject obj)
+    public bool CanInteract(GameObject obj)
     {
 
         IPickup pickup = obj.GetComponent(typeof(IPickup)) as IPickup;

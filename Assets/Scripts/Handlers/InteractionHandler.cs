@@ -10,15 +10,15 @@ public class InteractionHandler
         this.player = player;
     }
 
-    public void interact()
+    public void Interact()
     {
         bool canInteract = CanInteract();
 
         if (canInteract)
         {
-            InteractionManager.Instance.interact(player.gameObject, player.HighlightManager.HighlightedObj, player.CurrentlyHoldingObj);
+            InteractionManager.Instance.Interact(player.gameObject, player.HighlightManager.HighlightedObj, player.CurrentlyHoldingObj);
         }
-        player.TagManager.updateInteractableTags();
+        player.TagManager.UpdateInteractableTags();
     }
 
     // get the object that we can interact with (either the obj we are holding or the obj we are highlighting)

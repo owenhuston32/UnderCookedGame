@@ -21,25 +21,25 @@ public class Plate : BasicInteractable, IPickup, IHold, Iinteractable
     {
         basicHolder = new BasicHolder(gameObject);
         basicPickup = new BasicPickup(gameObject);
-        ObjectManager.Instance.addInteractable(gameObject);
+        ObjectManager.Instance.AddInteractable(gameObject);
     }
 
-    public void pickup(IHold newHolder)
+    public void Pickup(IHold newHolder)
     {
         newHolder.StartHolding(PickupHolder, PickupObj, null);
-        basicPickup.pickup(newHolder);
+        basicPickup.Pickup(newHolder);
     }
 
-    public void setDown(IHold newHolder)
+    public void SetDown(IHold newHolder)
     {
         newHolder.StartHolding(PickupHolder, PickupObj, null);
-        basicPickup.setDown(newHolder);
+        basicPickup.SetDown(newHolder);
         
     }
-    public void drop()
+    public void Drop()
     {
         PickupHolder.StopHolding(PickupObj);
-        basicPickup.drop();
+        basicPickup.Drop();
     }
 
     public void StartHolding(IHold oldHolder, GameObject pickupObj, Transform followTransform)

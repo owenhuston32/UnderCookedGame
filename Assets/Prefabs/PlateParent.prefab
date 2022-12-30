@@ -43,7 +43,6 @@ GameObject:
   - component: {fileID: 5957189935190479460}
   - component: {fileID: 5957189935190479463}
   - component: {fileID: 5957189935190479459}
-  - component: {fileID: 5957189935190479458}
   - component: {fileID: 2604982033168976394}
   - component: {fileID: 8933997208304632232}
   m_Layer: 0
@@ -114,18 +113,6 @@ MonoBehaviour:
   highlightedMaterial: {fileID: 2100000, guid: af465f2956ef02e4b88d3460c5ebab16, type: 2}
   highlightObjects:
   - {fileID: 7033748983786445344}
---- !u!114 &5957189935190479458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5957189935190479481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0aa34d93f59a66428d2090fcc8f12ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2604982033168976394
 MonoBehaviour:
   m_ObjectHideFlags: 0

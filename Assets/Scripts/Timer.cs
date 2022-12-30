@@ -34,10 +34,10 @@ public class Timer : MonoBehaviour
 
     public void StartTimer()
     {
-        StartCoroutine(ticking());
+        StartCoroutine(Ticking());
     }
 
-    private IEnumerator ticking()
+    private IEnumerator Ticking()
     {
         while(timeLeft > 1)
         {
@@ -62,12 +62,12 @@ public class Timer : MonoBehaviour
         ResetTimer();
     }
 
-    public void unpauseClock()
+    public void UnpauseClock()
     {
         paused = false;
     }
 
-    public void pauseClock()
+    public void PauseClock()
     {
         paused = true;
     }

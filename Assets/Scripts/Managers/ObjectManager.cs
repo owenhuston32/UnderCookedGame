@@ -24,22 +24,22 @@ public class ObjectManager : MonoBehaviour
 
     public List<GameObject> Interactables { get => interactables; }
 
-    public void removeInteractableAfterSeconds(GameObject obj, float waitTime)
+    public void RemoveInteractableAfterSeconds(GameObject obj, float waitTime)
     {
-        StartCoroutine(waitThenRemove(obj, waitTime));
+        StartCoroutine(WaitThenRemove(obj, waitTime));
     }
-    private IEnumerator waitThenRemove(GameObject obj, float despawnWaitTime)
+    private IEnumerator WaitThenRemove(GameObject obj, float despawnWaitTime)
     {
         yield return new WaitForSeconds(despawnWaitTime);
 
-        ObjectManager.Instance.removeInteractable(obj);
+        ObjectManager.Instance.RemoveInteractable(obj);
     }
 
-    public void addInteractable(GameObject obj)
+    public void AddInteractable(GameObject obj)
     {
         interactables.Add(obj);
     }
-    public void removeInteractable(GameObject obj)
+    public void RemoveInteractable(GameObject obj)
     {
         interactables.Remove(obj);
 

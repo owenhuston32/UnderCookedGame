@@ -14,19 +14,19 @@ public class Egg : BasicInteractable, IPickup, Iinteractable
     public void Initialize()
     {
         basicPickup = new BasicPickup(gameObject);
-        ObjectManager.Instance.addInteractable(gameObject);
+        ObjectManager.Instance.AddInteractable(gameObject);
     }
 
 
-    public void pickup(IHold newHolder)
+    public void Pickup(IHold newHolder)
     {
         newHolder.StartHolding(PickupHolder, PickupObj, null);
-        basicPickup.pickup(newHolder);
+        basicPickup.Pickup(newHolder);
     }
-    public void setDown(IHold newHolder)
+    public void SetDown(IHold newHolder)
     {
         newHolder.StartHolding(PickupHolder, PickupObj, null);
-        basicPickup.setDown(newHolder);
+        basicPickup.SetDown(newHolder);
 
         // we can't pickup the egg after setting on a pan or plate
         if (newHolder.HolderObj.CompareTag(StaticStrings.Pan) || newHolder.HolderObj.CompareTag(StaticStrings.Plate))
@@ -34,11 +34,11 @@ public class Egg : BasicInteractable, IPickup, Iinteractable
             CanPickup = false;
         }
     }
-    public void drop()
+    public void Drop()
     {
         PickupHolder.StopHolding(PickupObj);
 
-        basicPickup.drop();
+        basicPickup.Drop();
     }
 
 }

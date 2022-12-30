@@ -27,7 +27,7 @@ public class PauseManager : MonoBehaviour
     
 
 
-    public void togglePause()
+    public void TogglePause()
     {
 
         if(CanvasManager.Instance.ActiveMenu.Equals(StaticStrings.inGameMenu) && !isPaused)

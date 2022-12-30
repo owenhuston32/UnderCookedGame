@@ -30,11 +30,11 @@ public class Highlight : MonoBehaviour, IHighlight
         for (int i = 0; i < renderers.Length; i++)
         {
 
-            renderers[i].materials = createHighlightMaterialsArray(renderers[i].materials);
+            renderers[i].materials = CreateHighlightMaterialsArray(renderers[i].materials);
         }
     }
 
-    private Material[] createHighlightMaterialsArray(Material[] mats)
+    private Material[] CreateHighlightMaterialsArray(Material[] mats)
     {
         Material[] newMats = new Material[mats.Length];
         for (int j = 0; j < mats.Length; j++)

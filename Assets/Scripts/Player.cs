@@ -44,11 +44,11 @@ public class Player : MonoBehaviour, IHold
     }
     private void OnTriggerEnter(Collider other)
     {
-        collisionHandler.onTriggerEnter(gameObject, other);
+        collisionHandler.OnTriggerEnter(gameObject, other);
     }
     private void OnCollisionEnter(Collision collision)
     {
-        collisionHandler.onCollisionEnter(gameObject, collision);
+        collisionHandler.OnCollisionEnter(gameObject, collision);
     }
 
     private void Update()
@@ -56,9 +56,9 @@ public class Player : MonoBehaviour, IHold
         highlightManager.Update();
     }
 
-    public void interact()
+    public void Interact()
     {
-        interactionHandler.interact();
+        interactionHandler.Interact();
     }
 
     public void StartHolding(IHold oldHolder, GameObject pickupObj, Transform followTransform)

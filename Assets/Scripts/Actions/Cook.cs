@@ -17,18 +17,18 @@ public class Cook : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        disableCookBar();
+        DisableCookBar();
     }
     public int CurrentScore()
     {
         return Mathf.CeilToInt(slider.value * 10) - 2;
 
     }
-    public void disableCookBar()
+    public void DisableCookBar()
     {
         cookbarGameObject.SetActive(false);
     }
-    public void cook()
+    public void StartCooking()
     {
         Debug.Log("cooking");
 
@@ -36,16 +36,16 @@ public class Cook : MonoBehaviour
         cookedFoodMesh.SetActive(true);
         isCooking = true;
         cookbarGameObject.SetActive(true);
-        StartCoroutine(cooking());
+        StartCoroutine(Cooking());
         cookingAudio.Play();
     }
-    public void stopCook()
+    public void StopCook()
     {
         isCooking = false;
         cookingAudio.Stop();
     }
     
-    private IEnumerator cooking()
+    private IEnumerator Cooking()
     {
         Color initialColor = Color.red;
         Color finalColor = Color.green;

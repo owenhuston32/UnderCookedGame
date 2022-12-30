@@ -21,19 +21,19 @@ public class BasicPickup : IPickup
 
     }
 
-    public void pickup(IHold newHolder)
+    public void Pickup(IHold newHolder)
     {
         pickupHolder = newHolder;
         canPickup = false;
     }
 
-    public void setDown(IHold newHolder)
+    public void SetDown(IHold newHolder)
     {
         pickupHolder = newHolder;
         canPickup = true;
 
     }
-    public void drop()
+    public void Drop()
     {
         pickupHolder = null;
         canPickup = true;

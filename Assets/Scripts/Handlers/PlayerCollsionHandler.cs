@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class PlayerCollsionHandler
 {
+    private Dictionary<string, float> collisionTagToStunTime = new Dictionary<string, float>
+    {
+        [StaticStrings.Pan] = 2,
+        [StaticStrings.Food] = 1
+    };
 
-    public void onTriggerEnter(GameObject player, Collider collider)
+
+    public void OnTriggerEnter(GameObject player, Collider collider)
     {
         if (collider.CompareTag(StaticStrings.Pan))
         {
@@ -16,15 +22,15 @@ public class PlayerCollsionHandler
             // (other.transform.parent.parent.gameObject is the obj that the player holds)
             if (playerHolder.CurrentlyHoldingObj == null || !playerHolder.CurrentlyHoldingObj.Equals(panParent))
             {
-                player.GetComponent<Move>().stunMovement(2);
+                player.GetComponent<Move>().StunMovement(collisionTagToStunTime.GetValueOrDefault(StaticStrings.Pan));
             }
         }
     }
-    public void onCollisionEnter(GameObject player, Collision collision)
+    public void OnCollisionEnter(GameObject player, Collision collision)
     {
         if (collision.gameObject.CompareTag(StaticStrings.Projectile))
         {
-            player.GetComponent<Move>().stunMovement(1);
+            player.GetComponent<Move>().StunMovement(collisionTagToStunTime.GetValueOrDefault(StaticStrings.Food));
         }
     }
 

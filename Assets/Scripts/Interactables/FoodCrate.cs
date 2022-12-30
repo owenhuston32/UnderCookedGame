@@ -16,15 +16,14 @@ public class FoodCrate : BasicInteractable, Iinteractable, IHold
     public void Start()
     {
         holder = new BasicHolder(gameObject);
-        ObjectManager.Instance.addInteractable(gameObject);
+        ObjectManager.Instance.AddInteractable(gameObject);
 
     }
 
     public void SpawnObj(IHold holder)
     {
-        anim.Play(StaticStrings.OpenFoodCrateAnim);
-
-        GameObject food = GetComponent<Spawner>().SpawnObj(holder);
+        anim.SetTrigger(StaticStrings.crateOpenTrigger);
+        GetComponent<Spawner>().SpawnObj(holder);
 
     }
 

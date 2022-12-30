@@ -14,7 +14,7 @@ public class Shoot
         this.despawnWaitTime = despawnWaitTime;
     }
 
-    public void startShoot(GameObject objInHand)
+    public void StartShoot(GameObject objInHand)
     {
         objInHand.tag = StaticStrings.Projectile;
 
@@ -22,7 +22,7 @@ public class Shoot
 
         player.SetAnimBool(StaticStrings.isHoldingInFront, false);
 
-        objInHand.GetComponent<Cook>().disableCookBar();
+        objInHand.GetComponent<Cook>().DisableCookBar();
         objInHand.GetComponent<IHighlight>().RemoveHighlight();
         objInHand.GetComponent<Rigidbody>().isKinematic = false;
         objInHand.GetComponent<Rigidbody>().useGravity = false;
@@ -30,7 +30,7 @@ public class Shoot
         objInHand.GetComponent<Collider>().enabled = true;
 
 
-        ObjectManager.Instance.removeInteractableAfterSeconds(objInHand, despawnWaitTime);
+        ObjectManager.Instance.RemoveInteractableAfterSeconds(objInHand, despawnWaitTime);
     }
 
 }

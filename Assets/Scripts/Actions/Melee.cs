@@ -10,7 +10,7 @@ public class Melee
         this.player = player;
     }
 
-    public void startMelee(GameObject objInHand)
+    public void StartMelee(GameObject objInHand)
     {
         // if pan has something on it remove it
         IHold panHolder = objInHand.GetComponent(typeof(IHold)) as IHold;

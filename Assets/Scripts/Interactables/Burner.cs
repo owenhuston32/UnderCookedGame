@@ -19,7 +19,7 @@ public class Burner : BasicInteractable, Iinteractable, IHold
     public void Start()
     {
         holder = new BasicHolder(gameObject);
-        ObjectManager.Instance.addInteractable(gameObject);
+        ObjectManager.Instance.AddInteractable(gameObject);
 
         Spawner spawner = gameObject.GetComponent<Spawner>();
         if (spawner != null && spawnObjOnStart)
@@ -34,9 +34,10 @@ public class Burner : BasicInteractable, Iinteractable, IHold
         {
             IHold panHolder = pickupObj.GetComponent(typeof(IHold)) as IHold;
 
+            // start cooking if we start holding food
             if(panHolder.CurrentlyHoldingObj != null && panHolder.CurrentlyHoldingObj.CompareTag(StaticStrings.Food))
             {
-                panHolder.CurrentlyHoldingObj.GetComponent<Cook>().cook();
+                panHolder.CurrentlyHoldingObj.GetComponent<Cook>().StartCooking();
             }
         }
 

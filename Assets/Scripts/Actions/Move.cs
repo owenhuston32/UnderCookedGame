@@ -35,27 +35,27 @@ public class Move : MonoBehaviour
         }
     }
 
-    public void move(Vector3 moveDirection)
+    public void StartMove(Vector3 moveDirection)
     {
         this.moveDirection = moveDirection;
         isMoving = true;
 
     }
 
-    public void stopMove()
+    public void StopMove()
     {
         isMoving = false;
     }
 
-    public void stunMovement(float stunTime)
+    public void StunMovement(float stunTime)
     {
         this.stunTime = stunTime;
 
         if(canMove)
-            StartCoroutine(stunningMovement(stunTime));
+            StartCoroutine(StunningMovement(stunTime));
         
     }
-    private IEnumerator stunningMovement(float stunTime)
+    private IEnumerator StunningMovement(float stunTime)
     {
         canMove = false;
         gameObject.GetComponent<IHighlight>().HighlightMaterial();

@@ -16,8 +16,8 @@ public static class StaticStrings
     public static readonly string Projectile = "Projectile";
 
 
-    //crate animation clip name
-    public static readonly string OpenFoodCrateAnim = "crateOpenAnim";
+    //crate animation trigger name
+    public static readonly string crateOpenTrigger = "crateOpenTrigger";
 
     //pan animation trigger
     public static readonly string panMelee = "meleeTrigger";

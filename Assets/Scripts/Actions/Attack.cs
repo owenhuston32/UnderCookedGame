@@ -22,7 +22,7 @@ public class Attack : MonoBehaviour
         melee = new Melee(player);
     }
 
-    public void attackPress()
+    public void AttackPress()
     {
         IHold playerHolder = player.GetComponent(typeof(IHold)) as IHold;
 
@@ -30,12 +30,12 @@ public class Attack : MonoBehaviour
 
         if (objInHand != null && objInHand.CompareTag(StaticStrings.Food))
         {
-            shoot.startShoot(objInHand);
-            tagManager.setDefaultTags();
+            shoot.StartShoot(objInHand);
+            tagManager.SetDefaultTags();
         }
         else if(objInHand != null && objInHand.CompareTag(StaticStrings.Pan))
         {
-            melee.startMelee(objInHand);
+            melee.StartMelee(objInHand);
         }
     }
 }

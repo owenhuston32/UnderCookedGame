@@ -12,15 +12,15 @@ public class Spawner : MonoBehaviour
 
     public GameObject SpawnObj(IHold holder)
     {
-        return spawn(holder);
+        return Spawn(holder);
     }
 
     public void WaitThenSpawn(IHold holder)
     {
-        StartCoroutine(spawning(holder));
+        StartCoroutine(Spawning(holder));
     }
 
-    private GameObject spawn(IHold holder)
+    private GameObject Spawn(IHold holder)
     {
         GameObject spawnedObject = Instantiate(objPrefab, spawnPosition.position, Quaternion.identity, parent);
         
@@ -32,16 +32,16 @@ public class Spawner : MonoBehaviour
 
             pickup.Initialize();
 
-            pickup.setDown(holder);
+            pickup.SetDown(holder);
 
         }
         return spawnedObject;
     }
 
-    private IEnumerator spawning(IHold holder)
+    private IEnumerator Spawning(IHold holder)
     {
         yield return new WaitForSeconds(spawnWaitTime);
-        spawn(holder);
+        Spawn(holder);
     }
 
 }

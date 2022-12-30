@@ -19,18 +19,18 @@ public class InteractionManager : MonoBehaviour, Iinteractable
             Instance = this;
         }
     }
-    public void interact(GameObject player, GameObject highlightedObj, GameObject playerHoldingObj)
+    public void Interact(GameObject player, GameObject highlightedObj, GameObject playerHoldingObj)
     {
         // if we arent highlighting anything drop whatever we are holding
         if (highlightedObj == null)
         {
-            drop(playerHoldingObj);
+            Drop(playerHoldingObj);
         }
 
         // we arent holding anything we can pick stuff up
         else if (playerHoldingObj == null)
         {
-            pickup(highlightedObj, player);
+            Pickup(highlightedObj, player);
         }
 
         // if we are holding something and are highlighting something
@@ -42,43 +42,42 @@ public class InteractionManager : MonoBehaviour, Iinteractable
 
             if (highlightedHolder != null)
             {
-                setDown(playerHoldingObj, highlightedHolder);
+                SetDown(playerHoldingObj, highlightedHolder);
             }
             else if (highlightedPickup != null)
             {
                 // place something on top of what the player is holding
-                pickup(highlightedObj, playerHoldingObj);
+                Pickup(highlightedObj, playerHoldingObj);
             }
         }
     }
 
-    private void drop(GameObject playerHoldingObj)
+    private void Drop(GameObject playerHoldingObj)
     {
         if (playerHoldingObj != null)
         {
             IPickup playerHoldingObjPickup = playerHoldingObj.GetComponent(typeof(IPickup)) as IPickup;
-            playerHoldingObjPickup.drop();
+            playerHoldingObjPickup.Drop();
         }
     }
-    private void setDown(GameObject obj, IHold newHolder)
+    private void SetDown(GameObject obj, IHold newHolder)
     {
         IPickup pickup = obj.GetComponent(typeof(IPickup)) as IPickup;
 
         if (pickup != null)
-            pickup.setDown(newHolder);
+            pickup.SetDown(newHolder);
     }
-    private void pickup(GameObject obj, GameObject holder)
+    private void Pickup(GameObject obj, GameObject holder)
     {
         IPickup pickup = obj.GetComponent(typeof(IPickup)) as IPickup;
         if (pickup != null)
         {
-            pickup.pickup(holder.GetComponent(typeof(IHold)) as IHold);
+            pickup.Pickup(holder.GetComponent(typeof(IHold)) as IHold);
         }
         // interact with crate
         else
         {
-            FoodCrate crate = obj.GetComponent<FoodCrate>();
-            if (crate != null)
+            if (obj.TryGetComponent<FoodCrate>(out var crate))
             {
                 crate.SpawnObj(holder.GetComponent(typeof(IHold)) as IHold);
             }

@@ -22,7 +22,7 @@ public class Table : BasicInteractable, Iinteractable, IHold
     public void Start()
     {
         holder = new BasicHolder(gameObject);
-        ObjectManager.Instance.addInteractable(gameObject);
+        ObjectManager.Instance.AddInteractable(gameObject);
 
         Spawner spawner = gameObject.GetComponent<Spawner>();
         if (spawner != null && spawnObjOnStart)
@@ -45,10 +45,10 @@ public class Table : BasicInteractable, Iinteractable, IHold
                 ScoreManager.Instance.AddScore(SubmissionTableNum, plateHolder.CurrentlyHoldingObj);
 
                 //remove food from scene
-                ObjectManager.Instance.removeInteractable(plateHolder.CurrentlyHoldingObj);
+                ObjectManager.Instance.RemoveInteractable(plateHolder.CurrentlyHoldingObj);
 
                 // remove plate from scene
-                ObjectManager.Instance.removeInteractable(plateHolder.HolderObj);
+                ObjectManager.Instance.RemoveInteractable(plateHolder.HolderObj);
 
                 // respawn plate
                 plateRespawnObj.GetComponent<Spawner>().WaitThenSpawn(plateRespawnObj.GetComponent(typeof(IHold)) as IHold);

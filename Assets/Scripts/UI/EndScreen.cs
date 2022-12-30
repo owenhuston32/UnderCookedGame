@@ -55,6 +55,7 @@ public class EndScreen : MonoBehaviour
     {
         if(val == true)
         {
+            //update ui
             CanvasManager.Instance.ActiveMenu = StaticStrings.endMenu;
             UpdateEndScreenUI();
         }

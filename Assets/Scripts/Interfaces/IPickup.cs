@@ -9,8 +9,8 @@ public interface IPickup
     public bool CanPickup { get; set; }
     public IHold PickupHolder { get; set; }
     public GameObject PickupObj { get; }
-    public void pickup(IHold newHolder);
-    public void setDown(IHold newHolder);
-    public void drop();
+    public void Pickup(IHold newHolder);
+    public void SetDown(IHold newHolder);
+    public void Drop();
 
 }

@@ -38,8 +38,8 @@ public class InputManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player1.initialize(controls.InGameControls.Player1Move, controls.InGameControls.Player1Shoot, controls.InGameControls.Player1Interact, controls.PersistentActions.Player1Pause);
-        player2.initialize(controls.InGameControls.Player2Move, controls.InGameControls.Player2Shoot, controls.InGameControls.Player2Interact, controls.PersistentActions.Player2Pause);
+        player1.Initialize(controls.InGameControls.Player1Move, controls.InGameControls.Player1Shoot, controls.InGameControls.Player1Interact, controls.PersistentActions.Player1Pause);
+        player2.Initialize(controls.InGameControls.Player2Move, controls.InGameControls.Player2Shoot, controls.InGameControls.Player2Interact, controls.PersistentActions.Player2Pause);
         
 
         // disable in game controls on start

@@ -20,51 +20,49 @@ public class Pan : BasicInteractable, IPickup, IHold, Iinteractable
     {
         basicHolder = new BasicHolder(gameObject);
         basicPickup = new BasicPickup(gameObject);
-        ObjectManager.Instance.addInteractable(gameObject);
+        ObjectManager.Instance.AddInteractable(gameObject);
     }
 
-    public void pickup(IHold newHolder)
+    public void Pickup(IHold newHolder)
     {
         if (CurrentlyHoldingObj != null)
         {
-            CurrentlyHoldingObj.GetComponent<Cook>().stopCook();
+            CurrentlyHoldingObj.GetComponent<Cook>().StopCook();
         }
         newHolder.StartHolding(PickupHolder, PickupObj, null);
-        basicPickup.pickup(newHolder);
+        basicPickup.Pickup(newHolder);
     }
 
-    public void setDown(IHold newHolder)
+    public void SetDown(IHold newHolder)
     {
         // set the food on the plate and drop pan
         if(newHolder.HolderObj.CompareTag(StaticStrings.Plate))
         {
             IPickup food = CurrentlyHoldingObj.GetComponent(typeof(IPickup)) as IPickup;
-            food.setDown(newHolder);
+            food.SetDown(newHolder);
         }
         else
         {
             newHolder.StartHolding(PickupHolder, PickupObj, null);
-            basicPickup.setDown(newHolder);
+            basicPickup.SetDown(newHolder);
         }
 
     }
-    public void drop()
+    public void Drop()
     {
         PickupHolder.StopHolding(PickupObj);
-        basicPickup.drop();
+        basicPickup.Drop();
     }
 
     public void StartHolding(IHold oldHolder, GameObject pickupObj, Transform followTransform)
     {
+        // start cooking if the pan is starting to hold food
+        // and a burner is holding the pan
         if(pickupObj.CompareTag(StaticStrings.Food))
         {
-            if(PickupHolder != null && PickupHolder.HolderObj.CompareTag(StaticStrings.Burner))
+            if(PickupHolder.HolderObj.CompareTag(StaticStrings.Burner))
             {
-                pickupObj.GetComponent<Cook>().cook();
-            }
-            else
-            {
-                pickupObj.GetComponent<Cook>().stopCook();
+                pickupObj.GetComponent<Cook>().StartCooking();
             }
         }
         basicHolder.StartHolding(oldHolder, pickupObj, holdPositions[0]);

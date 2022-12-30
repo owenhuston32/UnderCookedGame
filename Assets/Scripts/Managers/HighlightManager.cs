@@ -28,7 +28,7 @@ public class HighlightManager
 
         highlightedObj = null;
 
-        GameObject closestInteractable = getClosestInteractable();
+        GameObject closestInteractable = GetClosestInteractable();
         if (closestInteractable != null)
         {
             highlightedObj = closestInteractable;
@@ -38,14 +38,14 @@ public class HighlightManager
 
     }
 
-    private GameObject getClosestInteractable()
+    private GameObject GetClosestInteractable()
     {
         float closestObjDistance = float.MaxValue;
         GameObject closestInteractable = null;
 
         foreach (GameObject interactable in ObjectManager.Instance.Interactables)
         {
-            if (tagManager.canInteract(interactable))
+            if (tagManager.CanInteract(interactable))
             {
 
                 if (tagManager.CanInteractWithTags.Contains(interactable.tag))

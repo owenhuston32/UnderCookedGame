@@ -2315,7 +2315,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8505268304153600020}
   - component: {fileID: 8505268304153600021}
-  - component: {fileID: 8505268304153600023}
   - component: {fileID: 3688292056576762318}
   m_Layer: 0
   m_Name: SubmissionTable
@@ -2359,18 +2358,6 @@ MonoBehaviour:
   highlightedMaterial: {fileID: 2100000, guid: d8dd86db576cbe6418254977cf2c473f, type: 2}
   highlightObjects:
   - {fileID: 8505268304940515603}
---- !u!114 &8505268304153600023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8505268304153600040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0aa34d93f59a66428d2090fcc8f12ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3688292056576762318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2592,7 +2579,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2710685862417578286}
-  - component: {fileID: 5867790783076664998}
   - component: {fileID: 7553510601939930279}
   - component: {fileID: 1620607930993677156}
   m_Layer: 0
@@ -2620,18 +2606,6 @@ Transform:
   m_Father: {fileID: 8505268304153600020}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5867790783076664998
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9215648134613917057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0aa34d93f59a66428d2090fcc8f12ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7553510601939930279
 MonoBehaviour:
   m_ObjectHideFlags: 0
