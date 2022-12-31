@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    
-    [SerializeField] float projectileSpeed = 10f;
-    [SerializeField] float despawnWaitTime = 3f;
+ 
     private Player player;
     private InteractableTagManager tagManager;
     private GameObject objInHand;
@@ -18,7 +16,7 @@ public class Attack : MonoBehaviour
         player = GetComponent<Player>();
         tagManager = player.TagManager;
 
-        shoot = new Shoot(player, projectileSpeed, despawnWaitTime);
+        shoot = new Shoot(player);
         melee = new Melee(player);
     }
 

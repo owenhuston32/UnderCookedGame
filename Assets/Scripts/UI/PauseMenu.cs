@@ -11,6 +11,10 @@ public class PauseMenu : MonoBehaviour
         gameObject.GetComponent<Canvas>().enabled = val;
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 
 
 }

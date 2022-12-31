@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class Shoot 
 {
-    private float projectileSpeed = 0;
-    private float despawnWaitTime = 0;
+    private float projectileSpeed = 20f;
+    private float despawnWaitTime = 3f;
     private Player player;
-    public Shoot(Player player, float projectileSpeed, float despawnWaitTime)
+    public Shoot(Player player)
     {
         this.player = player;
-        this.projectileSpeed = projectileSpeed;
-        this.despawnWaitTime = despawnWaitTime;
     }
 
     public void StartShoot(GameObject objInHand)
@@ -29,6 +27,7 @@ public class Shoot
         objInHand.GetComponent<Rigidbody>().AddForce(projectileSpeed * objInHand.transform.forward, ForceMode.Impulse);
         objInHand.GetComponent<Collider>().enabled = true;
 
+        player.CurrentlyHoldingObj = null;
 
         ObjectManager.Instance.RemoveInteractableAfterSeconds(objInHand, despawnWaitTime);
     }

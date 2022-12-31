@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
+    private bool invincible = false;
     private float stunTime = 0;
     private bool isMoving = false;
     private Vector3 moveDirection = Vector3.zero;
@@ -49,11 +50,15 @@ public class Move : MonoBehaviour
 
     public void StunMovement(float stunTime)
     {
-        this.stunTime = stunTime;
+        if(!invincible)
+        {
+            this.stunTime = stunTime;
 
-        if(canMove)
-            StartCoroutine(StunningMovement(stunTime));
-        
+            if (canMove)
+                StartCoroutine(StunningMovement(stunTime));
+
+            invincible = true;
+        }
     }
     private IEnumerator StunningMovement(float stunTime)
     {
@@ -67,6 +72,20 @@ public class Move : MonoBehaviour
         }
         gameObject.GetComponent<IHighlight>().RemoveHighlight();
         canMove = true;
+        StartCoroutine(BlinkingHighlight());
     }
 
+    private IEnumerator BlinkingHighlight()
+    {
+        for(int i = 0; i < 6; i++)
+        {
+            gameObject.GetComponent<IHighlight>().HighlightMaterial();
+            yield return new WaitForSeconds(.2f);
+            gameObject.GetComponent<IHighlight>().RemoveHighlight();
+            yield return new WaitForSeconds(.2f);
+        }
+
+        invincible = false;
+
+    }
 }

@@ -85,6 +85,7 @@ public class InteractableTagManager
 
     public void SetDefaultTags()
     {
+        Debug.Log("default tags");
         SetTags(defaultTags);
     }
 
